@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="TeachMeSkills_C14onl_SalovAnatoly_Maven" />
+        <module name="lesson_22_classwork_servlets" />
       </profile>
     </annotationProcessing>
   </component>
