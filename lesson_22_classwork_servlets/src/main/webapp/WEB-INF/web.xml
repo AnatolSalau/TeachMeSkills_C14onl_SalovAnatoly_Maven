@@ -23,6 +23,15 @@
     <servlet-name>book</servlet-name>
     <servlet-class>BookServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>start</servlet-name>
+    <servlet-class>StartServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>end</servlet-name>
+    <servlet-class>EndServlet</servlet-class>
+  </servlet>
+
 
   <!--Указываем необходимый URL тегом servlet mapping -->
   <servlet-mapping>
@@ -45,5 +54,13 @@
   <servlet-mapping>
     <servlet-name>home3</servlet-name>
     <url-pattern>/home3</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>start</servlet-name>
+    <url-pattern>/start</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>end</servlet-name>
+    <url-pattern>/end</url-pattern>
   </servlet-mapping>
 </web-app>
