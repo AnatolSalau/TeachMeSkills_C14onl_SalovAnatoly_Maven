@@ -18,12 +18,15 @@ public class StartServlet extends HttpServlet {
         //Получим куки и распечатаем
         PrintWriter printWriter = resp.getWriter();
         printWriter.println("StartServlet");
-/*        Cookie[] cookies = req.getCookies();
+        Cookie[] cookies = req.getCookies();
         if (cookies != null) {
-            Arrays.stream(cookies).forEach(cookie -> printWriter.println(
-                    "value : "+ cookie.getValue()
-            ));
-        }*/
-        resp.addCookie(new Cookie("firstCokie", "value of fist cokie"));
+            Arrays.stream(cookies).forEach(cookie -> {
+                printWriter.println("value : " + cookie.getValue());
+                //logs in tomcat
+                System.out.println("value : " + cookie.getValue());
+            }
+            );
+        }
+        resp.addCookie(new Cookie("firstCokie", "valueOfFistCokie"));
     }
 }
