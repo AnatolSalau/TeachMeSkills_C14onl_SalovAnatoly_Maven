@@ -14,6 +14,12 @@
     <servlet-class>HomeServlet2</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>home3</servlet-name>
+    <servlet-class>HomeServlet3</servlet-class>
+    <!--Тэг load-on-startup загружает сервлет сразу не ждя request-->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
     <servlet-name>book</servlet-name>
     <servlet-class>BookServlet</servlet-class>
   </servlet>
@@ -35,5 +41,9 @@
   <servlet-mapping>
     <servlet-name>home2</servlet-name>
     <url-pattern>/home2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>home3</servlet-name>
+    <url-pattern>/home3</url-pattern>
   </servlet-mapping>
 </web-app>
