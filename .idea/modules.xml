@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/lesson_22_homework_servlets/lesson_22_homework_servlets.iml" filepath="$PROJECT_DIR$/lesson_22_homework_servlets/lesson_22_homework_servlets.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lesson_22_classwork_servlets/lesson_22_classwork_servlets.iml" filepath="$PROJECT_DIR$/lesson_22_classwork_servlets/lesson_22_classwork_servlets.iml" />
-    </modules>
-  </component>
-</project>
