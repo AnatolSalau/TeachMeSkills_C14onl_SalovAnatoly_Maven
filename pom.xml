@@ -9,6 +9,7 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>lesson_22_classwork_servlets</module>
+    <module>lesson_22_homework_servlets</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -35,6 +36,13 @@
       <version>4.0.1</version>
       <scope>provided</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mortbay.jetty/maven-jetty-plugin -->
+    <dependency>
+      <groupId>org.mortbay.jetty</groupId>
+      <artifactId>jetty</artifactId>
+      <version>6.1.25</version>
+    </dependency>
+
   </dependencies>
 
   <build>
