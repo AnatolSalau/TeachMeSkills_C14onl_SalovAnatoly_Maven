@@ -1,17 +1,19 @@
+package entity;
+
 import java.util.Objects;
 
 public class Car {
-    private final int ID;
+    private final String ID;
     private String name;
     private String number;
 
-    public Car(int ID, String name, String number) {
+    public Car(String ID, String name, String number) {
         this.ID = ID;
         this.name = name;
         this.number = number;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 

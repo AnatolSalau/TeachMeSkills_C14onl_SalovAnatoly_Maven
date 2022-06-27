@@ -31,11 +31,6 @@
 
     <name>lesson_22_homework_servlets</name>
     <artifactId>lesson_22_homework_servlets</artifactId>
-    <build>
-        <plugins>
-        </plugins>
-    </build>
-
     <dependencies>
         <!--dependency>
       <groupId>by.tms.c14onl.salovanatoly</groupId>
