@@ -2,10 +2,13 @@ package servlets;
 
 import entity.CarsDB;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import services.CarService;
+import services.CookiesService;
+import services.TimeService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,12 +17,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class GetCars extends HttpServlet {
-    protected Map<String, String[]> allParams;
+public class GetCarsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        allParams = req.getParameterMap();
+        Map<String, String[]> allParams = req.getParameterMap();
         PrintWriter printWriter =resp.getWriter();
+        //Работаем с куками
+        resp.addCookie(new Cookie("lastTime", new TimeService().get()));
+        Map<String, String> allCookies = CookiesService.getMapCookies(req);
+        CookiesService.printOnWebPage(printWriter, allCookies );
         //Проверяем какие ключи параметров есть
         //all - получить все машины
         //id - получить определенную
