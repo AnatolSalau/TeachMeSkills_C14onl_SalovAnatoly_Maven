@@ -1,11 +1,14 @@
 package servlets;
 
+import entity.CarsDB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import services.GetCookiesService;
+import services.CarService;
+import services.CookiesService;
+import services.TimeService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,9 +18,12 @@ public class StartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter printWriter = resp.getWriter();
-        resp.addCookie(new Cookie("lastTime", ""));
-        printWriter.println("Start servlet");
-        Map<String, String> allCookies = GetCookiesService.getMapCookies(req);
-        GetCookiesService.printOnPage(printWriter, allCookies );
+
+        resp.addCookie(new Cookie("lastTime", new TimeService().get()));
+
+        Map<String, String> allCookies = CookiesService.getMapCookies(req);
+        CookiesService.printOnWebPage(printWriter, allCookies );
+
+        CarService.printAllCarsOnWebPage(printWriter, CarsDB.getCars());
     }
 }

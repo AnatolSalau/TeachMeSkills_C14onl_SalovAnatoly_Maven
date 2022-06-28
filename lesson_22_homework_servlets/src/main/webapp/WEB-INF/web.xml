@@ -14,6 +14,11 @@
     <servlet-name>start</servlet-name>
     <servlet-class>servlets.StartServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>get</servlet-name>
+    <servlet-class>servlets.GetCars</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>initDB</servlet-name>
     <url-pattern>/1</url-pattern>
@@ -22,4 +27,9 @@
     <servlet-name>start</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>get</servlet-name>
+    <url-pattern>/get</url-pattern>
+  </servlet-mapping>
+
 </web-app>

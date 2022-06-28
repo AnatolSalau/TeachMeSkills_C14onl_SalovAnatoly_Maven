@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class GetCookiesService {
+public class CookiesService {
     public static Cookie[] getCookies(HttpServletRequest req) {
         Cookie[] cookies = req.getCookies();
         return cookies;
@@ -23,14 +23,13 @@ public class GetCookiesService {
         }
         return result;
     }
-    public static void printOnPage (PrintWriter printWriter, Map<String, String> cookies) {
+    public static void printOnWebPage(PrintWriter printWriter, Map<String, String> cookies) {
         printWriter.println("Cookies: ");
         if (cookies == null) {
             printWriter.println("null");
         } else {
-            cookies.entrySet().stream()
-                    .peek(entry -> {
-                        printWriter.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+            cookies.forEach((s1, s2) -> {
+                        printWriter.println("Key: " + s1 + ", Value: " + s2);
                     });
         }
     }
