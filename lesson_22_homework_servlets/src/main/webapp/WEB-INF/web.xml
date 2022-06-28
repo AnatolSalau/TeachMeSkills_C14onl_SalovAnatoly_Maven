@@ -22,6 +22,14 @@
     <servlet-name>post</servlet-name>
     <servlet-class>servlets.PostCarServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>delete</servlet-name>
+    <servlet-class>servlets.DeleteCarServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>put</servlet-name>
+    <servlet-class>servlets.PutCarServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>initDB</servlet-name>
@@ -39,5 +47,12 @@
     <servlet-name>post</servlet-name>
     <url-pattern>/post</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>delete</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>put</servlet-name>
+    <url-pattern>/put</url-pattern>
+  </servlet-mapping>
 </web-app>

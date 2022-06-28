@@ -14,8 +14,8 @@ public class CookiesService {
         return cookies;
     }
 
-    public static Map<String,String> getMapCookies (HttpServletRequest req) {
-        Map<String,String> result = null;
+    public static Map<String, String> getMapCookies(HttpServletRequest req) {
+        Map<String, String> result = null;
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             result = Arrays.stream(cookies)
@@ -23,14 +23,15 @@ public class CookiesService {
         }
         return result;
     }
+
     public static void printOnWebPage(PrintWriter printWriter, Map<String, String> cookies) {
         printWriter.println("Cookies: ");
         if (cookies == null) {
             printWriter.println("null");
         } else {
             cookies.forEach((s1, s2) -> {
-                        printWriter.println("Key: " + s1 + ", Value: " + s2);
-                    });
+                printWriter.println("Key: " + s1 + ", Value: " + s2);
+            });
         }
     }
 }

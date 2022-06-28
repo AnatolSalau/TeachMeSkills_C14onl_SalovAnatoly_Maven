@@ -9,6 +9,6 @@ public class TimeService {
         LocalTime localTime = java.time.LocalTime.now();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         result = dtf.format(localTime);
-        return  result;
+        return result;
     }
 }
