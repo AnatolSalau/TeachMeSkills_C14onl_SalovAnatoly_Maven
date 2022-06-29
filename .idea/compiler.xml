@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="lesson_22_classwork_servlets" />
         <module name="lesson_22_homework_servlets" />
+        <module name="lesson_23_classwork_javaee" />
       </profile>
     </annotationProcessing>
   </component>
