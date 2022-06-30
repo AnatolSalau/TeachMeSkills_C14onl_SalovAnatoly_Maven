@@ -11,6 +11,7 @@
     <module>lesson_22_classwork_servlets</module>
     <module>lesson_22_homework_servlets</module>
     <module>lesson_23_classwork_javaee</module>
+      <module>lesson_23_homework_javaee</module>
   </modules>
   <packaging>pom</packaging>
 
