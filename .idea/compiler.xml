@@ -6,11 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="lesson_22_classwork_servlets" />
+        <module name="lesson_22_homework_servlets" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="lesson_22_classwork_servlets" target="17" />
       <module name="lesson_22_homework_servlets" target="17" />
+      <module name="lesson_23_classwork_javaee" target="17" />
+      <module name="lesson_23_homework_javaee" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
