@@ -9,7 +9,7 @@
     <display-name>Archetype Created Web Application</display-name>
     <context-param>
         <param-name>user</param-name>
-        <param-value>onlyGet</param-value>
+        <param-value>admin</param-value>
     </context-param>
 
 </web-app>

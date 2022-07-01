@@ -1,6 +1,6 @@
 package filters;
 
-import exceptions.AccessFilterException;
+import exceptions.AccessException;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 /*Создать фильтр, который будет отклонять все запросы
 если в реквест хидере нет спец параметра (но разрешать при этом все get запросы)*/
@@ -23,7 +22,7 @@ public class AccessFilter implements Filter {
         //Перечисление с именами хидеров
         Enumeration<String> headerNamesEnum = httpServletRequest.getHeaderNames();
         //Создаем map чтобы в ней нормально хранить хидеры ключ-значение
-        Map<String,String> allHeadersMap = new HashMap<>();
+        Map<String, String> allHeadersMap = new HashMap<>();
         //заполняем
         while (headerNamesEnum.hasMoreElements()) {
             String key = headerNamesEnum.nextElement();
@@ -42,7 +41,7 @@ public class AccessFilter implements Filter {
         System.out.println("CONTEXT PARAMETERS:");
         System.out.println("value:" + userValue);
         //Проверка есть ли такой параметр в хидере
-        if (allHeadersMap.containsKey("user")  && allHeadersMap.get("user").equals(userValue) ) {
+        if (allHeadersMap.containsKey("user") && allHeadersMap.get("user").equals(userValue)) {
             System.out.println("AССESS IS ALLOWED");
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
@@ -52,7 +51,7 @@ public class AccessFilter implements Filter {
                 filterChain.doFilter(servletRequest, servletResponse);
             }
             System.out.println("Key or value in headers wrong");
-            throw new AccessFilterException("Key or value in headers wrong");
+            throw new AccessException("Key or value in headers wrong");
         }
     }
 }

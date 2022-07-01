@@ -13,6 +13,7 @@ import services.TimeService;
 @WebListener
 public class MyRequestListener implements ServletRequestListener {
     private static int countRequest = 0;
+
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
         TimeService timeService = new TimeService();

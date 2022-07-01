@@ -2,6 +2,7 @@ package servlets;
 
 import entity.CarsDB;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +13,7 @@ import services.TimeService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
-
+@WebServlet(value = "/delete")
 public class DeleteCarServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
