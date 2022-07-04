@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.WebFilter;
 import java.io.IOException;
 //Порядок вызова фильтров не учитывается
 //Регистрируем фильтр на все url нашего приложения
-@WebFilter("/*")
+//@WebFilter("/*")
 public class AccessFilter implements Filter {
 
     @Override
