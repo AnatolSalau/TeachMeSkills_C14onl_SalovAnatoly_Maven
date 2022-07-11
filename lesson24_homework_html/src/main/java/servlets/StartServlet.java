@@ -15,11 +15,14 @@ import java.util.Map;
 public class StartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<String, String[]> parameterMap = req.getParameterMap();
         PrintWriter printWriter = resp.getWriter();
         PrintOnPage<String,String> printOnPage = new PrintOnPage<>();
         printOnPage.printMapOnPageByPrintWriter(printWriter,parameterMap);
     }
-
-
 }
