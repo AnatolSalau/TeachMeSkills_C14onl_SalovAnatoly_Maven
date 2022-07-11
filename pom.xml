@@ -10,6 +10,7 @@
   <modules>
     <module>lesson_22_classwork_servlets</module>
     <module>lesson_22_homework_servlets</module>
+    <module>lesson_23_classwork_javaee</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -45,7 +46,7 @@
   </dependencies>
 
   <build>
-    <finalName>lesson22</finalName>
+    <finalName>lesson23</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
