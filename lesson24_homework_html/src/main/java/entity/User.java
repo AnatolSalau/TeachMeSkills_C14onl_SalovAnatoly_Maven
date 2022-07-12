@@ -6,7 +6,7 @@ import enums.Role;
 import java.util.Objects;
 
 public class User {
-    private String login;
+    private final String login;
     private String password;
     private Gender gender;
     private String description;
