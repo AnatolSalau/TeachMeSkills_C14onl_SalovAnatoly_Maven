@@ -3,8 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+    <link rel="stylesheet" href="registration.css">
 </head>
 <body>
+<div class="parentDiv">
+    <div class="formDiv">
+        <div class="conditionDiv" id="topDiv">
+            <label id="topLabel"> Enter characteristic new user:</label>
+        </div>
 
+        <form method="post" action="http://127.0.0.1:8080/lesson24homework/registration">
+            <div class="conditionDiv">
+                <label>Login</label>
+                <input type="text" name="login">
+            </div>
+            <div class="conditionDiv">
+                <label>Password</label>
+                <input type="text" name="password">
+            </div>
+            <div class="conditionDiv">
+                <label>Gender</label>
+                <input type="text" name="gender">
+            </div>
+            <div class="conditionDiv">
+                <label>Description</label>
+                <input type="text" name="description">
+            </div>
+            <div class="conditionDiv">
+                <label>Role</label>
+                <input type="text" name="role">
+            </div>
+            <div class="buttonDiv">
+                <button type="submit">Create new user</button>
+            </div>
+        </form>
+
+    </div>
+</div>
 </body>
 </html>

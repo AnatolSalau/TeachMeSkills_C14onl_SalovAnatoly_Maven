@@ -17,6 +17,4 @@ public class StartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.sendRedirect("http://127.0.0.1:8080/lesson24homework/login.html");
     }
-
-
 }

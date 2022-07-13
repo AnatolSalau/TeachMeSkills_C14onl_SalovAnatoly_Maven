@@ -3,9 +3,9 @@
     margin: 0;
 }
 .parentDiv {
-    background-image: url("https://i.picsum.photos/id/0/5616/3744.jpg?hmac=3GAAioiQziMGEtLbfrdbcoenXoWAW-zlyEAMkfEdBzQ");
+    background-image: url("http://127.0.0.1:8080/lesson24homework/image");
     height: 100vh;
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat ;
 }

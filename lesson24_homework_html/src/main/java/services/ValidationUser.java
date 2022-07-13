@@ -7,7 +7,7 @@ import enums.Role;
 public class ValidationUser {
     private DBUsersConnect dbUsersConnect = new DBUsersConnect();
 
-    public boolean isCorrectLoginPasswordRole (String login, String password, Role role) {
+    public boolean isCorrect(String login, String password, Role role) {
         User userInDB = null;
         userInDB = dbUsersConnect.getUser(login);
 
@@ -24,5 +24,9 @@ public class ValidationUser {
         }
         return true;
     }
-
+    public boolean hasUser(String login) {
+        if (dbUsersConnect.getUser(login) != null){
+            return true;
+        } else return false;
+    }
 }
