@@ -15,9 +15,17 @@ public class User {
     public User(String login, String password, String gender, String description, String role) {
         this.login = login;
         this.password = password;
-        this.gender = Gender.MAN;
+        if (Gender.MAN.toString().equals(gender.toUpperCase())) {
+            this.gender = Gender.MAN;
+        } else {
+            this.gender = Gender.WOMAN;
+        }
         this.description = description;
-        this.role = role;
+        if (Role.ADMIN.toString().equals(role.toUpperCase())) {
+            this.role = Role.ADMIN;
+        } else {
+            this.role = Role.USER;
+        }
     }
 
     @Override

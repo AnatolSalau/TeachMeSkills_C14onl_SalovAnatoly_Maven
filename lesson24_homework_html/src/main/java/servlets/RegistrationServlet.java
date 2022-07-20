@@ -8,10 +8,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import services.ValidationUser;
-import servlets.util.PrintOnPage;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -28,18 +26,21 @@ public class RegistrationServlet extends HttpServlet {
         DBUsersConnect dbUsersConnect = new DBUsersConnect();
         ValidationUser validationUser = new ValidationUser();
         String[] logins = parameterMap.get("login");
-        boolean hasUser = Arrays.stream(logins)
+        boolean hasUser = true;
+        hasUser = Arrays.stream(logins)
                 .map(validationUser::hasUser)
                 .findFirst()
                 .orElse(false);
-        if (hasUser) {
+        System.out.println("hasUser = " + hasUser);
+
+        if (!hasUser) {
             User newUser = new User(
                     parameterMap.get("login")[0], parameterMap.get("password")[0], parameterMap.get("gender")[0], parameterMap.get("description")[0], parameterMap.get("role")[0]
-                    );
+            );
             dbUsersConnect.addUser(newUser);
-        }
-        else {
-
+            req.getRequestDispatcher("/allusers").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("/errorpage").forward(req, resp);
         }
     }
 }

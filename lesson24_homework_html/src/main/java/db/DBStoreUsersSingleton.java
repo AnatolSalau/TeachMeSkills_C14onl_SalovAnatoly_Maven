@@ -24,6 +24,7 @@ public class DBStoreUsersSingleton {
             }
         }
     }
+
     public Map<String, User> getUsers() {
         return users;
     }

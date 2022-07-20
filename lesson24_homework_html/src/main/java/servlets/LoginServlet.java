@@ -33,11 +33,8 @@ public class LoginServlet extends HttpServlet {
                 req.getParameter("login"), req.getParameter("password"), Role.ADMIN)
         ) {
             resp.sendRedirect("http://127.0.0.1:8080/lesson24homework/registration.html");
-        }
-        else {
+        } else {
             resp.sendRedirect("http://127.0.0.1:8080/lesson24homework/picture.html");
         }
-
-
     }
 }
