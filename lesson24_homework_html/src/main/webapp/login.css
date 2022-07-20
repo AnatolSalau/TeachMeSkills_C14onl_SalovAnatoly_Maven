@@ -1,0 +1,100 @@
+* {
+    outline: none;
+}
+.parentDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+.LoginPasswordForm {
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,90,1) 100%);
+    padding: 20px;
+    flex-direction: column;
+    border-radius: 45px;
+    padding-bottom: 50px;
+}
+.loginDiv {
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(70,171,252,1) 100%);
+    display: flex;
+    width: 300px;
+    height: 100px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.loginDivTop {
+    height: 50%;
+    text-align: center;
+}
+.loginDivTop label {
+    line-height: 50px;
+}
+.loginDivBottom {
+    height: 50%;
+    text-align: center;
+}
+.passwordDiv {
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(70,171,252,1) 100%);
+    border-radius: 30px;
+    display: flex;
+    width: 300px;
+    height: 100px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.passwordDivTop {
+    height: 50%;
+    text-align: center;
+}
+.passwordDivTop label {
+    line-height: 50px;
+}
+.passwordDivBottom {
+    height: 50%;
+}
+.buttonDiv {
+    text-align: center;
+}
+button {
+    width: 100%;
+    height: 50px;
+    border-radius: 20px;
+    font-size: 20px;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+input {
+    user-focus: none;
+    outline: none;
+    width: 280px;
+    height: 35px;
+    margin: 2px;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 20px;
+}
+label {
+    font-size: 25px;
+}
+a {
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    border-radius: 20px;
+    font-size: 20px;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+/*
+#registrationButton {
+    margin-top: 10px;
+}*/
