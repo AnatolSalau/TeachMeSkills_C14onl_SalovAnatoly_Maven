@@ -17,10 +17,16 @@ public class AllUsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter printWriter = resp.getWriter();
+        resp.setContentType("application/json");
+        String employeeJsonString = """
+                {"firstName": "Json", "lastName": "Smith", "age": 30}
+                """;
+        printWriter.print(employeeJsonString);
+/*        PrintWriter printWriter = resp.getWriter();
         DBUsersConnect dbUsersConnect = new DBUsersConnect();
         Map<String, User> allUsers = dbUsersConnect.getAllUsers();
         allUsers.forEach((key, value) ->
-                printWriter.println("key : " + key + " value : " + value.toString()));
+                printWriter.println("key : " + key + " value : " + value.toString()));*/
     }
 
     @Override
