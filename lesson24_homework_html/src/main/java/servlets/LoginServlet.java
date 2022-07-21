@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
         if (validationUser.isCorrect(
                 req.getParameter("login"), req.getParameter("password"), Role.ADMIN)
         ) {
+            //В случае успешной валидации перенаправляем на страницу регистрации
             resp.sendRedirect("http://127.0.0.1:8080/lesson24homework/registration.html");
         } else {
             resp.sendRedirect("http://127.0.0.1:8080/lesson24homework/picture.html");
