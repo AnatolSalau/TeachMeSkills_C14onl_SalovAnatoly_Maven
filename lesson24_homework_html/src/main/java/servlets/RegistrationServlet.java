@@ -38,7 +38,7 @@ public class RegistrationServlet extends HttpServlet {
                     parameterMap.get("login")[0], parameterMap.get("password")[0], parameterMap.get("gender")[0], parameterMap.get("description")[0], parameterMap.get("role")[0]
             );
             dbUsersConnect.addUser(newUser);
-            req.getRequestDispatcher("/allusers").forward(req, resp);
+            req.getRequestDispatcher("/allusers.html").forward(req, resp);
         } else {
             req.getRequestDispatcher("/errorpage").forward(req, resp);
         }
