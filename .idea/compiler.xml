@@ -13,6 +13,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="lesson24_homework_html" target="17" />
       <module name="lesson_22_classwork_servlets" target="17" />
       <module name="lesson_22_homework_servlets" target="17" />
       <module name="lesson_23_homework_javaee" target="17" />

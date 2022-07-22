@@ -1,0 +1,11 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.parentDiv {
+    background-image: url("http://127.0.0.1:8080/lesson24homework/image");
+    height: 100vh;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat ;
+}

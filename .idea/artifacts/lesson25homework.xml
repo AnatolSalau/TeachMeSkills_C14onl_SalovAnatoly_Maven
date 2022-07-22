@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="lesson25homework">
+    <output-path>$PROJECT_DIR$/out/artifacts/lesson25homework</output-path>
+    <root id="archive" name="lesson25homework.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="lesson25_homework_bootstrap" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="lesson25_homework_bootstrap/web/Web" />
+    </root>
+  </artifact>
+</component>
