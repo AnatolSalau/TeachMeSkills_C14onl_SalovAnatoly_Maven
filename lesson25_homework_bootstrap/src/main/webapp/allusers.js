@@ -1,4 +1,3 @@
-//Вывод JSON в консоль
 let url = 'http://127.0.0.1:8080/lesson25homework/allusers';
 //Словарь с пользователями
 let arrayOfUsers = [];

@@ -10,6 +10,11 @@ public class PrintOnPage<T,E> {
             printWriter.print("key : "+ key + " values :");
             Arrays.stream(value).forEach(val -> printWriter.print(" " +  val));
             printWriter.print("\n");
+
+            System.out.print("key : "+ key + " values :");
+            Arrays.stream(value).forEach(val -> System.out.print(" " +  val));
+            System.out.print("\n");
+
         } );
     }
 }

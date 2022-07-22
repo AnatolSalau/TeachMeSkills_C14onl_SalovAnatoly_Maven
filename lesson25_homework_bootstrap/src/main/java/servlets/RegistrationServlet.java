@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import services.ValidationUser;
+import servlets.util.PrintOnPage;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -38,8 +40,12 @@ public class RegistrationServlet extends HttpServlet {
                     parameterMap.get("login")[0], parameterMap.get("password")[0], parameterMap.get("gender")[0], parameterMap.get("description")[0], parameterMap.get("role")[0]
             );
             dbUsersConnect.addUser(newUser);
-            req.getRequestDispatcher("/allusers.html").forward(req, resp);
+            resp.sendRedirect("http://127.0.0.1:8080/lesson25homework/allusers");
         } else {
+            req.setAttribute("login",parameterMap.get("login")[0]);
+            System.out.println(req.getAttribute("login"));
+            String attribute= (String)req.getAttribute("login");
+            System.out.println(attribute);
             req.getRequestDispatcher("/errorpage").forward(req, resp);
         }
     }

@@ -32,9 +32,12 @@ public class AllUsersServlet extends HttpServlet {
         allUsers.forEach((key, value) ->
                 jsonString.append(
                         ", \"" + key+ "\"" + " : "+"{"
-                        + "\"login\" : "+ "\"" + value.getLogin()+ "\"" + ", "
-                        + "\"password\" : "+ "\"" + value.getPassword()+ "\""
-                        + "} "
+                                + "\"login\" : "+ "\"" + value.getLogin()+ "\"" + ", "
+                                + "\"password\" : "+ "\"" + value.getPassword()+ "\""+ ", "
+                                + "\"gender\" : "+ "\"" + value.getGender()+ "\""+ ", "
+                                + "\"description\" : "+ "\"" + value.getDescription()+ "\""+ ", "
+                                + "\"role\" : "+ "\"" + value.getRole()+ "\""
+                                + "} "
                 ));
         jsonString.append(" } }");
         //Remove extra comma (Удаляем лишнюю запятую которая недает прочесть JSON в JS)
@@ -62,7 +65,10 @@ public class AllUsersServlet extends HttpServlet {
                 jsonString.append(
                         ", \"" + key+ "\"" + " : "+"{"
                                 + "\"login\" : "+ "\"" + value.getLogin()+ "\"" + ", "
-                                + "\"password\" : "+ "\"" + value.getPassword()+ "\""
+                                + "\"password\" : "+ "\"" + value.getPassword()+ "\""+ ", "
+                                + "\"gender\" : "+ "\"" + value.getGender()+ "\""+ ", "
+                                + "\"description\" : "+ "\"" + value.getDescription()+ "\""+ ", "
+                                + "\"role\" : "+ "\"" + value.getRole()+ "\""
                                 + "} "
                 ));
         jsonString.append(" } }");

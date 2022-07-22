@@ -25,5 +25,6 @@ public class StartServlet extends HttpServlet {
         CookiesService.printOnWebPage(printWriter, allCookies);
 
         CarService.printAllCarsOnWebPage(printWriter, CarsDB.getCars());
+
     }
 }
