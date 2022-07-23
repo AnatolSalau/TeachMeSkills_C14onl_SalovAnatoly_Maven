@@ -8,10 +8,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import services.ValidationUser;
-import servlets.util.PrintOnPage;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -34,18 +32,19 @@ public class RegistrationServlet extends HttpServlet {
                 .findFirst()
                 .orElse(false);
         System.out.println("hasUser = " + hasUser);
-
+        //Если пользователя с таким логином нету то:
         if (!hasUser) {
             User newUser = new User(
                     parameterMap.get("login")[0], parameterMap.get("password")[0], parameterMap.get("gender")[0], parameterMap.get("description")[0], parameterMap.get("role")[0]
             );
+            //добавляем в базу данных нового пользователя
             dbUsersConnect.addUser(newUser);
-            resp.sendRedirect("http://127.0.0.1:8080/lesson25homework/allusers");
+            //переадресуем на
+            resp.sendRedirect("http://127.0.0.1:8080/lesson25homework/allusers.html");
         } else {
-            req.setAttribute("login",parameterMap.get("login")[0]);
-            System.out.println(req.getAttribute("login"));
-            String attribute= (String)req.getAttribute("login");
-            System.out.println(attribute);
+            // если пользователь есть - перенаправляем ответ на сервлет ErrorPageServlet
+            // в реквесте создаем параметр с логином - будем его читать в ErrorPageServlet
+            req.setAttribute("login", parameterMap.get("login")[0]);
             req.getRequestDispatcher("/errorpage").forward(req, resp);
         }
     }
