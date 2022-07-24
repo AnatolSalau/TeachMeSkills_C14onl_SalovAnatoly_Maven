@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--describe our classes-->
+<!--    Parameters Bean Definition-->
+<!--    <bean
+            name=""
+            class=""
+            scope=""
+            abstract=""
+            autowire="constructor" - Spring будет подставлять сам бины с нужным типом (Возьмет тип из конструктора)
+            depends-on="" - порядок загрузки одних бинов перед другими
+            lazy-init="true" - создание бина не сразу при создании контекста а когда он будет неообходим
+            init-method="" - указание метода который будет вызываться перед его создаением init()
+            destroy-method="" - указание метода который будет вызываться перед уничтожением бина
+            Но destroyMethods вызываются только если ApplicationContext указать что их нужно вызвать, c помощью метода
+            AbstractApplicationContext. registerShutdownHook();
+    />-->
+<!--    Parameters  constructor definition-->
+<!--    <constructor-arg name="store"
+                     index="" - we can use index of constructors
+                     ref="dataBase"
+    />-->
+
+
+    <!--BeanDefinition for DataBase class-->
+    <bean name="dataBase" class="model.DataBase" />
+    <!--
+        BeanDefinition for UserServiceDBImpl class
+        but becouse UserServiceDBImpl have constructor that accepts
+        DataBase we must describe it
+    -->
+    <bean name="userService" class="service.UserServiceDBImpl">
+        <!--
+            describe constructor
+            in UserServiceDBImpl constructor(store) we have argument store
+            insted of it we implement database
+        -->
+        <constructor-arg name="store" ref="dataBase"/>
+    </bean>
+    <bean name="fileService" class="service.UserServiceFileImpl">
+        <constructor-arg name="store" ref="dataBase"/>
+    </bean>
+
+    <bean name="loginService" class="service.LoginServiceImpl" init-method="init" destroy-method="destroy">
+        <constructor-arg name="service" ref="fileService"/>
+    </bean>
+    <bean name="beanPostProcessor" class="service.BeanServiceBeanPostProcessor"/>
+</beans>

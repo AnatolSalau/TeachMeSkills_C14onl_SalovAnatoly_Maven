@@ -1,3 +1,5 @@
+package ServiceLoader;
+
 public class UpperCaseStringHandler implements StringHandler{
     @Override
     public void print(String string) {
