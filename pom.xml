@@ -11,6 +11,7 @@
     <module>lesson_22_homework_servlets</module>
     <module>lesson_23_classwork_javaee</module>
     <module>lesson28_classwork_spring_core</module>
+      <module>lesson28_homework_horse_racing_xml</module>
   </modules>
   <packaging>pom</packaging>
 

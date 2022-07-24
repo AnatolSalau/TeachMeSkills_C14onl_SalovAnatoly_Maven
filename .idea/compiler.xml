@@ -19,6 +19,7 @@
         </processorPath>
         <module name="lesson_23_classwork_javaee" />
         <module name="lesson28_classwork_spring_core" />
+        <module name="lesson28_homework_horse_racing_xml" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
