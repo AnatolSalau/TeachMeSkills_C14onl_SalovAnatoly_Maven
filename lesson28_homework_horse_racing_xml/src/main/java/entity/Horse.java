@@ -23,4 +23,12 @@ public class Horse {
     public int hashCode() {
         return Objects.hash(name, speed);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
 }

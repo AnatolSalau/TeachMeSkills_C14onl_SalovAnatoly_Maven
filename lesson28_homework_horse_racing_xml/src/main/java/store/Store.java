@@ -5,20 +5,31 @@ import entity.Pair;
 import entity.Rider;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Getter
 public class Store {
 
-    private HashSet<Horse> horses;
-    private HashSet<Rider> riders;
-    private HashSet<Pair> pairs;
+    private LinkedHashMap<Integer,Pair> pairs = new LinkedHashMap<>();
 
-    public Store() {
-        this.horses = new HashSet<>();
-        this.riders = new HashSet<>();
-        this.pairs = new HashSet<>();
+    private static Store store = null;
+
+    private Store() {
+
+    }
+    public static Store getInstance() {
+        if (store != null) {
+            return store;
+        } else {
+            synchronized (Store.class) {
+                if (store == null) {
+                    store = new Store();
+                }
+            }
+            return store;
+        }
+    }
+    public Map<Integer,Pair> getStore() {
+        return pairs;
     }
 }

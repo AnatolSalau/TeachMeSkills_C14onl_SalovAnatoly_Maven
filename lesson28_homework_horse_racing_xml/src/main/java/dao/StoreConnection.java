@@ -5,34 +5,26 @@ import entity.Pair;
 import entity.Rider;
 import store.Store;
 
+import java.util.Map;
+
 public class StoreConnection {
-    private final Store store;
+    private  Store store;
 
     public StoreConnection(Store store) {
         this.store = store;
     }
 
-    public void addHorse(Horse horse) {
-        store.getHorses().add(horse);
+    public void add(Pair pair) {
+        store.getStore().put(pair.getNumber(),pair);
     }
-
-    public void addRider(Rider rider) {
-        store.getRiders().add(rider);
+    public Pair get(Integer key) {
+        return store.getStore().get(key);
     }
-
-    public void addPair(Pair pair) {
-        store.getPairs().add(pair);
+    public Map<Integer,Pair> getAllPairs() {
+        return store.getStore();
     }
-    public Horse getHorse(Horse horse) {
-        return store.getHorses().contains(horse) ? store.getHorses().re
+    private void initialize() {
+        store = Store.getInstance();
+        System.out.println("SoreConnection initialize : Store initialized like singleton");
     }
-
-    public Rider getRider(Rider rider) {
-        store.getRiders().add(rider);
-    }
-
-    public Pair getPair(Pair pair) {
-        store.getPairs().add(pair);
-    }
-
 }
