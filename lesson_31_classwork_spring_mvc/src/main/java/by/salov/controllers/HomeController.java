@@ -1,16 +1,24 @@
 package by.salov.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping( path = "/")
 public class HomeController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String home() {
+    @GetMapping("/")
+    public ModelAndView getHome(
+    ) {
         System.out.println("---------------GET HOME-----------------");
-        return "user.jsp";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("test.html");
+        return modelAndView;
+
+    }
+    @RequestMapping(value = "/",method = RequestMethod.POST)
+    public String postHome() {
+        System.out.println("---------------POST HOME-----------------");
+        return "postHome.jsp";
     }
 }

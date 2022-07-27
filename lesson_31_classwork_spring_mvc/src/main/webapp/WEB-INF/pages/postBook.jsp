@@ -6,6 +6,6 @@
     </title>
 </head>
 <body>
-Hello from user.jsp
+Hello from post book.jsp
 </body>
 </html>
