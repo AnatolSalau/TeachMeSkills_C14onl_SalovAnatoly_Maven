@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="lesson31classwork">
+  <artifact type="war" build-on-make="true" name="lesson31classwork">
     <output-path>$PROJECT_DIR$/out/artifacts/lesson31classwork</output-path>
     <root id="archive" name="lesson31classwork.war">
       <element id="directory" name="WEB-INF">
