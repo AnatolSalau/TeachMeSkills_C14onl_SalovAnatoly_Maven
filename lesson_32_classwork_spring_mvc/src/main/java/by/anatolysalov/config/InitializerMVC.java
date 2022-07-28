@@ -1,4 +1,4 @@
-package config;
+package by.anatolysalov.config;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -12,7 +12,7 @@ public class InitializerMVC implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
-        applicationContext.scan("by.salov");
+        applicationContext.scan("by.anatolysalov");
         ServletRegistration.Dynamic registration = servletContext.addServlet("dispatcher", new DispatcherServlet(applicationContext));
         registration.setLoadOnStartup(1);
         registration.addMapping("/");
