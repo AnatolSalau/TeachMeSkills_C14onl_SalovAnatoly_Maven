@@ -14,21 +14,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 public class WebConfiguration implements WebMvcConfigurer{
     @Bean
-    protected DefaultServletHttpRequestHandler defaultServletHttpRequestHandler() {
-        DefaultServletHttpRequestHandler dsrh = new DefaultServletHttpRequestHandler();
-        return dsrh;
-    }
-    @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("WEB-INF/pages/");
-        viewResolver.setSuffix("");
-        viewResolver.setContentType("text/html");
+        //Path to jsp pages!
+        viewResolver.setPrefix("/WEB-INF/pages/");
+        viewResolver.setSuffix(".jsp");
         return viewResolver;
-    }
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-        registry.addResourceHandler("/pages/**").addResourceLocations("/pages/");
     }
 }
