@@ -10,6 +10,7 @@
   <modules>
     <module>lesson_22_homework_servlets</module>
     <module>lesson_23_classwork_javaee</module>
+    <module>lesson_32_classwork_spring_mvc</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -23,26 +24,6 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.mortbay.jetty/maven-jetty-plugin -->
-    <dependency>
-      <groupId>org.mortbay.jetty</groupId>
-      <artifactId>jetty</artifactId>
-      <version>6.1.25</version>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <version>5.0.0</version>
-    </dependency>
-
-  </dependencies>
 
   <build>
     <finalName>lesson23</finalName>

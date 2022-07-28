@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="classwork32springmvc">
+    <output-path>$PROJECT_DIR$/out/artifacts/classwork32springmvc</output-path>
+    <root id="archive" name="classwork32springmvc.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="lesson_32_classwork_spring_mvc" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="lesson_32_classwork_spring_mvc/web/Web" />
+    </root>
+  </artifact>
+</component>
