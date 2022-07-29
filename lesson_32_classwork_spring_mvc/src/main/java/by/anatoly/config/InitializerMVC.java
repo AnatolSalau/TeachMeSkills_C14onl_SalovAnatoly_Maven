@@ -1,4 +1,4 @@
-package by.anatolysalov.config;
+package by.anatoly.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.WebApplicationInitializer;
@@ -10,11 +10,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 @Configuration
+
 public class InitializerMVC implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
-        applicationContext.scan("by.anatolysalov");
+        applicationContext.scan("by.anatoly");
         ServletRegistration.Dynamic registration = servletContext.addServlet("dispatcher", new DispatcherServlet(applicationContext));
         registration.setLoadOnStartup(1);
         registration.addMapping("/");
