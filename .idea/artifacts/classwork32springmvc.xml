@@ -7,18 +7,18 @@
           <element id="module-output" name="lesson_32_classwork_spring_mvc" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.22" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.3.22" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.3.22" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.22" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.22" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.3.22" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.3.22" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.3.22" />
           <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.5.1" />
           <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.1.Final" />
           <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:6.2.3.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.4.1.Final" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.3.22" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="lesson_32_classwork_spring_mvc/web/Web" />

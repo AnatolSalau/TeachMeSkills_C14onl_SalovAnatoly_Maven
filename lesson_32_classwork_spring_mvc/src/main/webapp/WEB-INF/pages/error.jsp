@@ -19,7 +19,7 @@
 
         </div>
         <div class="col">
-            ${exception1}
+            ${error}
         </div>
         <div class="col">
 

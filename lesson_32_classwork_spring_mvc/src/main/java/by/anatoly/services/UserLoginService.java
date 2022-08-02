@@ -6,9 +6,10 @@ import by.anatoly.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 // @Component("userLoginService") - annotation for services
-@Component("userLoginService")
+@Component
 public class UserLoginService {
     public void checkLogin(User user) throws FirstException,SecondException{
         if (user.getPassword().equals("1111")) {

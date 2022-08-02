@@ -37,7 +37,7 @@ public class UserController {
              @RequestParam(name = "email")String emailUser,
              @RequestParam(name = "password")String passwordUser,
             ModelAndView modelAndView
-    ) throws FirstException,SecondException {
+    ) throws FirstException, SecondException {
         modelAndView.setViewName("user");
         System.out.println(user.getEmail() + " / " + user.getPassword());
         modelAndView.addObject("user1");
@@ -54,9 +54,21 @@ public class UserController {
 
         }
         System.out.println("Start check error");
-        userLoginService.checkLogin(user);
+        //userLoginService.checkLogin(user);
+        if (passwordUser.equals("1111")) {
+            throw new FirstException("FirstException Password is 1111");
+        }
+        if (passwordUser.equals("2222")) {
+            throw new SecondException("SecondException Password is 2222");
+        }
         return  modelAndView;
     }
 
-
+    @ExceptionHandler(NestedServletException.class)
+    public String handler(Exception exception, ModelAndView modelAndView) {
+        modelAndView.addObject("exception", exception.getMessage());
+        Object exception1 = modelAndView.getModel().get("exception");
+        System.out.println("Exception form handler: " + exception1.toString());
+        return exception.getMessage();
+    }
 }
