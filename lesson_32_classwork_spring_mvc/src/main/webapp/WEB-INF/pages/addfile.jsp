@@ -19,7 +19,13 @@
 
         </div>
         <div class="col">
-
+            <form action="http://127.0.0.1:8080/classwork32springmvc/addfile" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="customFile">File input</label>
+                    <input type="file" class="form-control" id="customFile" name="file"  />
+                    <button type="submit"  class="btn btn-success">Success</button>
+                </div>
+            </form>
         </div>
         <div class="col">
 
