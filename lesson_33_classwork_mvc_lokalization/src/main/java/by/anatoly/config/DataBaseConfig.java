@@ -1,5 +1,6 @@
 package by.anatoly.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,6 +28,7 @@ public class DataBaseConfig {
     //Bean for carry out actions on the database
     //If we have something databases -> we must create JdbcTemplate for every database
     @Bean
+    @Qualifier("jdbcTemplateNumber1")
     JdbcTemplate jdbcTemplate() {
         //JdbcTemplate for current database
         return new JdbcTemplate(dataSource());
