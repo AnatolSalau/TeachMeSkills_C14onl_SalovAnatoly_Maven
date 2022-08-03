@@ -1,29 +1,30 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="classwork32springmvc">
-    <output-path>$PROJECT_DIR$/out/artifacts/classwork32springmvc</output-path>
-    <root id="archive" name="classwork32springmvc.war">
+  <artifact type="war" name="classwork33lokalization">
+    <output-path>$PROJECT_DIR$/out/artifacts/classwork33lokalization</output-path>
+    <root id="archive" name="classwork33lokalization.war">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="lesson_32_classwork_spring_mvc" />
+          <element id="module-output" name="lesson_33_classwork_mvc_lokalization" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.3.22" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.22" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.3.22" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.3.22" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.22" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.22" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.22" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.22" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.3.22" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.3.22" />
-          <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.5.1" />
           <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.1.Final" />
           <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:6.2.3.Final" />
+          <element id="library" level="project" name="Maven: jakarta.validation:jakarta.validation-api:2.0.2" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.4.1.Final" />
+          <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.5.1" />
           <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.4" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.2" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="lesson_32_classwork_spring_mvc/web/Web" />
+      <element id="javaee-facet-resources" facet="lesson_33_classwork_mvc_lokalization/web/Web" />
     </root>
   </artifact>
 </component>

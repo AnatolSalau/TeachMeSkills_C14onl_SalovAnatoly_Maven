@@ -16,6 +16,7 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" />
         </processorPath>
+        <module name="lesson_33_classwork_mvc_lokalization" />
         <module name="lesson_32_classwork_spring_mvc" />
       </profile>
     </annotationProcessing>
