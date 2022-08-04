@@ -20,7 +20,7 @@ public class DataBaseConfig {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         //set driver class of library for connection to database
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/lesson_20_jdbc_homework");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/postgres");
         dataSource.setUsername("postgres");
         dataSource.setPassword("sA#259979148307");
         return dataSource;
@@ -28,7 +28,7 @@ public class DataBaseConfig {
     //Bean for carry out actions on the database
     //If we have something databases -> we must create JdbcTemplate for every database
     @Bean
-    @Qualifier("jdbcTemplateNumber1")
+    @Qualifier(value = "jdbc1")
     JdbcTemplate jdbcTemplate() {
         //JdbcTemplate for current database
         return new JdbcTemplate(dataSource());
