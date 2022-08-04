@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator;
+import org.springframework.jdbc.support.SQLExceptionTranslator;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
@@ -31,6 +33,9 @@ public class DataBaseConfig {
     @Qualifier(value = "jdbc1")
     JdbcTemplate jdbcTemplate() {
         //JdbcTemplate for current database
-        return new JdbcTemplate(dataSource());
+        JdbcTemplate jdbcTemplate =  new JdbcTemplate(dataSource());
+        //setExceptionTranslator() - set object for handle exception from database selects
+        //jdbcTemplate.setExceptionTranslator(SQLErrorCodeSQLExceptionTranslator or SQLExceptionTranslator);
+        return jdbcTemplate;
     }
 }

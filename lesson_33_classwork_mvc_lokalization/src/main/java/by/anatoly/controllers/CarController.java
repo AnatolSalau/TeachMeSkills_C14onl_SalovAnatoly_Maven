@@ -54,5 +54,13 @@ public class CarController {
         //Get all cars from DB
         List query = jdbcTemplate.query("select * from cars", rowMapper);
         System.out.println(query);
+
+        //Get all car with name
+        List query1 = jdbcTemplate.query("select * from cars where name = ?", rowMapper, name);
+        System.out.println(query1);
+
+        //Get count cars with name queryForObject - result object conversion to preassigned type
+        int result = jdbcTemplate.queryForObject("select COUNT(*) from cars where name =?",Integer.class,name);
+        System.out.println(result);
     }
 }
