@@ -2,14 +2,28 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="lesson_23_classwork_javaee" />
         <module name="lesson_22_classwork_servlets" />
         <module name="lesson_22_homework_servlets" />
-        <module name="lesson_23_classwork_javaee" />
+      </profile>
+      <profile name="Annotation profile for TeachMeSkills_C14onl_SalovAnatoly_Maven Maven Webapp" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" />
+        </processorPath>
+        <module name="lesson30_classwork_mvcjdbc_aop" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lesson_32_classwork_spring_mvc" target="17" />
+      <module name="lesson_33_classwork_mvc_lokalization" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
