@@ -3,10 +3,7 @@ package by.salov.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
@@ -20,13 +17,22 @@ public class ContextConfig implements WebMvcConfigurer {
     @Bean
     ViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/jsp/");
-        resolver.setSuffix(".jsp");
+        resolver.setPrefix("/WEB-INF/");
+        //resolver.setSuffix(".jsp");
         return resolver;
     }
     //<mvc:resources mapping="/abc/**" location="/resources/" />
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        registry.addResourceHandler("/*.html").addResourceLocations("/WEB-INF/");
+        registry.addResourceHandler("/*.css").addResourceLocations("/WEB-INF/");
+    }
+
+    //Display html page from resources
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/test").setViewName("resources/html/test.html");
+        //("redirect:/resources/html/test.html");
     }
 }
