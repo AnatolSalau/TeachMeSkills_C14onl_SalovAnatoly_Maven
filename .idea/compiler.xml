@@ -2,14 +2,23 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="lesson_23_classwork_javaee" />
+        <module name="lesson33_staticjava" />
         <module name="lesson_22_classwork_servlets" />
         <module name="lesson_22_homework_servlets" />
-        <module name="lesson_23_classwork_javaee" />
+        <module name="lesson33_static_xml" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lesson30_classwork_mvcjdbc_aop" target="17" />
+      <module name="lesson33_mvc_static_xml" target="17" />
+      <module name="lesson33_static_java" target="17" />
+      <module name="lesson33_static_javaconfiguration" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -12,6 +12,9 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/lesson33_mvc_static_xml/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson33_static_java/pom.xml" />
+        <option value="$PROJECT_DIR$/lesson33_static_javaconfiguration/pom.xml" />
         <option value="$PROJECT_DIR$/lesson_22_classwork_servlets/pom.xml" />
         <option value="$PROJECT_DIR$/lesson_22_homework_servlets/pom.xml" />
       </set>

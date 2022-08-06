@@ -10,6 +10,8 @@
   <modules>
     <module>lesson_22_homework_servlets</module>
     <module>lesson_23_classwork_javaee</module>
+    <module>lesson33_static_xml</module>
+    <module>lesson33_staticjava</module>
   </modules>
   <packaging>pom</packaging>
 
