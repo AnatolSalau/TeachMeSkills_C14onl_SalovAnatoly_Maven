@@ -19,7 +19,7 @@ public class ResponseBodyController {
     //https://stackoverflow-com.translate.goog/questions/38307959/spring-mvc-what-is-an-httpentity?_x_tr_sl=auto&_x_tr_tl=ru&_x_tr_hl=ru
     //HttpEntity (and the response-specific subclass ResponseEntity) also allows access to the request and response headers
     public HttpEntity<byte[]> getHtml(HttpServletRequest request) throws IOException {
-        String path = request.getSession().getServletContext().getRealPath("WEB-INF/resources/html") +"/test.html";;
+        String path = request.getSession().getServletContext().getRealPath("WEB-INF/resources/html") + "/test.html";
         System.out.println(path);
         FileInputStream file = new FileInputStream(path);
         byte[] image = file.readAllBytes();
@@ -28,10 +28,11 @@ public class ResponseBodyController {
         headers.setContentLength(image.length);
         return new HttpEntity<byte[]>(image, headers);
     }
+
     @RequestMapping("/getimage")
     @ResponseBody
     public HttpEntity<byte[]> getImage(HttpServletRequest request) throws IOException {
-        String path = request.getSession().getServletContext().getRealPath("WEB-INF/resources/images") +"/car.jpg";
+        String path = request.getSession().getServletContext().getRealPath("WEB-INF/resources/images") + "/car.jpg";
         System.out.println(path);
         FileInputStream file = new FileInputStream(path);
         byte[] image = file.readAllBytes();

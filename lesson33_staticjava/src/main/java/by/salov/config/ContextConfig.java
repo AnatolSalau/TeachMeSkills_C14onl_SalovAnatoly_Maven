@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 public class ContextConfig implements WebMvcConfigurer {
 
-    //configureDefaultServletHandling onfigurer.enable(); - turn on
+    //configureDefaultServletHandling configurer.enable(); - turn on
     //if you override configureDefaultServletHandling() and enabling it
     // you are essentially asking default servlet (mapped to "/") to serve the resources.
     // JAVA docs:
