@@ -1,0 +1,56 @@
+*{
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    /*Цвет границ контэйнера*/
+    /*border: 1px solid red;*/
+    height: 100vh;
+    display: flex;
+    /* Размещение строк по центру*/
+    justify-content: center;
+    align-items: center;
+}
+.row {
+    /*Цвет границ строк*/
+    /*    background: greenyellow;*/
+    /*border: 1px solid green;*/
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+.col-4 {
+    /*    background: steelblue;*/
+    /*border: 1px solid lightgray;*/
+    border-radius: 0.375rem;
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,253,90,1) 100%);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.inputDiv{
+    margin: 20px;
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.375rem;
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(70,171,252,1) 100%);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.text {
+    margin: 5px;
+    text-align: center;
+    font-size: 20px;
+    user-focus: none;
+    outline: none;
+}
+label {
+    font-size: 20px;
+}
+#topLabel {
+    font-size: 25px;
+}
+.btn-dark {
+    font-size: 20px;
+    width: 100%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
