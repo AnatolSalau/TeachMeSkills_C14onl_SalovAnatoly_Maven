@@ -15,6 +15,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="lesson28_classwork_spring_core" target="17" />
+      <module name="lesson28_homework_horse_racing_xml" target="17" />
       <module name="lesson30_classwork_mvcjdbc_aop" target="17" />
       <module name="lesson33_mvc_static_xml" target="17" />
       <module name="lesson33_static_java" target="17" />
