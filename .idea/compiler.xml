@@ -16,6 +16,8 @@
     <bytecodeTargetLevel>
       <module name="lesson33_static_xml" target="17" />
       <module name="lesson33_staticjava" target="17" />
+      <module name="lesson_32_classwork_spring_mvc" target="17" />
+      <module name="lesson_33_classwork_mvc_lokalization" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
