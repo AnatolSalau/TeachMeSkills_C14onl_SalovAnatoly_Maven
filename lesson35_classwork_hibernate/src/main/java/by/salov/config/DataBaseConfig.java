@@ -23,7 +23,7 @@ public class DataBaseConfig {
     String dialect;
 
     @Bean
-    @Qualifier(value = "default")
+    //@Qualifier(value = "default")
     Configuration configuration() {
         Configuration configuration = new Configuration();
         configuration.setProperty("hibernate.connection.driver_class", driver);
@@ -34,7 +34,7 @@ public class DataBaseConfig {
         return configuration;
     }
     @Bean
-    SessionFactory factory(@Qualifier(value = "default") Configuration configuration) throws HibernateException {
+    SessionFactory factory(/*@Qualifier(value = "default")*/ Configuration configuration) throws HibernateException {
         return configuration.buildSessionFactory();
     }
 }
