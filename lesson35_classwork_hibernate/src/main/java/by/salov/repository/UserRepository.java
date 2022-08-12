@@ -3,5 +3,7 @@ package by.salov.repository;
 import by.salov.models.User;
 
 public interface UserRepository {
-    User getById(String login);
+    User getById(int id);
+    void save(User user);
+    void updateName(int id, String newName);
 }
