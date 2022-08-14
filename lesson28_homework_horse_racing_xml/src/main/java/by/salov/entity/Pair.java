@@ -1,11 +1,11 @@
-package entity;
+package by.salov.entity;
 
 import java.util.Objects;
 
 public class Pair {
     private final int number;
     private final Horse horse;
-    private  final Rider rider;
+    private final Rider rider;
     private double speed;
 
     public Pair(int number, Horse horse, Rider rider) {
@@ -46,5 +46,15 @@ public class Pair {
     @Override
     public int hashCode() {
         return Objects.hash(number, horse, rider);
+    }
+
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "number=" + number +
+                ", horse=" + horse +
+                ", rider=" + rider +
+                ", speed=" + speed +
+                '}';
     }
 }

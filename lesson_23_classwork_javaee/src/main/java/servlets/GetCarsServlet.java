@@ -1,6 +1,6 @@
 package servlets;
 
-import entity.CarsDB;
+import by.salov.entity.CarsDB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;

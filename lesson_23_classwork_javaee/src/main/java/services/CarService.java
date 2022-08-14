@@ -1,6 +1,6 @@
 package services;
 
-import entity.Car;
+import by.salov.entity.Car;
 
 import java.io.PrintWriter;
 import java.util.Map;

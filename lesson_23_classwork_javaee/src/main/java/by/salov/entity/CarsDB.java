@@ -1,4 +1,4 @@
-package entity;
+package by.salov.entity;
 
 import java.util.HashMap;
 import java.util.Map;
