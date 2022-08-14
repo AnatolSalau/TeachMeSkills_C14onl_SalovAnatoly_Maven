@@ -8,21 +8,22 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>lesson28_homework_horse_racing_xml</artifactId>
     <packaging>war</packaging>
-
-    <artifactId>lesson_23_homework_javaee</artifactId>
-
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>5.0.0</version>
-            <scope>provided</scope>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.22</version>
         </dependency>
     </dependencies>
+    <build>
+        <finalName>lesson28homework</finalName>
+    </build>
 
 </project>
