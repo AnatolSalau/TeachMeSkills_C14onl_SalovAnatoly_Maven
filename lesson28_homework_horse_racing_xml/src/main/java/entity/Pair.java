@@ -12,7 +12,7 @@ public class Pair {
         this.number = number;
         this.horse = horse;
         this.rider = rider;
-        this.speed = horse.getSpeed() * rider.getLavel();
+        this.speed = horse.getSpeed() * rider.getLevel();
     }
 
     public int getNumber() {

@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Rider {
     private final String name;
-    private final int lavel;
+    private final int level;
 
-    public Rider(String name, int lavel) {
+    public Rider(String name, int level) {
         this.name = name;
-        this.lavel = lavel;
+        this.level = level;
     }
 
     @Override
@@ -16,19 +16,27 @@ public class Rider {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rider rider = (Rider) o;
-        return Double.compare(rider.lavel, lavel) == 0 && Objects.equals(name, rider.name);
+        return Double.compare(rider.level, level) == 0 && Objects.equals(name, rider.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, lavel);
+        return Objects.hash(name, level);
     }
 
     public String getName() {
         return name;
     }
 
-    public int getLavel() {
-        return lavel;
+    public int getLevel() {
+        return level;
+    }
+
+    @Override
+    public String toString() {
+        return "Rider{" +
+                "name='" + name + '\'' +
+                ", level=" + level +
+                '}';
     }
 }

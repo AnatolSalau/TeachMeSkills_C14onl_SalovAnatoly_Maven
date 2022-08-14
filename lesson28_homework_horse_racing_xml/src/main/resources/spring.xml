@@ -2,5 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
+    <bean name="horse1" class="entity.Horse" >
+        <constructor-arg name="name" value="Horse1"/>
+        <constructor-arg name="speed" value="10"/>
+    </bean>
+    <bean name="horse2" class="entity.Horse" >
+        <constructor-arg name="name" value="Horse2"/>
+        <constructor-arg name="speed" value="20"/>
+    </bean>
+    <bean name="horse3" class="entity.Horse" >
+        <constructor-arg name="name" value="Horse3"/>
+        <constructor-arg name="speed" value="30"/>
+    </bean>
+    <bean name="rider1" class="entity.Rider" >
+        <constructor-arg name="level" value="1"/>
+        <constructor-arg name="name" value="Rider1"/>
+    </bean>
 </beans>

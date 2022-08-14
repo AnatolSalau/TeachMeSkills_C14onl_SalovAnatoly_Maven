@@ -18,12 +18,13 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" />
         </processorPath>
         <module name="lesson_23_classwork_javaee" />
-        <module name="lesson28_classwork_spring_core" />
         <module name="lesson28_homework_horse_racing_xml" />
+        <module name="lesson28_classwork_spring_core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="lesson25_homework_bootstrap" target="17" />
+      <module name="lesson35_classwork_hibernate" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
