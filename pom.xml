@@ -10,6 +10,7 @@
   <modules>
     <module>lesson_22_homework_servlets</module>
     <module>lesson_23_classwork_javaee</module>
+      <module>lesson35_homework_hibernate</module>
   </modules>
   <packaging>pom</packaging>
 
