@@ -11,6 +11,7 @@
         <module name="lesson35_classwork_hibernate" />
         <module name="lesson_22_classwork_servlets" />
         <module name="lesson_22_homework_servlets" />
+        <module name="lesson35_homework_hibernate" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
