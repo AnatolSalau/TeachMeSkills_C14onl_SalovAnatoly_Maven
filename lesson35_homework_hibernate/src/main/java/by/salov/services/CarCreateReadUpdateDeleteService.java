@@ -7,9 +7,12 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,16 +64,11 @@ public class CarCreateReadUpdateDeleteService implements CreateReadUpdateDeleteS
     public List<PassengerCar> getAllCars() {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        SQLQuery query = session.createSQLQuery("select * from cars");
-        List<Object> rows = query.list();
-        System.out.println(rows);
-        List<Car> passengerCarList = rows
-                .stream()
-                .map(e -> (Car) e)
-                .collect(Collectors.toList());
-        System.out.println(passengerCarList);
+/*        Query query = session.createNativeQuery("SELECT * FROM " + "cars" + ";");
+        query.setResultTransformer(Transformers.aliasToBean(PassengerCar.class));
+        ArrayList<PassengerCar> entries = (ArrayList<PassengerCar>) query.getResultList();*/
         transaction.commit();
         session.close();
-        return passengerCarList;
+        return null;
     }
 }
