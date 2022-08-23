@@ -1,0 +1,29 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+group = 'by.salob'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+bootWar {
+    archiveName 'tomcatdeploy.war'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    //providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
