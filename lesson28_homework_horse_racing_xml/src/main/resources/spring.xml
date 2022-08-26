@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <!--<context:component-scan base-package="by.salov"/> -->
+    <!-- Horses-->
+    <bean id="horse1" class="by.salov.entity.Horse">
+        <constructor-arg name="name" value="Horse1"/>
+        <constructor-arg name="speed" value="10"/>
+    </bean>
+    <bean id="horse2" class="by.salov.entity.Horse">
+        <constructor-arg name="name" value="Horse2"/>
+        <constructor-arg name="speed" value="20"/>
+    </bean>
+    <bean id="horse3" class="by.salov.entity.Horse">
+        <constructor-arg name="name" value="Horse3"/>
+        <constructor-arg name="speed" value="30"/>
+    </bean>
+    <!-- Riders-->
+    <bean id="rider1" class="by.salov.entity.Rider">
+        <constructor-arg name="level" value="1"/>
+        <constructor-arg name="name" value="Rider1"/>
+    </bean>
+    <bean id="rider2" class="by.salov.entity.Rider">
+        <constructor-arg name="level" value="2"/>
+        <constructor-arg name="name" value="Rider2"/>
+    </bean>
+    <bean id="rider3" class="by.salov.entity.Rider">
+        <constructor-arg name="level" value="3"/>
+        <constructor-arg name="name" value="Rider3"/>
+    </bean>
+    <!-- Pairs-->
+    <bean id="pair1" class="by.salov.entity.Pair">
+        <constructor-arg name="number" value="1"/>
+        <constructor-arg name="horse" ref="horse1"/>
+        <constructor-arg name="rider" ref="rider1"/>
+    </bean>
+    <bean id="pair2" class="by.salov.entity.Pair">
+        <constructor-arg name="number" value="2"/>
+        <constructor-arg name="horse" ref="horse2"/>
+        <constructor-arg name="rider" ref="rider3"/>
+    </bean>
+    <bean id="pair3" class="by.salov.entity.Pair">
+        <constructor-arg name="number" value="3"/>
+        <constructor-arg name="horse" ref="horse3"/>
+        <constructor-arg name="rider" ref="rider3"/>
+    </bean>
+    <!-- create list all pairs -->
+    <util:list id="allpairs" value-type="by.salov.entity.Pair">
+        <ref bean="pair1"/>
+        <ref bean="pair2"/>
+        <ref bean="pair3"/>
+    </util:list>
+    <!-- init StoreService -->
+    <bean id="store_service" class="by.salov.services.StoreService">
+        <constructor-arg name="pairs" ref="allpairs"/>
+    </bean>
+    <!-- Start game-->
+    <bean id="game_service" class="by.salov.services.GameService"
+          init-method="start">
+        <constructor-arg name="storeService" ref="store_service"/>
+        <constructor-arg name="quantityCircles" value="5"/>
+    </bean>
+</beans>
