@@ -9,10 +9,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.hibernate.transform.Transformers;
+import org.hibernate.type.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,7 +45,9 @@ public class CarCreateReadUpdateDeleteService implements CreateReadUpdateDeleteS
     public void update(int id,int quantityPeople, CarType carType, java.util.Date dateCreationCar, boolean hasCar) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        PassengerCar passengerCar = session.get(PassengerCar.class, id);
+        System.out.println(transaction);
+        PassengerCar passengerCar =  session.get(PassengerCar.class, id);
+        System.out.println(passengerCar);
         System.out.println("passengerCar from db : " + passengerCar);
         passengerCar.setName("name after update");
         passengerCar.setQuantityPeople(quantityPeople);
@@ -64,9 +68,32 @@ public class CarCreateReadUpdateDeleteService implements CreateReadUpdateDeleteS
     public List<PassengerCar> getAllCars() {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-/*        Query query = session.createNativeQuery("SELECT * FROM " + "cars" + ";");
-        query.setResultTransformer(Transformers.aliasToBean(PassengerCar.class));
-        ArrayList<PassengerCar> entries = (ArrayList<PassengerCar>) query.getResultList();*/
+        List<Object[]> cars = session.createNativeQuery("SELECT * FROM car")
+                .addScalar("id", IntegerType.INSTANCE)
+                .addScalar( "cartype", StringType.INSTANCE )
+                .addScalar( "creation_inside_database", TimestampType.INSTANCE)
+                .addScalar("datecreationcar", DateType.INSTANCE)
+                .addScalar("hascar", BooleanType.INSTANCE)
+                .addScalar("name", StringType.INSTANCE)
+                .addScalar("updatind_inside_database", TimestampType.INSTANCE)
+                .addScalar("version",IntegerType.INSTANCE )
+                .addScalar("quantitypeople",IntegerType.INSTANCE )
+                .list();
+        System.out.println(cars);
+        for (Object[] rawCar : cars) {
+            Integer id = (Integer) rawCar[0];
+            CarType carType =  CarType.valueOf((String) rawCar[1]);
+            Date creationInsideDatabase = (Date) rawCar[2];
+            Date dateCreationCar = (Date) rawCar[3];
+            boolean hasCar = (boolean) rawCar[4];
+            String name = (String) rawCar[5];
+            Date updatingInsideDatabase = (Date) rawCar[6];
+            int version = (int) rawCar[7];
+            int quantityPeople = (int) rawCar[8];
+            PassengerCar car = new PassengerCar(id,name,carType,dateCreationCar,creationInsideDatabase,updatingInsideDatabase,hasCar,version,quantityPeople);
+            System.out.println(car.getName());
+            System.out.println(car);
+        }
         transaction.commit();
         session.close();
         return null;

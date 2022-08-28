@@ -26,7 +26,7 @@ public class DataBaseConfiguration {
     @Qualifier("default_configuration")
     public Configuration dbConfiguration() {
         Configuration configuration = new Configuration();
-        configuration.setProperty("hibernate.connection.driver_class",driver);
+        configuration.setProperty("hibernate.connection.driver_class", driver);
         configuration.setProperty("hibernate.connection.url", url);
         configuration.setProperty("hibernate.connection.username", username);
         configuration.setProperty("hibernate.connection.password", password);
@@ -34,11 +34,12 @@ public class DataBaseConfiguration {
 
         configuration.setProperty("hibernate.hbm2ddl.auto", "update");
 
-        configuration.addAnnotatedClass(Car.class);
+        //configuration.addAnnotatedClass(Car.class);
         configuration.addAnnotatedClass(PassengerCar.class);
 
         return configuration;
     }
+
     @Bean
     @Qualifier("default_sessionfactory")
     SessionFactory sessionFactory(@Qualifier("default_configuration") Configuration configuration) throws HibernateException {

@@ -1,18 +1,22 @@
 package by.salov.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.DiscriminatorFormula;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "cars")
+@Table(name = "car", schema = "public")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorFormula( "case when parent_id is null then 'PARENT' ELSE 'CHILD' end" )
+@DiscriminatorValue("CHILD")
 public abstract class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer number;
+    @Column(name = "id")
+    private Integer id;
 
     private String name;
 
@@ -30,7 +34,7 @@ public abstract class Car {
     @Column(name = "updatind_inside_database")
     private Date updatingInsideDatabase;
 
-    @Type(type = "true_false")
+
     boolean hasCar;
 
     @Version
@@ -46,9 +50,15 @@ public abstract class Car {
         this.hasCar = hasCar;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
+    public Car(Integer id, String name, CarType carType, Date dateCreationCar, Date creationInsideDatabase, Date updatingInsideDatabase, boolean hasCar, int version) {
+        this.id = id;
+        this.name = name;
+        this.carType = carType;
+        this.dateCreationCar = dateCreationCar;
+        this.creationInsideDatabase = creationInsideDatabase;
+        this.updatingInsideDatabase = updatingInsideDatabase;
+        this.hasCar = hasCar;
+        this.version = version;
     }
 
     public String getName() {
@@ -81,5 +91,19 @@ public abstract class Car {
 
     public void setHasCar(boolean hasCar) {
         this.hasCar = hasCar;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "parent_id=" + id +
+                ", name='" + name + '\'' +
+                ", carType=" + carType +
+                ", dateCreationCar=" + dateCreationCar +
+                ", creationInsideDatabase=" + creationInsideDatabase +
+                ", updatingInsideDatabase=" + updatingInsideDatabase +
+                ", hasCar=" + hasCar +
+                ", version=" + version +
+                '}';
     }
 }

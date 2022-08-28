@@ -12,12 +12,13 @@ import java.util.Locale;
 
 
 @Service
-public class StartupService  {
+public class StartupService {
     CarCreateReadUpdateDeleteService createReadUpdateDeleteService;
 
     public StartupService(CarCreateReadUpdateDeleteService createReadUpdateDeleteService) {
         this.createReadUpdateDeleteService = createReadUpdateDeleteService;
     }
+
     @PostConstruct
     public void start() {
         java.util.Date dateCarCreation1 = null;
@@ -34,10 +35,18 @@ public class StartupService  {
         }
 
         PassengerCar passengerCar = new PassengerCar(
-                "Name2", CarType.BMW,6,dateCarCreation1, false);
-        //createReadUpdateDeleteService.create(passengerCar);
-        //createReadUpdateDeleteService.update(2,10,CarType.MERCEDES,dateCarCreation1, false);
-        createReadUpdateDeleteService.getAllCars();
+                "Name2", CarType.BMW, 6, dateCarCreation1, false);
+        PassengerCar passengerCar2 = new PassengerCar(
+                "Name3", CarType.MERCEDES, 4, dateCarCreation1, false);
+        PassengerCar passengerCar3 = new PassengerCar(
+                "Name4", CarType.AUDI, 2, dateCarCreation1, true);
+
+/*        createReadUpdateDeleteService.create(passengerCar);
+        createReadUpdateDeleteService.create(passengerCar2);
+        createReadUpdateDeleteService.create(passengerCar3);*/
+
+        createReadUpdateDeleteService.update(2, 10, CarType.AUDI, dateCarCreation3, true);
+        //createReadUpdateDeleteService.getAllCars();
     }
 
 
