@@ -41,11 +41,11 @@ public class StartupService {
         PassengerCar passengerCar3 = new PassengerCar(
                 "Name4", CarType.AUDI, 2, dateCarCreation1, true);
 
-/*        createReadUpdateDeleteService.create(passengerCar);
+        createReadUpdateDeleteService.create(passengerCar);
         createReadUpdateDeleteService.create(passengerCar2);
-        createReadUpdateDeleteService.create(passengerCar3);*/
+        createReadUpdateDeleteService.create(passengerCar3);
 
-        createReadUpdateDeleteService.update(2, 10, CarType.AUDI, dateCarCreation3, true);
+        //createReadUpdateDeleteService.update(2, 10, CarType.AUDI, dateCarCreation3, true);
         //createReadUpdateDeleteService.getAllCars();
     }
 

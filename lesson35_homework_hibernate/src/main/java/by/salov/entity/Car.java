@@ -8,8 +8,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+//В postgres необходимо указывать
 @Table(name = "car", schema = "public")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//Убираем поле dtype в таблице
 @DiscriminatorFormula( "case when parent_id is null then 'PARENT' ELSE 'CHILD' end" )
 @DiscriminatorValue("CHILD")
 public abstract class Car {
@@ -34,22 +36,18 @@ public abstract class Car {
     @Column(name = "updatind_inside_database")
     private Date updatingInsideDatabase;
 
-
+    //Ничего не указываем -
     boolean hasCar;
-
     @Version
     private int version;
-
     public Car() {
     }
-
     public Car(String name, CarType carType, Date dateCreationCar, boolean hasCar) {
         this.name = name;
         this.carType = carType;
         this.dateCreationCar = dateCreationCar;
         this.hasCar = hasCar;
     }
-
     public Car(Integer id, String name, CarType carType, Date dateCreationCar, Date creationInsideDatabase, Date updatingInsideDatabase, boolean hasCar, int version) {
         this.id = id;
         this.name = name;
@@ -60,23 +58,18 @@ public abstract class Car {
         this.hasCar = hasCar;
         this.version = version;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public CarType getCarType() {
         return carType;
     }
-
     public void setCarType(CarType carType) {
         this.carType = carType;
     }
-
     public Date getDateCreationCar() {
         return dateCreationCar;
     }

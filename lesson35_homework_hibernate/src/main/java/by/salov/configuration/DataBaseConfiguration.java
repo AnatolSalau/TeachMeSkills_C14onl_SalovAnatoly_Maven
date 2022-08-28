@@ -35,6 +35,7 @@ public class DataBaseConfiguration {
         configuration.setProperty("hibernate.hbm2ddl.auto", "update");
 
         //configuration.addAnnotatedClass(Car.class);
+        //В конфигурацию добавляем только @Entyty потомка
         configuration.addAnnotatedClass(PassengerCar.class);
 
         return configuration;
