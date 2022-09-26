@@ -6,5 +6,9 @@
 </head>
 <body>
 Hello from Thymeleaf user html
+<!--Get field from model object attribute-->
+<div th:text="${user.getName}"></div>
+<!--Get static field from model object attribute-->
+<!--<div th:text="${T(by.salov.entity.User).}"></div>-->
 </body>
 </html>
