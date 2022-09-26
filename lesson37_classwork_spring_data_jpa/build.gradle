@@ -9,6 +9,10 @@ group = 'by.salov'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
+bootWar {
+    archiveName 'lesson37datajpa.war'
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -25,8 +29,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+/*    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'*/
+    providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 tasks.named('test') {
