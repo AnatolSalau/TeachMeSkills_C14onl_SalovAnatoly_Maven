@@ -9,6 +9,6 @@ Hello from Thymeleaf user html
 <!--Get field from model object attribute-->
 <div th:text="${user.getName}"></div>
 <!--Get static field from model object attribute-->
-<!--<div th:text="${T(by.salov.entity.User).}"></div>-->
+<div th:text="${T(by.salov.entity.User).getStaticField()}"></div>
 </body>
 </html>
