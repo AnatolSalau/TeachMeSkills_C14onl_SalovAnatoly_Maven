@@ -18,7 +18,7 @@ import java.util.Locale;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Cloneable {
 
     private static String STATIC_FIELD = "STATIC_FIELD";
 
@@ -55,8 +55,28 @@ public class User {
         }
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
     public static String getStaticField() {
         return STATIC_FIELD;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", isActive=" + isActive +
+                ", birthday=" + birthday +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", version=" + version +
+                ", isDeleted=" + isDeleted +
+                ", formatter=" + formatter +
+                '}';
+    }
 }
