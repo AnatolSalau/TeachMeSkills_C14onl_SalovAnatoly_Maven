@@ -1,4 +1,4 @@
-package by.salov;
+package by.salov.lesson38classworkspringdatajpa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
