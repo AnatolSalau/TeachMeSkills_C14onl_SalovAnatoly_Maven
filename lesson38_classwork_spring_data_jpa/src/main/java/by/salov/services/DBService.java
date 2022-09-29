@@ -53,4 +53,8 @@ public class DBService {
         }
         return users;
     }
+
+    public User getActiveUserByName (String name, Boolean isActive) {
+        return dbUserRepository.findUserByNameAndIsActive(name, isActive).orElse(null);
+    }
 }

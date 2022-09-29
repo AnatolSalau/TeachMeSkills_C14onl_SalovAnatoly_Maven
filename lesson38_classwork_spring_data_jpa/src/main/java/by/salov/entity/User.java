@@ -28,7 +28,7 @@ public class User implements Cloneable {
 
     private String name;
     private Integer age;
-    private boolean isActive;
+    private Boolean isActive;
 
     @Temporal(TemporalType.DATE)
     private Date birthday;

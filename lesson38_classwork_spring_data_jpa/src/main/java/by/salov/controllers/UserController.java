@@ -35,6 +35,9 @@ public class UserController {
         UserDTO userDTO = dtoService.getUserDTO(userFromDB);
         System.out.println("userDTO: " + userDTO);
         System.out.println("isSave: " + isSave);
+
+        User thirdUser = dbService.getActiveUserByName("ThirdUser", null);
+        System.out.println("getActiveUserByName "+thirdUser);
         modelAndView.addObject("userFromDB",userDTO);
         System.out.println(dbService.deleteFromBDByID(3L));
         return modelAndView;
