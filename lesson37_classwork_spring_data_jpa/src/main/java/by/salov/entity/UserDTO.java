@@ -7,9 +7,13 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class UserDTO {
+
+    private static String STATIC_FIELD = User.getStaticField();
+
     private String name;
     private int age;
     private String birthday;
+
 
     @Override
     public String toString() {
@@ -18,5 +22,8 @@ public class UserDTO {
                 ", age=" + age +
                 ", birthday='" + birthday + '\'' +
                 '}';
+    }
+    public static String getStaticField() {
+        return STATIC_FIELD;
     }
 }

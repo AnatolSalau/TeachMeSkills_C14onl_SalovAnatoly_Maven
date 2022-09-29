@@ -1,6 +1,7 @@
 package by.salov.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,6 +41,8 @@ public class User {
     private Long version;
     private boolean isDeleted = false;
 
+    /*@Trancient - exclude annotation from table*/
+    @Transient
     SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
 
     public User(String name, Integer age, String birthday) {
