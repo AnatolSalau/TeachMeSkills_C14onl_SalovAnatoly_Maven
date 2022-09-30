@@ -18,6 +18,8 @@ import java.util.Locale;
 
 @Entity
 @Table(name = "users")
+/*Named query */
+@NamedQuery(name = "User.getOnlyActiveNull", query = "select u from User u where u.isActive is null")
 public class User implements Cloneable {
 
     private static String STATIC_FIELD = "STATIC_FIELD";
