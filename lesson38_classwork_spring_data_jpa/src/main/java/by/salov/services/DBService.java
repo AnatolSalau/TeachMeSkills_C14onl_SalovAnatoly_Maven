@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -85,7 +86,12 @@ public class DBService {
     }
 
     private PageRequest getPageOf(int page, int size) {
-        PageRequest of = PageRequest.of(page,size);
+        /*Sort request
+        * asc - first to last
+        * desc - last to first
+        * */
+        Sort sort = Sort.by(Sort.Order.asc("id"));
+        PageRequest of = PageRequest.of(page,size,sort);
         System.out.println(of);
         return of;
     }
