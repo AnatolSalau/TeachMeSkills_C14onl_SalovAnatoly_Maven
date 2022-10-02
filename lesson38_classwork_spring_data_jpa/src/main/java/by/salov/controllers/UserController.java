@@ -2,10 +2,12 @@ package by.salov.controllers;
 
 import by.salov.entity.User;
 import by.salov.entity.UserDTO;
+import by.salov.entity.projections.UserProjection;
 import by.salov.services.DBService;
 import by.salov.services.DTOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,19 +65,26 @@ public class UserController {
         dbService.updateIsActiveByID(true, 1L);
 
         /*We have all 12 users, we can get all page with 6 pages with two user on each*/
-        Page<User> userPage1 =  dbService.getPageUsers(0, 2);
+        /*For that we must create sorting*/
+        /*Sort request
+         * asc - first to last
+         * desc - last to first
+         * */
+        /*Sorting by id*/
+        Sort sort = Sort.by(Sort.Order.asc("id"));
+        Page<User> userPage1 =  dbService.getPageUsers(0, 2,sort);
         List<User> contentPage1 = userPage1.getContent();
         System.out.println("-----------contentPage1--------------");
         contentPage1.forEach(System.out::println);
         System.out.println("-------------------------------------");
 
-        Page<User> userPage2 =  dbService.getPageUsers(1, 2);
+        Page<User> userPage2 =  dbService.getPageUsers(1, 2, sort);
         List<User> contentPage2 = userPage2.getContent();
         System.out.println("-----------contentPage2--------------");
         contentPage2.forEach(System.out::println);
         System.out.println("-------------------------------------");
 
-        Page<User> userPage5 =  dbService.getPageUsers(5, 2);
+        Page<User> userPage5 =  dbService.getPageUsers(5, 2, sort);
         List<User> contentPage5 = userPage5.getContent();
         System.out.println("-----------contentPage5--------------");
         contentPage5.forEach(System.out::println);
@@ -83,6 +92,10 @@ public class UserController {
 
         modelAndView.addObject("userFromDB",userDTO);
 /*        System.out.println(dbService.deleteFromBDByID(3L));*/
+
+        /*Get UserProjection*/
+        List<UserProjection> allByIsActive = dbService.findAllByIsActive(null);
+        modelAndView.addObject("listUserProjection",allByIsActive);
         return modelAndView;
     }
 }

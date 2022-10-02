@@ -1,6 +1,7 @@
 package by.salov.repository;
 
 import by.salov.entity.User;
+import by.salov.entity.projections.UserProjection;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -35,4 +36,6 @@ public interface DBUserRepository extends JpaRepository<User,Long> {
     @Query("update User u set u.isActive = :isActive where u.id = :id")
     void updateIsActiveByID(Boolean isActive, Long id);
 
+    /*Get list UserProjection*/
+    List<UserProjection> findAllByIsActive(Boolean isActive);
 }

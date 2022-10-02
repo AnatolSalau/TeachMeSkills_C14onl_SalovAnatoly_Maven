@@ -1,6 +1,7 @@
 package by.salov.services;
 
 import by.salov.entity.User;
+import by.salov.entity.projections.UserProjection;
 import by.salov.repository.DBUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -80,19 +81,26 @@ public class DBService {
         dbUserRepository.updateIsActiveByID(isActive,id);
     }
 
-    public Page<User> getPageUsers(int page, int size) {
-        Page<User> all = dbUserRepository.findAll(getPageOf(page, size));
+    public Page<User> getPageUsers(int page, int size, Sort sort) {
+        Page<User> all = dbUserRepository.findAll(getPageOf(page, size, sort));
         return all;
     }
 
-    private PageRequest getPageOf(int page, int size) {
+    public List<UserProjection> findAllByIsActive(Boolean isActive) {
+        List<UserProjection> allByIsActive = dbUserRepository.findAllByIsActive(isActive);
+
+        return allByIsActive;
+    }
+    private PageRequest getPageOf(int page, int size, Sort sort) {
         /*Sort request
         * asc - first to last
         * desc - last to first
         * */
-        Sort sort = Sort.by(Sort.Order.asc("id"));
+        /*Sort sort = Sort.by(Sort.Order.asc("id"));*/
         PageRequest of = PageRequest.of(page,size,sort);
         System.out.println(of);
         return of;
     }
+
+
 }
