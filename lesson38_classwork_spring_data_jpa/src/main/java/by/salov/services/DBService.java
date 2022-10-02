@@ -4,6 +4,9 @@ import by.salov.entity.User;
 import by.salov.repository.DBUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,5 +59,40 @@ public class DBService {
 
     public User getActiveUserByName (String name, Boolean isActive) {
         return dbUserRepository.findUserByNameAndIsActive(name, isActive).orElse(null);
+    }
+
+    public List<User> getUsersByAgeNative(Integer age) {
+        List<User> users = dbUserRepository.getUsersByAgeNative(age);
+        return users;
+    }
+
+    public int usersCount() {
+        int count = dbUserRepository.countUsers();
+        return count;
+    }
+
+    public List<User> getOnlyActiveNull() {
+        List<User> users = dbUserRepository.getOnlyActiveNull();
+        return users;
+    }
+
+    public void updateIsActiveByID(Boolean isActive, Long id) {
+        dbUserRepository.updateIsActiveByID(isActive,id);
+    }
+
+    public Page<User> getPageUsers(int page, int size) {
+        Page<User> all = dbUserRepository.findAll(getPageOf(page, size));
+        return all;
+    }
+
+    private PageRequest getPageOf(int page, int size) {
+        /*Sort request
+        * asc - first to last
+        * desc - last to first
+        * */
+        Sort sort = Sort.by(Sort.Order.asc("id"));
+        PageRequest of = PageRequest.of(page,size,sort);
+        System.out.println(of);
+        return of;
     }
 }
