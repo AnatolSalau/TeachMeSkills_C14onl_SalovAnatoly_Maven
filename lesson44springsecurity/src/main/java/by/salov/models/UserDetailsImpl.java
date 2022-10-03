@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
 
-@Service
-public class UserDetailsImpl implements UserDetails {
 
+public class UserDetailsImpl implements UserDetails {
     private User user;
 
-    public UserDetailsImpl (User user) {
+    public UserDetailsImpl(User user) {
         this.user = user;
     }
 
