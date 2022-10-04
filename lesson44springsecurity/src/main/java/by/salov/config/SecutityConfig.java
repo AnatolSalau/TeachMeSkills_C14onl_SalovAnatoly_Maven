@@ -10,7 +10,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 /*Old spring security settings by WebSecurityConfigurerAdapter*/
 @Configuration
@@ -19,6 +21,11 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+
+    /*We may  use JdbcUserDetailsManager if we work with
+    * spring standart table structure */
+/*    @Autowired
+    private JdbcUserDetailsManager jdbcUserDetailsManager;*/
 
     /*configure - object that configure spring security*/
     @Override
@@ -55,6 +62,8 @@ public class SecutityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
+        /*Use BCryptPasswordEncoder() */
+/*                .passwordEncoder(new BCryptPasswordEncoder());*/
 
     }
 }
