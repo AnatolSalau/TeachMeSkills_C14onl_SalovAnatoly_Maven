@@ -5,7 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-
+/*
+* New SpringSecurity configuration
+* */
 /*@Configuration
 @EnableWebSecurity*/
 public class NewSecurityConfig {
@@ -15,7 +17,9 @@ public class NewSecurityConfig {
         * use lambda function for setting authentication */
         return httpSecurity.authorizeHttpRequests(auth -> {
             auth
+                    /*allow access all after users*/
                     .antMatchers("/user").permitAll()
+                    /*allow access only by authorized*/
                     .antMatchers("/admin").authenticated();
         })
                 .formLogin()

@@ -4,12 +4,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
 
-
+/*We must create implementation UserDetails becouse we have to get UserDetails in UserDetailsServiceImpl
+* UserDetailsImpl create convert our users in UserDetailsImpl becouse spring security need it
+* */
+@Component
 public class UserDetailsImpl implements UserDetails {
     private User user;
 
