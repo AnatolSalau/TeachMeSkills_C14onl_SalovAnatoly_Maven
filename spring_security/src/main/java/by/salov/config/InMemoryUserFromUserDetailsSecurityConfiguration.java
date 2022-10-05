@@ -16,24 +16,30 @@ public class InMemoryUserFromUserDetailsSecurityConfiguration extends WebSecurit
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         /*
-        * Add in authentication two users
+        * Add  authentication for two users, and mark their roles
          */
      auth.inMemoryAuthentication()
-             .withUser(User.builder().username("loginuser1").password("password").authorities("read"))
-             .withUser(User.builder().username("loginadmin1").password("password").authorities("write"))
+             .withUser(User.builder().username("user").password("user").authorities("ROLE_USER"))
+             .withUser(User.builder().username("admin").password("admin").authorities("ROLE_ADMIN"))
                 /*
                 * Add password encoder
                  */
              .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
     /*
-    * Configure access to our url
-     */
+    * Configure access to our url, and configure authorization (adding roles)
+    *   /**         - means any urls
+    *   /admin/**   - means urls that start fom /admin
+    * If we start enumeration urls with common case like /**,
+    * then any enumeration stop on it (because any url, including /admin) correspond -> /** ,
+    * which means -> all urls will have access. Just because You need to start with narrowly covering templates.
+    */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .antMatchers("/user").permitAll()
-                .antMatchers("/admin").authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/**").permitAll()
                 .and()
                 .formLogin();
     }
