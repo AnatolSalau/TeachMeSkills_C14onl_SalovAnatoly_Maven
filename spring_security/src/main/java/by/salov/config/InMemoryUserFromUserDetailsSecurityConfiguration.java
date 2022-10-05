@@ -41,6 +41,11 @@ public class InMemoryUserFromUserDetailsSecurityConfiguration extends WebSecurit
                 .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/**").permitAll()
                 .and()
-                .formLogin();
+                .formLogin().permitAll()
+                .loginPage("/login")
+                .loginProcessingUrl("/perform-login")
+                .usernameParameter("user")
+                .passwordParameter("pass")
+                .defaultSuccessUrl("/");
     }
 }
