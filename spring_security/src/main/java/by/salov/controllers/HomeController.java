@@ -15,6 +15,7 @@ public class HomeController {
 
     @GetMapping
     public String getHome() {
+        System.out.println("Hello from getHome()");
         return "home.html";
     }
 
@@ -28,5 +29,11 @@ public class HomeController {
     public String getUser() {
         System.out.println("Hello from getUser()");
         return "user.html";
+    }
+
+    @GetMapping(path = "/logout")
+    public String getLogout() {
+        System.out.println("Hello from getLogout()");
+        return "logout.html";
     }
 }

@@ -57,9 +57,12 @@ public class InMemoryUserFromUserDetailsSecurityConfiguration extends WebSecurit
                 .passwordParameter("pass")
                 .defaultSuccessUrl("/")
                 .and()
+                /*customization logout page*/
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login");
-
+                .permitAll()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);
     }
 }
