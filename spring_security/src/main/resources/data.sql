@@ -1,5 +1,5 @@
 
 insert into my_users(login, position, password, role)
-values('user', 'position1', 'password', 'USER');
+values('user', 'position1', 'user', 'USER');
 insert into my_users( login, position, password, role)
-values('admin', 'position2', 'password', 'ADMIN');
+values('admin', 'position2', 'admin', 'ADMIN');

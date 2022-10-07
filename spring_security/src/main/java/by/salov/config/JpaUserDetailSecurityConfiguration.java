@@ -1,45 +1,41 @@
 package by.salov.config;
 
+import by.salov.services.MyUserDetailsServiceImp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.web.authentication.logout.LogoutHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
- * Authentication in memory by default User from userdetails
+ * Authentication from database spring-data-jpa by UserDetails spring
  */
+
 /*@EnableWebSecurity*/
-public class InMemoryUserFromUserDetailsSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class JpaUserDetailSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private MyUserDetailsServiceImp myUserDetailsServiceImp;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         /*
-        * Add  authentication for two users, and mark their roles
+         * Add  authentication for two users, and mark their roles
          */
-     auth.inMemoryAuthentication()
-             .withUser(User.builder().username("user").password("user").authorities("ROLE_USER"))
-             .withUser(User.builder().username("admin").password("admin").authorities("ROLE_ADMIN"))
-                /*
-                * Add password encoder
-                 */
-             .passwordEncoder(NoOpPasswordEncoder.getInstance());
+        auth
+                .userDetailsService(myUserDetailsServiceImp)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
     /*
-        * Configure access to our url, and configure authorization (adding roles)
-        *   /**         - means any urls
-        *   /admin/**   - means urls that start fom /admin
-        * If we start enumeration urls with common case like /**,
-        * then any enumeration stop on it (because any url, including /admin) correspond -> /** ,
-        * which means -> all urls will have access. Just because You need to start with narrowly covering templates.
-        * Customization login page
+     * Configure access to our url, and configure authorization (adding roles)
+     *   /**         - means any urls
+     *   /admin/**   - means urls that start fom /admin
+     * If we start enumeration urls with common case like /**,
+     * then any enumeration stop on it (because any url, including /admin) correspond -> /** ,
+     * which means -> all urls will have access. Just because You need to start with narrowly covering templates.
+     * Customization login page
      */
 
     @Override
