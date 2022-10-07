@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Authentication in memory by default User from userdetails
  */
-/*@EnableWebSecurity*/
+@EnableWebSecurity
 public class InMemoryUserFromUserDetailsSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -61,8 +61,8 @@ public class InMemoryUserFromUserDetailsSecurityConfiguration extends WebSecurit
                 .logout()
                 .permitAll()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true);
+                .logoutSuccessUrl("/login");
+/*                .deleteCookies("JSESSIONID");*/
+/*                .invalidateHttpSession(true);*/
     }
 }

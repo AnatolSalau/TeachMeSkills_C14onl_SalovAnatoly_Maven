@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
  * Authentication with custom AuthenticationProvider (create object Authentication)
  */
 
-@EnableWebSecurity
+/*@EnableWebSecurity*/
 public class CustomAuthenticationProviderSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
