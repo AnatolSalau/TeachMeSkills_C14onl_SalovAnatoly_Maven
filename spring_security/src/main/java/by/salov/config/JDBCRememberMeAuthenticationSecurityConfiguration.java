@@ -1,17 +1,16 @@
 package by.salov.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 import javax.sql.DataSource;
 
 /**
+ * Simple Hash-Based token (remember-me checkout in html)
  * You must create two query from db, the names of this are not important:
  *      username
  *      password
@@ -22,7 +21,7 @@ import javax.sql.DataSource;
  */
 
 @EnableWebSecurity
-public class JDBCAuthenticationSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class JDBCRememberMeAuthenticationSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
@@ -41,7 +40,7 @@ public class JDBCAuthenticationSecurityConfiguration extends WebSecurityConfigur
                 .usernameParameter("user")
                 .passwordParameter("pass")
                 .defaultSuccessUrl("/")
-                /*add remember cookie */
+                /*add Simple Hash-Based token (remember-me cookie) */
                 .and().rememberMe()
                 .and()
                 /*customization logout page*/
