@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Authentication in memory by default User from userdetails
  */
-@EnableWebSecurity
+/*@EnableWebSecurity*/
 public class InMemoryUserFromUserDetailsSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
