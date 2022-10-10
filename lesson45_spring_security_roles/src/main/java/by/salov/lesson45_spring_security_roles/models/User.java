@@ -1,6 +1,7 @@
 package by.salov.lesson45_spring_security_roles.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 
 @Entity
 @Table(name = "users")
