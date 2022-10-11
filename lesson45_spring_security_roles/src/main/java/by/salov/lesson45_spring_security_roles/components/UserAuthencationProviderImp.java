@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-
+/*Компонент для рабочей конфигурации SpringSecurity через свою реализацию AuthenticationProvider */
 @Component
 public class UserAuthencationProviderImp implements AuthenticationProvider {
 
