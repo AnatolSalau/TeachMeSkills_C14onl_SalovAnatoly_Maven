@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/*Просто создаю бин BCryptPasswordEncoder */
 @Configuration
 public class SecurityBeansConfiguration {
     @Bean
