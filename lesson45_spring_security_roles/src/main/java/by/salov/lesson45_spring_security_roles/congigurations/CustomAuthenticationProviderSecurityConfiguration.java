@@ -28,10 +28,10 @@ public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecur
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
+                .antMatchers("/accessdenied").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/doctor/**").hasRole("DOCTOR")
-                .antMatchers("/user/**").hasRole("USER")
-/*                .antMatchers("/accessdenied").authenticated()*/
+                .antMatchers("/doctor/**").hasAnyRole("DOCTOR", "ADMIN")
+                .antMatchers("/user/**").hasAnyRole("USER","DOCTOR", "ADMIN")
                 .antMatchers("/**").permitAll()
                 .and()
                 /*customization login page*/
