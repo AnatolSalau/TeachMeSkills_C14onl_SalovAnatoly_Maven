@@ -6,10 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(path = "/")
-public class indexController {
+public class LoginLogoutController {
 
-    @GetMapping()
-    public String getIndexTemplate() {
-        return "index.html";
+    @GetMapping(path = "/login")
+    public String getLoginTemplate() {
+        return "login.html";
+    }
+
+    @GetMapping(path = "/logout")
+    public String getLogoutTemplate() {
+        return "logout.html";
     }
 }

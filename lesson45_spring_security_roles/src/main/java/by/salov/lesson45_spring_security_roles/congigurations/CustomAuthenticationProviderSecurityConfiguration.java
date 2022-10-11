@@ -8,12 +8,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 @EnableWebSecurity
 public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserAuthencationProviderImp userAuthencationProviderImp;
 
+    @Autowired
+    private AccessDeniedHandler accessDeniedHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -25,9 +28,10 @@ public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecur
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .antMatchers("/user/**").authenticated()
-                .antMatchers("/doctor/**").authenticated()
-                .antMatchers("/admin/**").authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/doctor/**").hasRole("DOCTOR")
+                .antMatchers("/user/**").hasRole("USER")
+/*                .antMatchers("/accessdenied").authenticated()*/
                 .antMatchers("/**").permitAll()
                 .and()
                 /*customization login page*/
@@ -38,6 +42,9 @@ public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecur
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/")
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler)
                 .and()
                 /*add simple hash based token*/
                 .rememberMe()

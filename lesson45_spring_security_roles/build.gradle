@@ -14,7 +14,9 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
-
+bootWar {
+    archiveName 'lesson45.war'
+}
 repositories {
     mavenCentral()
 }
