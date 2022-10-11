@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(path = "/")
-public class rolesController {
+public class RolesController {
 
     @GetMapping(path = "/user")
     public String getUserTemplate() {

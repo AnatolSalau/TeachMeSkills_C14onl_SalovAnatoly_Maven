@@ -6,7 +6,7 @@ values (1, 'ADMIN'),
 insert into users (id, login, password)
 values (1, 'admin', 'admin'),
        (2, 'doctor', 'doctor'),
-       (3, 'user', 'user');
+       (3, 'user', 'user ');
 
 insert into users_roles(user_id,role_id)
 values (1,1),
