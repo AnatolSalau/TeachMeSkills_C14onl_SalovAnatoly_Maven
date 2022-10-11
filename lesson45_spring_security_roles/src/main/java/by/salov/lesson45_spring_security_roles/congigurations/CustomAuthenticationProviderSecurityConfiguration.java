@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
+/*Рабочая конфигурация, которую реализовал для проверки, использую свою реализацию UserAuthencationProvider*/
 @EnableWebSecurity
 public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecurityConfigurerAdapter {
     @Autowired
