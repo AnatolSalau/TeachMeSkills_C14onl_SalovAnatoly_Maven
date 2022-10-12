@@ -9,7 +9,10 @@
 </head>
 <body>
 <div id="wrapper">
-    <div class="hello"> Access denied template</div>
+    <div class="hello">Your roles:</div>
+    <th:block th:each="role : ${roles}">
+        <div class="hello" th:text = "|Hi, ${role}|" ></div>
+    </th:block>
 </div>
 </body>
 </html>

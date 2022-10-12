@@ -1,16 +1,29 @@
 package by.salov.lesson45_spring_security_roles.congigurations;
 
 import by.salov.lesson45_spring_security_roles.components.UserAuthencationProviderImp;
+import by.salov.lesson45_spring_security_roles.filters.SecurityLogFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 
-@EnableWebSecurity
+/**
+ * The prePostEnabled = true -> property enables Spring Security pre/post annotations.
+ * The securedEnabled = true -> property determines if the @Secured annotation should be enabled.
+ * The jsr250Enabled = true -> property allows us to use the @RoleAllowed annotation.
+ */
+@EnableWebSecurity (debug = true)
+@EnableGlobalMethodSecurity (
+        prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true
+        )
 public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserAuthencationProviderImp userAuthencationProviderImp;
@@ -42,7 +55,10 @@ public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecur
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/")
+                /*Add filter SecurityLogFilter*/
                 .and()
+                .addFilterBefore(new SecurityLogFilter(), LogoutFilter.class)
+                /*Add Exeption handlers*/
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler)
                 .and()
@@ -53,6 +69,15 @@ public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecur
                 .logout()
                 .permitAll()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/login")
+                /*Setting CORS policy
+                * Cross-Origin Resource Sharing -> forbids access from one site to another
+                * CSRF - protection from attack one site to another by cookies
+                * */
+                .and()
+                .csrf()
+                .disable()
+                .cors()
+                .disable();
     }
 }
