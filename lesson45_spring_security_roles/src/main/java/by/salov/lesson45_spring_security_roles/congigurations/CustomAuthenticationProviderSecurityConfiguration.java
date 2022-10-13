@@ -60,7 +60,7 @@ public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecur
 /*                .successHandler(customAuthenticationSuccessHandler)*/
                 /*Add filter SecurityLogFilter*/
                 .and()
-                .addFilterBefore(new SecurityLogFilter(), LogoutFilter.class)
+/*                .addFilterBefore(new SecurityLogFilter(), LogoutFilter.class)*/
                 /*Add Exeption handlers*/
                 .exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler)
@@ -72,15 +72,15 @@ public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecur
                 .logout()
                 .permitAll()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/login");
                 /*Setting CORS policy
                 * Cross-Origin Resource Sharing -> forbids access from one site to another
                 * CSRF - protection from attack one site to another by cookies
                 * */
-                .and()
+/*                .and()
                 .csrf()
                 .disable()
                 .cors()
-                .disable();
+                .disable();*/
     }
 }

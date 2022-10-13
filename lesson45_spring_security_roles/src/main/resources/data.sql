@@ -4,9 +4,9 @@ values (1, 'ADMIN'),
        (3, 'USER');
 
 insert into users (id, login, password)
-values (1, 'admin', '$2a$12$TiA3ypXM.dVuKGUBHolev.ldRXNQx7yvaBV7ad.C4sxURgjO9nxnK'),
-       (2, 'doctor', '$2a$12$uBgyvoDOqbQYqzsom8nbru2qhkEN1tHVBOglBZagvNwfqmhswmAx.'),
-       (3, 'user', '$2a$12$qkjeKiQUs00.g8n360JBDesVI58dL5l/skKvYl3sYD/dZZhR1lWz.');
+values (1, 'admin', 'admin'),
+       (2, 'doctor', 'doctor'),
+       (3, 'user', 'user');
 
 insert into users_roles(user_id,role_id)
 values (1,1),
