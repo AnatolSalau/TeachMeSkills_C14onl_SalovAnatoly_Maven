@@ -73,7 +73,8 @@ public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecur
                 .permitAll()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login");
-                /*Setting CORS policy
+                /* ENABLE THIS -> custom logout page does not work!!!
+                Setting CORS policy
                 * Cross-Origin Resource Sharing -> forbids access from one site to another
                 * CSRF - protection from attack one site to another by cookies
                 * */
