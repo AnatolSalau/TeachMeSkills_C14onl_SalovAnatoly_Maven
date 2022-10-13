@@ -12,7 +12,7 @@ import java.io.IOException;
 public class SecurityLogFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        System.out.println("Hello from filter");
+        /*System.out.println("Hello from filter");*/
         filterChain.doFilter(request,response);
     }
 }

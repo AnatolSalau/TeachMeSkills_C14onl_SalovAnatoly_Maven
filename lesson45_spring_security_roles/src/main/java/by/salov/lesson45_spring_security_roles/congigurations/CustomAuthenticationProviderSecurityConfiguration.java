@@ -2,6 +2,7 @@ package by.salov.lesson45_spring_security_roles.congigurations;
 
 import by.salov.lesson45_spring_security_roles.components.UserAuthencationProviderImp;
 import by.salov.lesson45_spring_security_roles.filters.SecurityLogFilter;
+import by.salov.lesson45_spring_security_roles.handlers.CustomAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -16,7 +17,7 @@ import org.springframework.security.web.authentication.logout.LogoutFilter;
  * The securedEnabled = true -> property determines if the @Secured annotation should be enabled.
  * The jsr250Enabled = true -> property allows us to use the @RoleAllowed annotation.
  */
-@EnableWebSecurity (debug = true)
+@EnableWebSecurity (/*debug = true*/)
 @EnableGlobalMethodSecurity (
         prePostEnabled = true,
         securedEnabled = true,
@@ -28,6 +29,9 @@ public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecur
 
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
+
+    @Autowired
+    CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -53,6 +57,7 @@ public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecur
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/")
+/*                .successHandler(customAuthenticationSuccessHandler)*/
                 /*Add filter SecurityLogFilter*/
                 .and()
                 .addFilterBefore(new SecurityLogFilter(), LogoutFilter.class)
