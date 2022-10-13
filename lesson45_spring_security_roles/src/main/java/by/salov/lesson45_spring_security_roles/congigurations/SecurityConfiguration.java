@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
-/*@EnableWebSecurity*/
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -22,14 +22,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(userDetailService)
                 /*Без кодирования все работает*/
-                .passwordEncoder(NoOpPasswordEncoder. getInstance());
+/*                .passwordEncoder(NoOpPasswordEncoder. getInstance());*/
 
                 /* C BCryptPasswordEncoder() не работает, но при это я реализовал
                 * AuthenticationProvider - где в ручную прописал сравнение через BCryptPasswordEncoder
                 * там все работает*/
 
                 /* не работает -> */
-                /*.passwordEncoder(new BCryptPasswordEncoder());*/
+                .passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override

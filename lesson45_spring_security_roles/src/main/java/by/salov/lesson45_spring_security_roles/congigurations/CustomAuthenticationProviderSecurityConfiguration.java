@@ -17,12 +17,12 @@ import org.springframework.security.web.authentication.logout.LogoutFilter;
  * The securedEnabled = true -> property determines if the @Secured annotation should be enabled.
  * The jsr250Enabled = true -> property allows us to use the @RoleAllowed annotation.
  */
-@EnableWebSecurity (/*debug = true*/)
+/*@EnableWebSecurity (*//*debug = true*//*)
 @EnableGlobalMethodSecurity (
         prePostEnabled = true,
         securedEnabled = true,
         jsr250Enabled = true
-        )
+        )*/
 public class CustomAuthenticationProviderSecurityConfiguration  extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserAuthencationProviderImp userAuthencationProviderImp;
