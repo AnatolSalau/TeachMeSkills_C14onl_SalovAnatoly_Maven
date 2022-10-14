@@ -1,5 +1,6 @@
 package by.salov.lesson45_spring_security_roles.congigurations;
 
+import by.salov.lesson45_spring_security_roles.filters.SecurityLogFilter;
 import by.salov.lesson45_spring_security_roles.handlers.CustomAuthenticationSuccessHandler;
 import by.salov.lesson45_spring_security_roles.services.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -37,6 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/doctor/**").hasAnyRole("DOCTOR", "ADMIN")
                 .antMatchers("/user/**").hasAnyRole("USER","DOCTOR", "ADMIN")
                 .antMatchers("/**").permitAll()
+
                 .and()
                 /*customization login page*/
                 .formLogin()
@@ -48,6 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .successHandler(customAuthenticationSuccessHandler)
                 .and()
+                .addFilterBefore(new SecurityLogFilter(), LogoutFilter.class)
 /*                .addFilterBefore(new SecurityLogFilter(), LogoutFilter.class)*/
                 /*Add Exeption handlers*/
                 .exceptionHandling()
