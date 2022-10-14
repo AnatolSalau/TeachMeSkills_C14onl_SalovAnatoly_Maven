@@ -14,7 +14,7 @@ public class SecurityBeansConfiguration {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+/*    @Bean
     public AccessDeniedHandler accessDeniedHandler() {
         return new CustomAccessDeniedHandler();
     }
@@ -22,6 +22,5 @@ public class SecurityBeansConfiguration {
     @Bean
     public CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler() {
         return  new CustomAuthenticationSuccessHandler();
-    }
-
+    }*/
 }

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 
+@Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
@@ -27,9 +28,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         Arrays.stream(rolesArray).forEach( role ->{
                         try {
                             switch (role) {
-                                case"USER" -> response.sendRedirect("/user");
-                                case"DOCTOR" -> response.sendRedirect("/doctor");
-                                case"ADMIN" -> response.sendRedirect("/admin");
+                                case"ROLE_USER" -> response.sendRedirect("/user");
+                                case"ROLE_DOCTOR" -> response.sendRedirect("/doctor");
+                                case"ROLE_ADMIN" -> response.sendRedirect("/admin");
                             }
                         } catch (IOException e) {
                             e.printStackTrace();

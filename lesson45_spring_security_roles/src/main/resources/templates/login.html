@@ -12,6 +12,9 @@
     <div class="hello"> Hello from login</div>
     <form name="loginForm" th:action="@{/perform-login}" method="post">
         <fieldset>
+            <div th:if="${param.error}" class="invalidUsernamePassword">
+                Invalid username and password.
+            </div>
             <legend> Введите имя и пароль</legend>
             <label for="username">Имя пользователя</label>
             <input type="text" id="username" name="username"/>

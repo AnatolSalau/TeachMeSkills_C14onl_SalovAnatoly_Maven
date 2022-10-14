@@ -6,3 +6,6 @@
     font-size: large;
     color: blue;
 }
+.invalidUsernamePassword {
+    color: blue;
+}

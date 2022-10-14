@@ -1,7 +1,7 @@
 insert into roles (id, name)
-values (1, 'ADMIN'),
-       (2, 'DOCTOR'),
-       (3, 'USER');
+values (1, 'ROLE_ADMIN'),
+       (2, 'ROLE_DOCTOR'),
+       (3, 'ROLE_USER');
 
 insert into users (id, login, password)
 values (1, 'admin', '$2a$12$MWSgG3DAUk5zmWCKuZ6ohuItYk4z73t4wpu.m9yIC2JiTum0xY9bK'),
