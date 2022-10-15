@@ -10,6 +10,7 @@
   <modules>
     <module>lesson_22_homework_servlets</module>
     <module>lesson_23_classwork_javaee</module>
+      <module>lesson49_testing_nospring</module>
   </modules>
   <packaging>pom</packaging>
 
