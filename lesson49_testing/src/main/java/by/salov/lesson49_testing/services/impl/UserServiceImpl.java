@@ -7,19 +7,20 @@ import by.salov.lesson49_testing.exception.UserAllreadyExistExeption;
 import by.salov.lesson49_testing.exception.UserNotExist;
 import by.salov.lesson49_testing.repository.UserRepository;
 import by.salov.lesson49_testing.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    private UserValidationImpl userValidation;
+    private final UserValidationImpl userValidation;
 
     @Override
     public List<User> getAllUsers() {
