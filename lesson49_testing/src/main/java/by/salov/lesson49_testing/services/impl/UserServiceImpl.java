@@ -1,6 +1,7 @@
 package by.salov.lesson49_testing.services.impl;
 
 import by.salov.lesson49_testing.domain.User;
+import by.salov.lesson49_testing.exception.CantDeleteUserExeption;
 import by.salov.lesson49_testing.exception.CantUpdateUserExeption;
 import by.salov.lesson49_testing.exception.UserAllreadyExistExeption;
 import by.salov.lesson49_testing.exception.UserNotExist;
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) throws UserNotExist, CantUpdateUserExeption{
-        if (userValidation.isValidUserForSave(user)) {
+        if (userValidation.isValidUserForUpdate(user)) {
             User byId = userRepository.getById(user.getId());
             if (byId == null) {
                 throw  new UserNotExist("User not exist");
@@ -68,7 +69,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(User user) {
-
+    public void deleteUser(User user) throws UserNotExist, CantDeleteUserExeption {
+        if (userValidation.isValidUserForDelete(user)) {
+            User byId = userRepository.getById(user.getId());
+            if (byId == null) {
+                throw  new UserNotExist("User not exist");
+            }
+            else {
+                userRepository.delete(user);
+            }
+        }else {
+            throw  new CantDeleteUserExeption("Cant update user");
+        }
     }
 }

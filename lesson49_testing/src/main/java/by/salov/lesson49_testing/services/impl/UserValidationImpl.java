@@ -33,4 +33,18 @@ public class UserValidationImpl implements UserValidation {
 
         return true;
     }
+
+    @Override
+    public boolean isValidUserForDelete(User user) {
+        Long id = user.getId();
+        if (id != null) return false;
+
+        String login = user.getLogin();
+        if (login == null || login.isBlank()) return false;
+
+        String password = user.getPassword();
+        if (password == null || password.isBlank()) return false;
+
+        return true;
+    }
 }
