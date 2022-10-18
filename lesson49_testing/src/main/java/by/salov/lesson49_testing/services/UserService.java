@@ -1,29 +1,20 @@
 package by.salov.lesson49_testing.services;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import by.salov.lesson49_testing.domain.User;
+import by.salov.lesson49_testing.exception.CantDeleteUserExeption;
+import by.salov.lesson49_testing.exception.CantUpdateUserExeption;
+import by.salov.lesson49_testing.exception.UserAllreadyExistExeption;
+import by.salov.lesson49_testing.exception.UserNotExist;
 
 import java.util.List;
 
-@Service
-@NoArgsConstructor
-@Getter
-@Setter
-/*Turn on logger by Lombok annotation*/
-@Slf4j
-public class UserService {
-
-
-    private List<User> userList;
-
-    public void printUsers() {
-        log.error("SLFJLombok");
-        userList.forEach(user -> System.out.println(user.getName()));
-    }
+public interface UserService {
+    List<User> getAllUsers();
+    User getUserById(Long id);
+    User getUserByLogin(String login);
+    User saveUser(User user) throws UserNotExist, UserAllreadyExistExeption;
+    void saveDefaultUserWithLogin(String login);
+    void saveUserWithTwoParams(String login);
+    User updateUser(User user) throws UserNotExist, CantUpdateUserExeption;
+    void deleteUser(User user) throws UserNotExist, CantDeleteUserExeption;
 }

@@ -27,5 +27,4 @@ public class MathServiceTest {
 
         Assertions.assertEquals(expectedResult,division);
     }
-
 }
