@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
@@ -94,8 +96,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUserWithTwoParams(String login, String password) {
-        if (userValidation.isValidParams(login,password)) {
+    public void saveUserWithTwoParams(String login) {
+        String password = UUID.randomUUID().toString();
+        if (userValidation.isValidParams(login, UUID.randomUUID().toString())) {
             User user = User.builder()
                     .login(login)
                     .password(password)

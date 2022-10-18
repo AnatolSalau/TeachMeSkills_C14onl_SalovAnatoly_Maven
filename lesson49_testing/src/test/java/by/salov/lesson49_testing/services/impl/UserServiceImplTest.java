@@ -16,6 +16,7 @@ import org.springframework.data.repository.query.FluentQuery;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -145,5 +146,25 @@ class UserServiceImplTest {
 
     @Test
     void saveUserWithTwoParams() {
+        //given
+        String login = "LoginUser";
+        UserRepository mockUserRepository = Mockito.spy(UserRepository.class);
+        UserValidationImpl mockUserValidation = Mockito.spy(UserValidationImpl.class);
+
+        //when
+        /** .isValidParams(login, Mockito.anyString())) - doesn't work because When using matchers, all arguments have to be provided by matchers.
+        *   .isValidParams(Mockito.anyString(), Mockito.anyString())) = it is work
+        *    so use Mockito.eq(parameter)
+        */
+/*        Mockito.when(mockUserValidation
+                .isValidParams(login, Mockito.anyString())).thenReturn(true);*/
+
+        Mockito.when(mockUserValidation
+                .isValidParams(Mockito.eq(login), Mockito.anyString())).thenReturn(true);
+
+        UserServiceImpl userService = new UserServiceImpl(mockUserRepository, mockUserValidation);
+
+        //then
+        userService.saveUserWithTwoParams(login);
     }
 }
