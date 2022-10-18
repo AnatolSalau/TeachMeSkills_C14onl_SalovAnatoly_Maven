@@ -141,6 +141,21 @@ class UserServiceImplTest {
         Assertions.assertEquals(login, userFromCaptor.getLogin());
         /*match user.password from argumentCapture*/
         Assertions.assertEquals("default", userFromCaptor.getPassword());
+
+        /**
+         * We can use library assertj for comparing results, instead of standard Assertions
+         */
+
+        org.assertj.core.api.Assertions.assertThat(
+                userFromCaptor.getLogin()).isEqualTo("Vasya");
+
+        List<User> userList = List.of(new User(), new User());
+
+        /*comparing size userList*/
+        Assertions.assertEquals(2,userList.size());
+        /*the same comparing by assertj*/
+        org.assertj.core.api.Assertions.assertThat(userList).hasSize(2);
+
     }
 
 
