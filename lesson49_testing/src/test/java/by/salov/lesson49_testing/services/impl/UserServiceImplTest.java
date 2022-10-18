@@ -22,7 +22,18 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * NOTE! By tests we can control changes in our code, because if we change cod so
  * it doesn't match, then the tests will show it
- * .mock - return default
+ * .mock - return default value for primitives
+ * Data Type	Default Value (for fields)
+ * byte	                    0
+ * short	                0
+ * int	                    0
+ * long	                    0L
+ * float	                0.0f
+ * double	                0.0d
+ * char	                    '\u0000'
+ * String (or any object)  	null
+ * boolean	                false
+ * .spy - inherited from our object
  */
 class UserServiceImplTest {
 
