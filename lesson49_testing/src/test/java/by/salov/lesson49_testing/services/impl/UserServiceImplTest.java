@@ -6,6 +6,7 @@ import by.salov.lesson49_testing.exception.UserNotExist;
 import by.salov.lesson49_testing.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -106,5 +107,43 @@ class UserServiceImplTest {
         /*Check quantity of method call*/
         Mockito.verify(mockitoUserRepository,Mockito.times(0))
                 .save(userWithId);
+    }
+
+    @Test
+    void saveDefaultUserWithLogin() {
+        //given
+        String login = "Vasya";
+        UserRepository mockUserRepository = Mockito.spy(UserRepository.class);
+        UserValidationImpl mockUserValidationImpl = Mockito.spy(UserValidationImpl.class);
+        UserServiceImpl mockitoUserServiceImpl = new UserServiceImpl(
+                mockUserRepository,mockUserValidationImpl);
+
+        /*Create ArgumentCaptore that will make photo our arguments in methods*/
+        ArgumentCaptor<User> argumentCaptor = ArgumentCaptor.forClass(User.class);
+
+        //when
+        mockitoUserServiceImpl.saveDefaultUserWithLogin(login);
+
+        //Check with ArgumentCaptore
+        Mockito.verify(mockUserRepository).save(argumentCaptor.capture());
+
+        //then
+
+        /*Check that UserRepository.class was run*/
+        Mockito.verify(mockUserRepository,Mockito.times(1))
+                .save(Mockito.any());
+
+        /*Get argument (User) by ArgumentCaptor*/
+        User userFromCaptor = argumentCaptor.getValue();
+
+        /*Match user.login and user from argument capture */
+        Assertions.assertEquals(login, userFromCaptor.getLogin());
+        /*match user.password from argumentCapture*/
+        Assertions.assertEquals("default", userFromCaptor.getPassword());
+    }
+
+
+    @Test
+    void saveUserWithTwoParams() {
     }
 }

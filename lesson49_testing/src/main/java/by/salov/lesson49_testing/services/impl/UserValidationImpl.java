@@ -47,4 +47,12 @@ public class UserValidationImpl implements UserValidation {
 
         return true;
     }
+
+    @Override
+    public boolean isValidParams(String login, String password) {
+        if(login == null || login.isBlank() || password.isBlank()) {
+            return false;
+        }
+        return true;
+    }
 }

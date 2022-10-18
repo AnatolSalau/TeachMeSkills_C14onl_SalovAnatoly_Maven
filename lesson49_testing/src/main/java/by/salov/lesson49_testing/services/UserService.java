@@ -13,6 +13,8 @@ public interface UserService {
     User getUserById(Long id);
     User getUserByLogin(String login);
     User saveUser(User user) throws UserNotExist, UserAllreadyExistExeption;
+    void saveDefaultUserWithLogin(String login);
+    void saveUserWithTwoParams(String login, String password);
     User updateUser(User user) throws UserNotExist, CantUpdateUserExeption;
     void deleteUser(User user) throws UserNotExist, CantDeleteUserExeption;
 }

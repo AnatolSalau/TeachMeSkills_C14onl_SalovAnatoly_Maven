@@ -83,4 +83,24 @@ public class UserServiceImpl implements UserService {
             throw  new CantDeleteUserExeption("Cant update user");
         }
     }
+
+    @Override
+    public void saveDefaultUserWithLogin(String login) {
+        User user = User.builder()
+                .login(login)
+                .password("default")
+                .build();
+        userRepository.save(user);
+    }
+
+    @Override
+    public void saveUserWithTwoParams(String login, String password) {
+        if (userValidation.isValidParams(login,password)) {
+            User user = User.builder()
+                    .login(login)
+                    .password(password)
+                    .build();
+            userRepository.save(user);
+        }
+    }
 }

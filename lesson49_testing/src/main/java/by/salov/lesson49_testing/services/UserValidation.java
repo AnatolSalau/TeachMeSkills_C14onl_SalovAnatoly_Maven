@@ -6,4 +6,5 @@ public interface UserValidation {
     public boolean isValidUserForSave(User user);
     public boolean isValidUserForUpdate(User user);
     public boolean isValidUserForDelete(User user);
+    public boolean isValidParams(String login, String password);
 }
