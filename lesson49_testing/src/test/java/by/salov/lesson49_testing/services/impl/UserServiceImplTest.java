@@ -5,9 +5,11 @@ import by.salov.lesson49_testing.exception.UserAllreadyExistExeption;
 import by.salov.lesson49_testing.exception.UserNotExist;
 import by.salov.lesson49_testing.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,7 +39,30 @@ import static org.junit.jupiter.api.Assertions.*;
  * boolean	                false
  * .spy - inherited from our object
  */
+
+/*Add Mockito in JUnit by Spring annotations*/
+@ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
+    /*@Mock*/
+    @Spy
+    private UserRepository mockUserRepository;
+    /*@Mock*/
+    @Spy
+    private UserValidationImpl mockUserValidation;
+    @InjectMocks
+    private UserServiceImpl userServiceImpl;
+
+    /**
+     * Put often used classes in separate fields
+     * initialize that fields with @BeforeEach
+     */
+    @BeforeEach
+    public void beforeEach() {
+/*        mockUserRepository = Mockito.mock(UserRepository.class);
+        mockUserValidation = Mockito.mock(UserValidationImpl.class);*/
+/*        userServiceImpl = new UserServiceImpl(
+                mockUserRepository, mockUserValidation);*/
+    }
 
     @Test
     void saveValidUser() throws UserAllreadyExistExeption, UserNotExist {
@@ -52,9 +77,10 @@ class UserServiceImplTest {
                 .password("123456")
                 .build();
         /*Generate user repository with Mockito*/
-        UserRepository mockUserRepository = Mockito.mock(UserRepository.class);
-        UserValidationImpl mockUserValidation = Mockito.mock(UserValidationImpl.class);
-        UserServiceImpl userService = new UserServiceImpl(mockUserRepository, mockUserValidation);
+/*        UserRepository mockUserRepository = Mockito.mock(UserRepository.class);
+        UserValidationImpl mockUserValidation = Mockito.mock(UserValidationImpl.class);*/
+/*        UserServiceImpl userService = new UserServiceImpl(
+                mockUserRepository, mockUserValidation);*/
 
         /*describing behavior UserValidationImpl by mockito*/
         Mockito.when(mockUserValidation.isValidUserForSave(user)).thenReturn(true);
@@ -62,7 +88,7 @@ class UserServiceImplTest {
         /*describe behavior mockUserRepository by mockito*/
         Mockito.when(mockUserRepository.save(user)).thenReturn(userFromDB);
         //when
-        User savedUser = userService.saveUser(user);
+        User savedUser = userServiceImpl.saveUser(user);
 
         //then
         Assertions.assertNotNull(savedUser);
@@ -85,28 +111,30 @@ class UserServiceImplTest {
                 .password("123456")
                 .build();
         /*DAO UserRepository by Mockito*/
-        UserRepository mockitoUserRepository = Mockito.mock(UserRepository.class);
+/*        UserRepository mockitoUserRepository = Mockito.mock(UserRepository.class);*/
         /*UserValidationImpl by Mockito*/
 /*        UserValidationImpl mockitoUserValidationImpl = Mockito.mock(UserValidationImpl.class);*/
+/*
         UserValidationImpl mockitoUserValidationImpl = Mockito.spy(UserValidationImpl.class);
+*/
         /*Service for save*/
-        UserServiceImpl userServiceImpl = new UserServiceImpl(
-                mockitoUserRepository,mockitoUserValidationImpl);
+/*        UserServiceImpl userServiceImpl = new UserServiceImpl(
+                mockUserRepository,mockUserValidation);*/
 
         /*Describe behavior*/
         Mockito.when(
-                mockitoUserValidationImpl.isValidUserForSave(userWithId)).thenReturn(false);
+                mockUserValidation.isValidUserForSave(userWithId)).thenReturn(false);
         /*Also we can call real method by Mockito.thenCallRealMethod*/
         Mockito.when(
-                mockitoUserValidationImpl.isValidUserForSave(userWithId)).thenCallRealMethod();
-        Mockito.when(mockitoUserRepository.getById(3L)).thenReturn(userFromDB);
+                mockUserValidation.isValidUserForSave(userWithId)).thenCallRealMethod();
+        Mockito.when(mockUserRepository.getById(3L)).thenReturn(userFromDB);
 
         //when and then
         Assertions.assertThrows(UserNotExist.class,()-> {
             userServiceImpl.saveUser(userWithId);
         } );
         /*Check quantity of method call*/
-        Mockito.verify(mockitoUserRepository,Mockito.times(0))
+        Mockito.verify(mockUserRepository,Mockito.times(0))
                 .save(userWithId);
     }
 
@@ -114,16 +142,16 @@ class UserServiceImplTest {
     void saveDefaultUserWithLogin() {
         //given
         String login = "Vasya";
-        UserRepository mockUserRepository = Mockito.spy(UserRepository.class);
-        UserValidationImpl mockUserValidationImpl = Mockito.spy(UserValidationImpl.class);
-        UserServiceImpl mockitoUserServiceImpl = new UserServiceImpl(
-                mockUserRepository,mockUserValidationImpl);
+    /*    UserRepository mockUserRepository = Mockito.spy(UserRepository.class);
+        UserValidationImpl mockUserValidationImpl = Mockito.spy(UserValidationImpl.class);*/
+/*        UserServiceImpl mockitoUserServiceImpl = new UserServiceImpl(
+                mockUserRepository,mockUserValidation);*/
 
         /*Create ArgumentCaptore that will make photo our arguments in methods*/
         ArgumentCaptor<User> argumentCaptor = ArgumentCaptor.forClass(User.class);
 
         //when
-        mockitoUserServiceImpl.saveDefaultUserWithLogin(login);
+        userServiceImpl.saveDefaultUserWithLogin(login);
 
         //Check with ArgumentCaptore
         Mockito.verify(mockUserRepository).save(argumentCaptor.capture());
@@ -163,8 +191,8 @@ class UserServiceImplTest {
     void saveUserWithTwoParams() {
         //given
         String login = "LoginUser";
-        UserRepository mockUserRepository = Mockito.spy(UserRepository.class);
-        UserValidationImpl mockUserValidation = Mockito.spy(UserValidationImpl.class);
+/*        UserRepository mockUserRepository = Mockito.spy(UserRepository.class);
+        UserValidationImpl mockUserValidation = Mockito.spy(UserValidationImpl.class);*/
 
         //when
         /** .isValidParams(login, Mockito.anyString())) - doesn't work because When using matchers, all arguments have to be provided by matchers.
@@ -177,9 +205,11 @@ class UserServiceImplTest {
         Mockito.when(mockUserValidation
                 .isValidParams(Mockito.eq(login), Mockito.anyString())).thenReturn(true);
 
+/*
         UserServiceImpl userService = new UserServiceImpl(mockUserRepository, mockUserValidation);
+*/
 
         //then
-        userService.saveUserWithTwoParams(login);
+        userServiceImpl.saveUserWithTwoParams(login);
     }
 }
