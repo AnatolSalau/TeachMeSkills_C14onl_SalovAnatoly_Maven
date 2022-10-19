@@ -33,7 +33,10 @@ dependencies {
 /*Add mochito libraryes fro testing*/
     testImplementation 'org.mockito:mockito-core:4.8.0'
     testImplementation 'org.mockito:mockito-junit-jupiter:4.8.0'
+    /*Add assertj library*/
     testImplementation 'org.assertj:assertj-core:3.23.1'
+    /*Add H2 database for test*/
+    /*testImplementation 'com.h2database:h2:2.1.214'*/
 }
 
 tasks.named('test') {
