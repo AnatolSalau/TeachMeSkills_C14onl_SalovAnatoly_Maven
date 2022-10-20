@@ -1,7 +1,9 @@
 package by.salov.lesson49_testing.controllers;
 
 import by.salov.lesson49_testing.domain.User;
+import by.salov.lesson49_testing.exception.CantUpdateUserExeption;
 import by.salov.lesson49_testing.exception.UserAllreadyExistExeption;
+import by.salov.lesson49_testing.exception.UserIDMustBeNull;
 import by.salov.lesson49_testing.exception.UserNotExist;
 import by.salov.lesson49_testing.services.UserService;
 import by.salov.lesson49_testing.services.impl.UserServiceImpl;
@@ -43,42 +45,28 @@ class GetUserControllerTest {
     }
 
     @Test
-    void testAddUser()  {
+    void testAddUser() throws Exception {
         //given
         User userRequest = User.builder()
                 .login("First").password("Password").build();
         User userResponse = User.builder()
                 .id(1L).login("First").password("Password").build();
 
-        try {
             Mockito.when(serviceImpl.saveUser(userRequest)).thenReturn(userResponse);
-        } catch (UserNotExist e) {
-            e.printStackTrace();
-        } catch (UserAllreadyExistExeption e) {
-            e.printStackTrace();
-        }
+
         //when
         /*Create request by MockMVC*/
-        ResultActions resultActions = null;
-        try {
-            resultActions = mockMvc.perform(MockMvcRequestBuilders
-                    .post("/")
+        String jsonUserRequest = objectMapper.writeValueAsString(userRequest);
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                    .post("/add")
                     .contentType("application/json")
-                    .content(objectMapper.writeValueAsString(userRequest))
+                    .content(jsonUserRequest)
             ).andDo(MockMvcResultHandlers.print());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         //then
-        try {
             resultActions
-                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andExpect(MockMvcResultMatchers.status().is(200))
                     .andExpect(MockMvcResultMatchers.jsonPath(
-                            "$.id", CoreMatchers.is(1L)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+                            "$.id", CoreMatchers.is("1")));
     }
 }

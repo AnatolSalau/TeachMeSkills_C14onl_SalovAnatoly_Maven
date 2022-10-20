@@ -1,10 +1,7 @@
 package by.salov.lesson49_testing.services.impl;
 
 import by.salov.lesson49_testing.domain.User;
-import by.salov.lesson49_testing.exception.CantDeleteUserExeption;
-import by.salov.lesson49_testing.exception.CantUpdateUserExeption;
-import by.salov.lesson49_testing.exception.UserAllreadyExistExeption;
-import by.salov.lesson49_testing.exception.UserNotExist;
+import by.salov.lesson49_testing.exception.*;
 import by.salov.lesson49_testing.repository.UserRepository;
 import by.salov.lesson49_testing.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -40,20 +37,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(User user) throws UserNotExist, UserAllreadyExistExeption {
+    public User saveUser(User user) throws UserNotExist, UserAllreadyExistExeption, UserIDMustBeNull, CantUpdateUserExeption {
         if (userValidation.isValidUserForSave(user)) {
-            User byId = userRepository.getById(user.getId());
-            if (byId == null) {
+            System.out.println(user);
+            Boolean byId = null;
+            if (user.getId() == null) {
                 User savedUser = userRepository.save(user);
                 return savedUser;
             }
-            else {
-                throw  new UserAllreadyExistExeption("User allready exist");
+                byId = userRepository.existsById(user.getId());
+                System.out.println(byId);
+                if (byId == false || byId == null) {
+                    User savedUser = userRepository.save(user);
+                    return savedUser;
+                } else {
+                    throw new UserAllreadyExistExeption("User allready exist");
+                }
+            } else {
+                throw new UserNotExist("Cant save user");
             }
-        } else {
-            throw  new UserNotExist("Cant save user");
         }
-    }
 
     @Override
     public User updateUser(User user) throws UserNotExist, CantUpdateUserExeption{

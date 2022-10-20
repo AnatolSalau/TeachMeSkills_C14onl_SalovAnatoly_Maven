@@ -1,7 +1,9 @@
 package by.salov.lesson49_testing.controllers;
 
 import by.salov.lesson49_testing.domain.User;
+import by.salov.lesson49_testing.exception.CantUpdateUserExeption;
 import by.salov.lesson49_testing.exception.UserAllreadyExistExeption;
+import by.salov.lesson49_testing.exception.UserIDMustBeNull;
 import by.salov.lesson49_testing.exception.UserNotExist;
 import by.salov.lesson49_testing.services.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +33,7 @@ public class GetUserController {
     }
 
     @PostMapping("/add")
-    public User addUser(@RequestBody User user) throws UserAllreadyExistExeption, UserNotExist {
+    public User addUser(@RequestBody User user) throws UserAllreadyExistExeption, UserNotExist, UserIDMustBeNull, CantUpdateUserExeption {
         User saveUser = userServiceImpl.saveUser(user);
         return saveUser;
     }
