@@ -5,13 +5,16 @@ import by.salov.lesson49_testing.exception.CantUpdateUserExeption;
 import by.salov.lesson49_testing.exception.UserAllreadyExistExeption;
 import by.salov.lesson49_testing.exception.UserIDMustBeNull;
 import by.salov.lesson49_testing.exception.UserNotExist;
+import by.salov.lesson49_testing.repository.UserRepository;
 import by.salov.lesson49_testing.services.UserService;
 import by.salov.lesson49_testing.services.impl.UserServiceImpl;
+import by.salov.lesson49_testing.services.impl.UserValidationImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -31,6 +34,7 @@ class GetUserControllerTest {
     /*Autovired bean UserServiceImpl*/
     @MockBean
     private UserServiceImpl serviceImpl;
+
 
     /*Create class from Mockito, that will create request instead of user*/
     @Autowired
@@ -52,7 +56,7 @@ class GetUserControllerTest {
         User userResponse = User.builder()
                 .id(1L).login("First").password("Password").build();
 
-            Mockito.when(serviceImpl.saveUser(userRequest)).thenReturn(userResponse);
+        Mockito.when(serviceImpl.saveUser(userRequest)).thenReturn(userResponse);
 
         //when
         /*Create request by MockMVC*/
