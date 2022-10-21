@@ -57,7 +57,7 @@ class GetUserControllerTest {
                 .id(1L).login("First").password("Password").build();
 
         /*UserServiceImpl должен вернуть userResponse а возвращает null - прикрепил скриншот*/
-        Mockito.when(this.serviceImpl.saveUser(userRequest)).thenReturn(userResponse);
+        Mockito.when(serviceImpl.saveUser(userRequest)).thenReturn(userResponse);
 
         //when
         /*Create request by MockMVC*/
@@ -69,9 +69,10 @@ class GetUserControllerTest {
             ).andDo(MockMvcResultHandlers.print());
 
         //then
+        //Compare results
             resultActions
                     .andExpect(MockMvcResultMatchers.status().is(200))
                     .andExpect(MockMvcResultMatchers.jsonPath(
-                            "$.id", CoreMatchers.is("1")));
+                            "$.id", CoreMatchers.is(1)));
     }
 }
