@@ -44,8 +44,27 @@ class GetUserControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     @Test
-    void testGetUserByID() {
+    void testGetUserByID() throws Exception {
+        //given
+        User userResponse = User.builder()
+                .id(2L).login("Login").password("Password").build();
 
+        Mockito.when(serviceImpl.getUserById(2L)).thenReturn(userResponse);
+
+        //when
+        ResultActions resultActions = mockMvc.perform(
+                    MockMvcRequestBuilders.get("/{id}",2)
+                )
+                .andDo(MockMvcResultHandlers.print());
+        //then
+        resultActions
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath(
+                        "$.id",CoreMatchers.is(2)))
+                .andExpect(MockMvcResultMatchers.jsonPath(
+                        "$.login",CoreMatchers.is("Login")))
+                .andExpect(MockMvcResultMatchers.jsonPath(
+                        "$.password",CoreMatchers.is("Password")));
     }
 
     @Test
