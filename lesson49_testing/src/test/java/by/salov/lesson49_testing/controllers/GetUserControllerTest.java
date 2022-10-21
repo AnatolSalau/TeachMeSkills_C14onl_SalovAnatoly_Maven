@@ -56,7 +56,8 @@ class GetUserControllerTest {
         User userResponse = User.builder()
                 .id(1L).login("First").password("Password").build();
 
-        Mockito.when(serviceImpl.saveUser(userRequest)).thenReturn(userResponse);
+        /*UserServiceImpl должен вернуть userResponse а возвращает null - прикрепил скриншот*/
+        Mockito.when(this.serviceImpl.saveUser(userRequest)).thenReturn(userResponse);
 
         //when
         /*Create request by MockMVC*/
