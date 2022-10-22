@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test Spring JPA repository
+ * SQL scripts data.sql and scheme.sql will be run because
+ * spring.jpa.defer-datasource-initialization=true in application.properties
  */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@TestPropertySource(properties = {
+        "spring.datasource.url=jdbc:postgresql://localhost:5432/test"
+})
 class UserRepositoryTest {
 
     /*Load User repository*/
@@ -27,21 +33,21 @@ class UserRepositoryTest {
     private List<User> userList = new ArrayList<>();
 
     User user1 = User.builder()
-            .login("Login1")
-            .password("Password1")
+            .login("login1")
+            .password("password1")
             .build();
     User user2 = User.builder()
-            .login("Login2")
-            .password("Password2")
+            .login("login2")
+            .password("password2")
             .build();
 
     /*Delete all from database*/
     @BeforeEach
     private void before() {
-        userRepository.deleteAll();
+/*        userRepository.deleteAll();*/
 
-        userRepository.save(user1);
-        userRepository.save(user2);
+/*        userRepository.save(user1);
+        userRepository.save(user2);*/
 
         userList.add(user1);
         userList.add(user2);
@@ -52,18 +58,14 @@ class UserRepositoryTest {
         //given
 
         //when
-        User userOne = userRepository.save(user1);
-        User userTwo = userRepository.save(user2);
+/*        User userOne = userRepository.save(user1);
+        User userTwo = userRepository.save(user2);*/
 
-        User userByLogin1 = userRepository.findUserByLogin("Login1");
-        User userByLogin2 = userRepository.findUserByLogin("Login2");
-
+        User userByLogin1 = userRepository.findUserByLogin("login1");
+        User userByLogin2 = userRepository.findUserByLogin("login2");
         //then
-        Assertions.assertThat(userOne).isEqualTo(user1);
-        Assertions.assertThat(userTwo).isEqualTo(user2);
-
-        Assertions.assertThat(userByLogin1).isEqualTo(user1);
-        Assertions.assertThat(userByLogin2).isEqualTo(user2);
+        Assertions.assertThat(userByLogin1.getLogin()).isEqualTo(user1.getLogin());
+        Assertions.assertThat(userByLogin2.getPassword()).isEqualTo(user2.getPassword());
     }
 
     @Test
