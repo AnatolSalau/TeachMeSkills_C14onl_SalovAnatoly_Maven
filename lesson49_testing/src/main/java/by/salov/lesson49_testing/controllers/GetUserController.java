@@ -26,7 +26,7 @@ public class GetUserController {
         return userServiceImpl.getAllUsers();
     }
     @GetMapping("/{id}")
-    public User getUserByID(@RequestParam()String id) {
+    public User getUserByID(@PathVariable(name = "id") String id) {
         Long idLong = Long.valueOf(id);
         User userById = userServiceImpl.getUserById(idLong);
         return userById;
