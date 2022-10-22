@@ -132,6 +132,4 @@ class GetUserControllerTest {
         //then
         Assertions.assertEquals(viewName,"test.html");
     }
-
-
 }
