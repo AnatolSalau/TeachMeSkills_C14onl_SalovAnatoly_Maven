@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -48,5 +49,10 @@ public class GetUserController {
     public User addUser(@RequestBody User user) throws UserAllreadyExistExeption, UserNotExist, UserIDMustBeNull, CantUpdateUserExeption {
         User saveUser = userServiceImpl.saveUser(user);
         return saveUser;
+    }
+    @GetMapping("/test")
+    public ModelAndView getTestTemplate() {
+        ModelAndView modelAndView = new ModelAndView("test.html");
+        return modelAndView;
     }
 }

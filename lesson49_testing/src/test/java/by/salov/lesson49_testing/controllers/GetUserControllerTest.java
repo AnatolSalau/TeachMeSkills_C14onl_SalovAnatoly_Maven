@@ -25,6 +25,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.servlet.ModelAndView;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -117,4 +118,20 @@ class GetUserControllerTest {
         //Compare requests
         resultActions.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
+
+    //test ModelAndView
+    @Test
+    void testGetTestTemplate() throws Exception {
+        //when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .get("/test")).andDo(MockMvcResultHandlers.print());
+        //given
+        ModelAndView modelAndView = resultActions.andReturn().getModelAndView();
+        String viewName = modelAndView.getViewName();
+        System.out.println(viewName);
+        //then
+        Assertions.assertEquals(viewName,"test.html");
+    }
+
+
 }
