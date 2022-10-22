@@ -41,7 +41,42 @@ dependencies {
     /*Add H2 database for test*/
     /*testImplementation 'com.h2database:h2:2.1.214'*/
 }
-
+/*Unit tests*/
 tasks.named('test') {
+/*    *//*exclude integration tests*//*
+    excludeTestsMatching "*IntegrationTest"*/
     useJUnitPlatform()
 }
+
+/*Registry Integration tests----------------------------*/
+/*https://docs.gradle.org/current/userguide/java_testing.html#sec:configuring_java_integration_tests*/
+/*Configuring integration tests*/
+/*sourceSets {
+    intTest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+configurations {
+    intTestImplementation.extendsFrom implementation
+    intTestRuntimeOnly.extendsFrom runtimeOnly
+}
+
+dependencies {
+    intTestImplementation 'junit:junit:4.13'
+}
+
+tasks.register('integrationTest', Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+    //include specific method in any of the tests
+    includeTestsMatching "*IntegrationTest"
+    useJUnitPlatform()
+    testClassesDirs = sourceSets.intTest.output.classesDirs
+    classpath = sourceSets.intTest.runtimeClasspath
+    shouldRunAfter test
+}
+
+check.dependsOn integrationTest*/
+/*--------------------------------------------------------*/
