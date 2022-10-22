@@ -8,6 +8,7 @@ import by.salov.lesson49_testing.exception.UserNotExist;
 import by.salov.lesson49_testing.services.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +29,19 @@ public class GetUserController {
     @GetMapping("/{id}")
     public User getUserByID(@PathVariable(name = "id") String id) {
         Long idLong = Long.valueOf(id);
-        User userById = userServiceImpl.getUserById(idLong);
+         User userById = userServiceImpl.getUserById(idLong);
         return userById;
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<User> getUserResponseEntityByID(@PathVariable(name = "id") String id) {
+        Long idLong = Long.valueOf(id);
+        User userFromDB = userServiceImpl.getUserById(idLong);
+        if (userFromDB != null) {
+            return ResponseEntity.ok(userFromDB);
+        } else {
+            return ResponseEntity.status(400).build();
+        }
     }
 
     @PostMapping("/add")

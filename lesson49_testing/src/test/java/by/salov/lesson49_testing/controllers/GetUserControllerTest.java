@@ -12,6 +12,7 @@ import by.salov.lesson49_testing.services.impl.UserValidationImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.CoreMatchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.mockito.stubbing.OngoingStubbing;
@@ -30,11 +31,9 @@ import static org.junit.jupiter.api.Assertions.*;
 /*Enable mvc testing to make controller GetUserController  testing*/
 @WebMvcTest(GetUserController.class)
 class GetUserControllerTest {
-
     /*Autovired bean UserServiceImpl*/
     @MockBean
     private UserServiceImpl serviceImpl;
-
 
     /*Create class from Mockito, that will create request instead of user*/
     @Autowired
@@ -65,6 +64,14 @@ class GetUserControllerTest {
                         "$.login",CoreMatchers.is("Login")))
                 .andExpect(MockMvcResultMatchers.jsonPath(
                         "$.password",CoreMatchers.is("Password")));
+        //Also we can get object
+        //get string
+        String contentAsString = resultActions.andReturn().getResponse().getContentAsString();
+        //get object from string
+        User user = objectMapper.readValue(contentAsString, User.class);
+
+        Assertions.assertEquals(user.getId(),2L);
+
     }
 
     @Test
@@ -93,5 +100,21 @@ class GetUserControllerTest {
                     .andExpect(MockMvcResultMatchers.status().is(200))
                     .andExpect(MockMvcResultMatchers.jsonPath(
                             "$.id", CoreMatchers.is(1)));
+    }
+
+    @Test
+    void getNotExistUserResponseEntityByID() throws Exception {
+        //given
+        //Return null like we get null from db
+        Mockito.when(serviceImpl.getUserById(2L)).thenReturn(null);
+
+        //when
+        ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders.get("/get/{id}","2")
+        ).andDo(MockMvcResultHandlers.print());
+
+        //then
+        //Compare requests
+        resultActions.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 }
