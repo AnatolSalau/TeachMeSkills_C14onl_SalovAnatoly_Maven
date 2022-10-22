@@ -9,6 +9,7 @@ class Lesson49TestingApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println("SpringBootTest");
     }
 
 }
