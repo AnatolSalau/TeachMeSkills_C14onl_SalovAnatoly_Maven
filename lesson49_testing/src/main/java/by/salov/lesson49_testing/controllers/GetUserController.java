@@ -29,8 +29,10 @@ public class GetUserController {
     }
     @GetMapping("/{id}")
     public User getUserByID(@PathVariable(name = "id") String id) {
-        Long idLong = Long.valueOf(id);
-         User userById = userServiceImpl.getUserById(idLong);
+/*        Long idLong = Long.valueOf(id);*/
+        System.out.println("Hello from getUserByID");
+         User userById = userServiceImpl.getUserById(1L);
+        System.out.println(userById);
         return userById;
     }
 

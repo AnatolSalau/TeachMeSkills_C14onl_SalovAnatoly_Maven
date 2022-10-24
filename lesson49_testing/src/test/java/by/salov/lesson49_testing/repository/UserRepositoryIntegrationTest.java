@@ -8,7 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+/**
+ * Integrations tests by @SpringBootTest
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class UserRepositoryIntegrationTest {
@@ -26,9 +33,14 @@ public class UserRepositoryIntegrationTest {
     }
 
     @Test
-    public void testGetByID() {
-        User byId = userRepository.getById(7L);
-/*        System.out.println(byId);*/
-
+    public void testGetByID() throws Exception {
+        //given
+        Long id = 5L;
+        //when
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                        .get("/{id}", "5"))
+                .andDo(MockMvcResultHandlers.print());
+        //then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
