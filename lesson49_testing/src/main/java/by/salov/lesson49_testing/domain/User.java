@@ -13,9 +13,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "users")
+@SequenceGenerator(sequenceName="user_sequence", name="user_sequence", allocationSize=1)
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private Long id;
 
     private String login;
