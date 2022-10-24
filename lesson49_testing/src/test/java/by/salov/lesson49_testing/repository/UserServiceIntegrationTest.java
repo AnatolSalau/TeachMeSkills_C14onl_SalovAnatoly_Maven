@@ -1,7 +1,9 @@
 package by.salov.lesson49_testing.repository;
 
 import by.salov.lesson49_testing.domain.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class UserRepositoryIntegrationTest {
+public class UserServiceIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -42,5 +44,29 @@ public class UserRepositoryIntegrationTest {
                 .andDo(MockMvcResultHandlers.print());
         //then
         resultActions.andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void testSaveUser() throws Exception {
+        //given
+        User userRequest = User.builder()
+                .login("testlogin")
+                .password("testpassword")
+                .build();
+        //when
+        //Simulate REST request by mockMVC
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .post("/add")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(userRequest))
+        ).andDo(MockMvcResultHandlers.print());
+        //then
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(
+                        MockMvcResultMatchers
+                                .jsonPath("$.login", CoreMatchers.is("testlogin")))
+                .andExpect(
+                        MockMvcResultMatchers
+                                .jsonPath("$.password", CoreMatchers.is("testpassword")));
     }
 }
