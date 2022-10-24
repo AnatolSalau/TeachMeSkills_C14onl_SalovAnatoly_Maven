@@ -35,6 +35,7 @@ public class UserRepositoryIntegrationTest {
     @Test
     public void testGetByID() throws Exception {
         //given
+        Long id = 5L;
         //when
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
                         .get("/{id}", "5"))
