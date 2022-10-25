@@ -25,6 +25,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 /**
  * Integration test by Testcontainer (Run Docker container with Postgres)
  * DB runs in container
+ * Before start TestContainer tests we can run Docker on PC
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
