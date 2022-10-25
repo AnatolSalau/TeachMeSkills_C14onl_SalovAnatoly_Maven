@@ -1,10 +1,7 @@
 package by.salov.lesson49_testing.services.impl;
 
 import by.salov.lesson49_testing.domain.User;
-import by.salov.lesson49_testing.exception.CantUpdateUserExeption;
-import by.salov.lesson49_testing.exception.UserAllreadyExistExeption;
-import by.salov.lesson49_testing.exception.UserIDMustBeNull;
-import by.salov.lesson49_testing.exception.UserNotExist;
+import by.salov.lesson49_testing.exception.*;
 import by.salov.lesson49_testing.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -95,8 +92,8 @@ class UserServiceImplTest {
             savedUser = userServiceImpl.saveUser(user);
         } catch (UserIDMustBeNull e) {
             throw new RuntimeException(e);
-        } catch (CantUpdateUserExeption e) {
-            throw new RuntimeException(e);
+        }  catch (UserNotValidExeption | CantUpdateUserExeption e) {
+            e.printStackTrace();
         }
 
         //then

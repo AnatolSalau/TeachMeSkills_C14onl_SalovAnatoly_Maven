@@ -40,10 +40,15 @@ public class UserServiceIntegrationTest {
         Long id = 5L;
         //when
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-                        .get("/{id}", "5"))
+                        .get("/{id}", id))
                 .andDo(MockMvcResultHandlers.print());
         //then
-        resultActions.andExpect(MockMvcResultMatchers.status().isOk());
+        resultActions
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath(
+                        "$.id",CoreMatchers.is(5)))
+                .andExpect(MockMvcResultMatchers.jsonPath(
+                        "$.login",CoreMatchers.is("login5")));
     }
 
     @Test
@@ -68,5 +73,24 @@ public class UserServiceIntegrationTest {
                 .andExpect(
                         MockMvcResultMatchers
                                 .jsonPath("$.password", CoreMatchers.is("testpassword")));
+    }
+
+    @Test
+    void testSaveUserWithID() throws Exception {
+        //given
+        User userRequest = User.builder()
+                .id(1L)
+                .login("login1")
+                .password("testpassword")
+                .build();
+        //when
+        //Simulate REST request by mockMVC
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
+                .post("/add")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsString(userRequest))
+        ).andDo(MockMvcResultHandlers.print());
+        //then
+        resultActions.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 }

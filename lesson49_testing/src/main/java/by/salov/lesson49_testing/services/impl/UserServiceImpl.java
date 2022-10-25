@@ -16,12 +16,17 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl implements UserService {
 
+
+
     @Autowired
     private final UserRepository userRepository;
 
     @Autowired
     private final UserValidationImpl userValidation;
-
+    @Override
+    public void deleteAll() {
+        userRepository.deleteAll();
+    }
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -39,26 +44,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(User user) throws UserNotExist, UserAllreadyExistExeption, UserIDMustBeNull, CantUpdateUserExeption {
+    public User saveUser(User user) throws  UserIDMustBeNull, CantUpdateUserExeption, UserNotValidExeption {
         if (userValidation.isValidUserForSave(user)) {
-            System.out.println(user);
-            Boolean byId = null;
-            if (user.getId() == null) {
-                User savedUser = userRepository.save(user);
-                return savedUser;
-            }
-                byId = userRepository.existsById(user.getId());
-                System.out.println(byId);
-                if (byId == false || byId == null) {
-                    User savedUser = userRepository.save(user);
-                    return savedUser;
-                } else {
-                    throw new UserAllreadyExistExeption("User allready exist");
+                if (user.getId() != null) {
+                    throw new UserIDMustBeNull("Cant save user");
                 }
-            } else {
-                throw new UserNotExist("Cant save user");
-            }
+            User save = userRepository.save(user);
+            return save;
         }
+        else {
+            throw new UserNotValidExeption("Cant save user");
+        }
+    }
 
     @Override
     public User updateUser(User user) throws UserNotExist, CantUpdateUserExeption{

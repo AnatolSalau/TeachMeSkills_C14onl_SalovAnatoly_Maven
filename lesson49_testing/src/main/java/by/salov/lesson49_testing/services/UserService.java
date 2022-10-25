@@ -9,9 +9,10 @@ public interface UserService {
     List<User> getAllUsers();
     User getUserById(Long id);
     User getUserByLogin(String login);
-    User saveUser(User user) throws UserNotExist, UserAllreadyExistExeption, UserIDMustBeNull, CantUpdateUserExeption;
+    User saveUser(User user) throws UserNotExist, UserAllreadyExistExeption, UserIDMustBeNull, CantUpdateUserExeption, UserNotValidExeption;
     void saveDefaultUserWithLogin(String login);
     void saveUserWithTwoParams(String login);
     User updateUser(User user) throws UserNotExist, CantUpdateUserExeption;
     void deleteUser(User user) throws UserNotExist, CantDeleteUserExeption;
+    void deleteAll();
 }

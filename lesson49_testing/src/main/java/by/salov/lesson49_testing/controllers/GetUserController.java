@@ -1,10 +1,7 @@
 package by.salov.lesson49_testing.controllers;
 
 import by.salov.lesson49_testing.domain.User;
-import by.salov.lesson49_testing.exception.CantUpdateUserExeption;
-import by.salov.lesson49_testing.exception.UserAllreadyExistExeption;
-import by.salov.lesson49_testing.exception.UserIDMustBeNull;
-import by.salov.lesson49_testing.exception.UserNotExist;
+import by.salov.lesson49_testing.exception.*;
 import by.salov.lesson49_testing.services.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +24,12 @@ public class GetUserController {
     public List<User> getUserList() {
         return userServiceImpl.getAllUsers();
     }
+
     @GetMapping("/{id}")
     public User getUserByID(@PathVariable(name = "id") String id) {
         Long idLong = Long.valueOf(id);
         System.out.println("Hello from getUserByID");
-         User userById = userServiceImpl.getUserById(1L);
+         User userById = userServiceImpl.getUserById(idLong);
         System.out.println(userById);
         return userById;
     }
@@ -48,7 +46,7 @@ public class GetUserController {
     }
 
     @PostMapping("/add")
-    public User addUser(@RequestBody User user) throws UserAllreadyExistExeption, UserNotExist, UserIDMustBeNull, CantUpdateUserExeption {
+    public User addUser(@RequestBody User user) throws UserIDMustBeNull, CantUpdateUserExeption, UserNotValidExeption {
         User saveUser = userServiceImpl.saveUser(user);
         return saveUser;
     }
