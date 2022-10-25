@@ -16,8 +16,6 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl implements UserService {
 
-
-
     @Autowired
     private final UserRepository userRepository;
 

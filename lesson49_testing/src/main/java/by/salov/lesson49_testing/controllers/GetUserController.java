@@ -1,8 +1,10 @@
 package by.salov.lesson49_testing.controllers;
 
+import by.salov.lesson49_testing.client.UserFeignClient;
 import by.salov.lesson49_testing.domain.User;
 import by.salov.lesson49_testing.exception.*;
 import by.salov.lesson49_testing.services.impl.UserServiceImpl;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +15,17 @@ import java.util.List;
 
 @RequiredArgsConstructor
 
+
 @RestController
 @RequestMapping("/")
 public class GetUserController {
 
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private final UserServiceImpl userServiceImpl;
+
+    @Autowired
+/*    Autoware feignc lient*/
+    private final UserFeignClient userFeignClient;
 
     @GetMapping("/all")
     public List<User> getUserList() {
@@ -54,5 +61,12 @@ public class GetUserController {
     public ModelAndView getTestTemplate() {
         ModelAndView modelAndView = new ModelAndView("test.html");
         return modelAndView;
+    }
+
+    @PostMapping("/test")
+    public User addUserTest(@RequestBody User user) throws UserIDMustBeNull, UserNotValidExeption, CantUpdateUserExeption {
+        /*Get user from external resource*/
+        User user1 = userFeignClient.getUser();
+        return user1;
     }
 }
