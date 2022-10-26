@@ -47,9 +47,9 @@ dependencies {
     /*Test Container, add PostgeSQL module*/
     testImplementation "org.testcontainers:postgresql:1.17.5"
     //Add openFeign library for testing
-
-
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    //Add WireMock
+    testImplementation "com.github.tomakehurst:wiremock-jre8:2.34.0"
 }
 //Add Spring cloud
 dependencyManagement {
