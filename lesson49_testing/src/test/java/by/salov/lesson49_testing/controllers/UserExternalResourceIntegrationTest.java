@@ -74,7 +74,6 @@ public class UserExternalResourceIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath(
                         "$.login", CoreMatchers.is("ExternalLogin1")))
                 .andExpect(MockMvcResultMatchers.jsonPath(
-                        "$.password", CoreMatchers.is("ExternalPassword1")))
-        ;
+                        "$.password", CoreMatchers.is("ExternalPassword1")));
     }
 }
