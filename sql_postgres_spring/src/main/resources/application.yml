@@ -1,0 +1,8 @@
+#Execute sql script from resources/data.sql
+spring:
+  jpa:
+    show-sql:
+      true
+  sql:
+    init:
+      mode: always
