@@ -4,11 +4,11 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/sql_postgres_spring" />
-        <option name="gradleHome" value="$PROJECT_DIR$/../../../JAVA/gradle-7.5.1" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/sql_postgres_spring_flydb" />
+        <option name="gradleHome" value="C:/JAVA/gradle-7.5.1" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/sql_postgres_spring" />
+            <option value="$PROJECT_DIR$/sql_postgres_spring_flydb" />
           </set>
         </option>
       </GradleProjectSettings>

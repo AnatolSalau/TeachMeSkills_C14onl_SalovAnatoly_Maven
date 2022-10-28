@@ -1,4 +1,4 @@
-package by.salov.sql_postgres_spring;
+package com.example.sql_postgres_spring_flydb;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(SqlPostgresSpringApplication.class);
+        return application.sources(SqlPostgresSpringFlydbApplication.class);
     }
 
 }
