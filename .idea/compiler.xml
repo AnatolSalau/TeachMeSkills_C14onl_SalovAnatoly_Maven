@@ -3,12 +3,14 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="lesson_22_classwork_servlets" />
+        <module name="lesson_22_homework_servlets" />
+        <module name="lesson_23_classwork_javaee" />
+      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="lesson49_testing_nospring" target="17" />
-      <module name="sql_postgres_spring" target="17" />
-      <module name="sql_postgres_spring.main" target="17" />
-      <module name="sql_postgres_spring.test" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
