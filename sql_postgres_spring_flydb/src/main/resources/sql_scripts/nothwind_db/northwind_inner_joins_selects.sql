@@ -23,3 +23,18 @@ INNER JOIN categories c on c.category_id = products.category_id
 GROUP BY category_name
 ORDER BY sum(units_in_stock) DESC
 LIMIT 5;
+
+SELECT category_name, SUM(unit_price * products.units_in_stock)
+FROM products
+INNER JOIN categories ON products.category_id = categories.category_id
+WHERE discontinued <> 1
+GROUP BY category_name
+HAVING SUM(unit_price * products.units_in_stock) > 5000
+ORDER BY SUM(unit_price * products.units_in_stock) DESC;
+
+/*Multiple join from three tables with max order_date*/
+SELECT order_date, product_name, ship_country, products.unit_price, quantity, discount
+FROM orders
+INNER JOIN order_details ON orders.order_id = order_details.order_id
+INNER JOIN products ON order_details.product_id = products.product_id
+WHERE order_date = (SELECT max(order_date) FROM orders);
