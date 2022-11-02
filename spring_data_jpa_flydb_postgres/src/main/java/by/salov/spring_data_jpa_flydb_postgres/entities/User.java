@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -23,8 +20,11 @@ public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String first_name;
-    private String second_name;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "second_name")
+    private String secondName;
+    @Column(name = "user_role")
     private UserRole userRole;
 
     @Override
