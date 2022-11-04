@@ -20,6 +20,10 @@ public class PatientGlucoseLevel {
     @Column(name = "level_glucose")
     private Integer levelGlucose;
 
-    @OneToOne(mappedBy = "patientGlucoseLevel", cascade = CascadeType.ALL)
+    /*Delete CascadeType.REMOVE to don't delete person when is the deletion PatientGlucoseLevel */
+    @OneToOne(mappedBy = "patientGlucoseLevel", cascade = {
+            CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+            CascadeType.REFRESH
+    })
     private Patient patient;
 }
