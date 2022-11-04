@@ -4,9 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
@@ -31,14 +29,19 @@ public class Patient  extends User{
     /*one-to-many unidirectional association*/
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "patients_id", foreignKey = @ForeignKey(name = "fk_patients_id"))
-    private List<Phone> phoneList;
+    private List<Phone> phoneList = new ArrayList<>();
 
     /*One-to-many bi-directional association*/
     /* Column name in mappedBy - strictly corresponds with the
        name of column in Adress
    */
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "patient")
-    private List<Adress> adresses;
+    private List<Adress> adresses = new ArrayList<>();
+
+    /*Many to many*/
+    /*Create Set because if we create list - all row not unique*/
+    @ManyToMany(mappedBy = "patientSet")
+    private Set<Doctor> doctorSet = new HashSet<>();
 
     /*Create custom setter, to solve problem with save inverse side*/
     public void setAdresses(List<Adress> adresses) {

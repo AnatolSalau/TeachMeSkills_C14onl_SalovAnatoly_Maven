@@ -1,3 +1,7 @@
+create sequence addresses_id_seq;
+
+alter sequence addresses_id_seq owner to postgres;
+
 create sequence admins_id_seq;
 
 alter sequence admins_id_seq owner to postgres;
@@ -97,6 +101,35 @@ create table if not exists patients
 );
 
 alter table patients
+    owner to postgres;
+
+create table if not exists addresses
+(
+    id           bigint not null
+        primary key,
+    city_name    varchar(255),
+    house_number varchar(255),
+    street_name  varchar(255),
+    patient_id   bigint
+        constraint fk_patients_id
+            references patients
+);
+
+alter table addresses
+    owner to postgres;
+
+create table if not exists doctors_patients
+(
+    doctor_id  bigint not null
+        constraint "FK6eb0g28avpr9fgsy9rarsikky"
+            references doctors,
+    patient_id bigint not null
+        constraint "FK352st8qcsr3qjbe4h7mq5xawk"
+            references patients,
+    primary key (doctor_id, patient_id)
+);
+
+alter table doctors_patients
     owner to postgres;
 
 create table if not exists phones
