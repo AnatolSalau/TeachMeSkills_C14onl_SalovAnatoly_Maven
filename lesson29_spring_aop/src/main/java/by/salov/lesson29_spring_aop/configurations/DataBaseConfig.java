@@ -16,6 +16,8 @@ public class DataBaseConfig {
 
     @Value("${new.value}")
     private String NEW_VALUE;
+
+    private String JAVA_HOME = System.getenv("JAVA_HOME");
     @Bean
     public Connection connection() throws SQLException {
         Connection connection = DriverManager.getConnection(URL, USER_NAME, USER_PASSWORD);
