@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class BenchMarkAspect {
 
-    @Pointcut("execution(public UserMy by.salov.lesson29_spring_aop.dao.UserRepository.saveUser(UserMy))")
+    @Pointcut("execution(public UserMy by.salov.lesson29_spring_aop.dao.UserRepository.saveUser(*))")
     public void benchServices() {}
 
     @Before("benchServices()")
