@@ -1,5 +1,7 @@
 package by.salov.lesson29_spring_aop;
 
+import by.salov.lesson29_spring_aop.dao.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
