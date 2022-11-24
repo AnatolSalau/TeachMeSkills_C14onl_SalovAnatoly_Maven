@@ -8,9 +8,9 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>Archetype Created Web Application</display-name>
     <!--Можно сохранять парметры и их значения -->
-    <!--db.user = username -->
+    <!--db.userMy = username -->
     <context-param>
-        <param-name>db.user</param-name>
+        <param-name>db.userMy</param-name>
         <param-value>username</param-value>
     </context-param>
     <!--db.pass = password -->

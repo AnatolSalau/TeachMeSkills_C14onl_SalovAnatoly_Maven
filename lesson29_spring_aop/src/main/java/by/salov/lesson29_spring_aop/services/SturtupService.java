@@ -1,7 +1,7 @@
 package by.salov.lesson29_spring_aop.services;
 
 import by.salov.lesson29_spring_aop.dao.UserRepository;
-import by.salov.lesson29_spring_aop.entities.User;
+import by.salov.lesson29_spring_aop.entities.UserMy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ public class SturtupService {
 
     @PostConstruct
     public void start() throws SQLException {
-        User user = new User("anatoly2", "Anatoly");
+        UserMy userMy = new UserMy("anatoly2", "Anatoly");
         //User savedUser = userRepository.saveUser(user);
         //Boolean anatolyIsExist = userRepository.deleteUserByLogin("anatoly2");
         Boolean anatoly2 = userRepository.userIsExistByLogin("anatoly2");

@@ -1,6 +1,6 @@
 package by.salov.lesson29_spring_aop.dao;
 
-import by.salov.lesson29_spring_aop.entities.User;
+import by.salov.lesson29_spring_aop.entities.UserMy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,26 +39,26 @@ public class UserRepository {
         this.connection = connection;
     }
 
-    public User saveUser(User user) throws SQLException {
+    public UserMy saveUser(UserMy userMy) throws SQLException {
         /*Save user*/
         PreparedStatement preparedStatement = connection.prepareStatement(SAVE_USER);
-        preparedStatement.setString(1, user.getLogin());
-        preparedStatement.setString(2, user.getFirstName());
+        preparedStatement.setString(1, userMy.getLogin());
+        preparedStatement.setString(2, userMy.getFirstName());
         preparedStatement.execute();
         preparedStatement.close();
         /*Get saved user from db*/
         PreparedStatement getUserPreparedStatement = connection.prepareStatement(GET_USER);
-        getUserPreparedStatement.setString(1, user.getLogin());
+        getUserPreparedStatement.setString(1, userMy.getLogin());
         ResultSet resultSet = getUserPreparedStatement.executeQuery();
-        User userFomDB = new User();
+        UserMy userMyFomDB = new UserMy();
         /*Iterate through resultSet because result set is collection*/
         while (resultSet.next()) {
-            userFomDB.setId(resultSet.getLong(1));
-            userFomDB.setLogin(resultSet.getString(2));
-            userFomDB.setFirstName(resultSet.getString(3));
+            userMyFomDB.setId(resultSet.getLong(1));
+            userMyFomDB.setLogin(resultSet.getString(2));
+            userMyFomDB.setFirstName(resultSet.getString(3));
         }
         getUserPreparedStatement.close();
-        return userFomDB;
+        return userMyFomDB;
     }
 
     public boolean deleteUserByLogin(String login) throws SQLException {

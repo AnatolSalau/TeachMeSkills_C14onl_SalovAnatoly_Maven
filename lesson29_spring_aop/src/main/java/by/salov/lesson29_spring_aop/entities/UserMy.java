@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 
-public class User {
+public class UserMy {
 
     private Long id;
 
@@ -17,7 +17,7 @@ public class User {
 
     private String firstName;
 
-    public User(String login, String firstName) {
+    public UserMy(String login, String firstName) {
         this.login = login;
         this.firstName = firstName;
     }
