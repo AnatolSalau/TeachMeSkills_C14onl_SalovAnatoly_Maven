@@ -17,11 +17,10 @@ public class SturtupService {
     @Autowired
     public SturtupService() {
     }
-
     @PostConstruct
     public void start() throws SQLException {
         UserMy userMy = new UserMy("anatoly2", "Anatoly");
-        //User savedUser = userRepository.saveUser(user);
+        //UserMy savedUser = userRepository.saveUser(userMy);
         //Boolean anatolyIsExist = userRepository.deleteUserByLogin("anatoly2");
         Boolean anatoly2 = userRepository.userIsExistByLogin("anatoly2");
         System.out.println(anatoly2);

@@ -1,5 +1,6 @@
 package by.salov.lesson29_spring_aop.dao;
 
+import by.salov.lesson29_spring_aop.annotations.LogBefore;
 import by.salov.lesson29_spring_aop.entities.UserMy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +70,7 @@ public class UserRepository {
         return  userIsExistByLogin(login);
     }
 
+    @LogBefore
     public boolean userIsExistByLogin(String login) throws SQLException {
         boolean result = false;
         PreparedStatement preparedStatement = connection.prepareStatement(USER_EXIST);

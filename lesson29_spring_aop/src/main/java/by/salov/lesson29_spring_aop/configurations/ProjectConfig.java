@@ -10,7 +10,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 @Configuration
-@EnableAspectJAutoProxy
 public class ProjectConfig {
     public final String URL = "jdbc:postgresql://localhost:5432/postgres";
     public final String USER_NAME = "postgres";
