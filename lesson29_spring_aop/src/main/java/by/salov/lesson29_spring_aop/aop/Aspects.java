@@ -1,8 +1,11 @@
 package by.salov.lesson29_spring_aop.aop;
 
+import lombok.extern.log4j.Log4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -26,6 +29,8 @@ public class Aspects {
 
     @Around("@annotation(by.salov.lesson29_spring_aop.annotations.LogAround)")
     public Object checkSomethingAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        Logger logger = LoggerFactory.getLogger(Aspects.class);
+        logger.info("Hi from logger");
         System.out.println("Log around execution. - Roles: ");
         Object result = joinPoint.proceed();
         return result;
