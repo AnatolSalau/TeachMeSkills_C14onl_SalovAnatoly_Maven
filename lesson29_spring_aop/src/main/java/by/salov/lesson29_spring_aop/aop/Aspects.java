@@ -32,8 +32,20 @@ public class Aspects {
     }
     @Around("@annotation(by.salov.lesson29_spring_aop.annotations.BenchExecutionAround)")
     public Object benchExecutionMethod(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("Log around execution. - Roles: ");
-        Object result = joinPoint.proceed();
-        return result;
+        String packageName = joinPoint.getSignature().getDeclaringTypeName();
+        String methodName = joinPoint.getSignature().getName();
+
+        long start = System.currentTimeMillis();
+        System.out.println("Package name : " + packageName);
+        System.out.println("Start bench of : " + methodName + ":" + start);
+
+        Object proceed = joinPoint.proceed();
+        long end = System.currentTimeMillis();
+
+        System.out.println("End bench of : " + methodName + ":" + end);
+        System.out.println("Duration: " + (end - start));
+
+        return proceed;
     }
+
 }
