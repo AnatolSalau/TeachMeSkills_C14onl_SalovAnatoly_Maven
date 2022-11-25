@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class BenchMarkAspect {
+public class Aspects {
 
     @Before("@annotation(by.salov.lesson29_spring_aop.annotations.LogBefore)")
     public void checkSomethingBefore(JoinPoint joinPoint) {
@@ -26,6 +26,12 @@ public class BenchMarkAspect {
 
     @Around("@annotation(by.salov.lesson29_spring_aop.annotations.LogAround)")
     public Object checkSomethingAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("Log around execution. - Roles: ");
+        Object result = joinPoint.proceed();
+        return result;
+    }
+    @Around("@annotation(by.salov.lesson29_spring_aop.annotations.BenchExecutionAround)")
+    public Object benchExecutionMethod(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("Log around execution. - Roles: ");
         Object result = joinPoint.proceed();
         return result;
