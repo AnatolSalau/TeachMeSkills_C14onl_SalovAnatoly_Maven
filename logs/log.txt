@@ -1,9 +1,0 @@
-2022-11-25 18:18:54.002  INFO 5572 --- [main] b.s.l.Lesson29SpringAopApplication       : Starting Lesson29SpringAopApplication using Java 17.0.4.1 on RedmiBook-PC46 with PID 5572 (D:\JavaDevelop\Projects\TeachMeSkills_C14onl_SalovAnatoly_Maven\lesson29_spring_aop\build\classes\java\main started by RedmiBook in D:\JavaDevelop\Projects\TeachMeSkills_C14onl_SalovAnatoly_Maven)
-2022-11-25 18:18:54.005  INFO 5572 --- [main] b.s.l.Lesson29SpringAopApplication       : No active profile set, falling back to 1 default profile: "default"
-2022-11-25 18:18:54.634  INFO 5572 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-11-25 18:18:54.640  INFO 5572 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-11-25 18:18:54.640  INFO 5572 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
-2022-11-25 18:18:54.700  INFO 5572 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-11-25 18:18:54.701  INFO 5572 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 663 ms
-2022-11-25 18:18:55.143  INFO 5572 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-11-25 18:18:55.151  INFO 5572 --- [main] b.s.l.Lesson29SpringAopApplication       : Started Lesson29SpringAopApplication in 1.369 seconds (JVM running for 1.719)
