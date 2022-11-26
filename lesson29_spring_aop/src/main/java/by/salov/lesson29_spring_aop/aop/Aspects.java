@@ -16,7 +16,7 @@ public class Aspects {
 
     @Before("@annotation(by.salov.lesson29_spring_aop.annotations.LogBefore)")
     public void logBefore(JoinPoint joinPoint) {
-        logger.error("Log before method : " + joinPoint.getSignature().getName() + ".\n");
+        logger.info("Log before method : " + joinPoint.getSignature().getName() + ".\n");
         System.out.println("Log before");
     }
 

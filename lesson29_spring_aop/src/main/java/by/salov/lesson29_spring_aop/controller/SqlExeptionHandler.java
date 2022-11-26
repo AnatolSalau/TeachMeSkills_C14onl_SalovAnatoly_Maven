@@ -14,4 +14,5 @@ public class SqlExeptionHandler {
         exception.printStackTrace();
         System.out.println("_____________________________________________________________________");
     }
+
 }
