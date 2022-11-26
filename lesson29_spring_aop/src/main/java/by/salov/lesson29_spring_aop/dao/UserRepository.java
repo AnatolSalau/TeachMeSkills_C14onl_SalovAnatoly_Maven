@@ -72,7 +72,7 @@ public class UserRepository {
         return  userIsExistByLogin(login);
     }
 
-    @BenchExecutionAround
+    @LogBefore
     public boolean userIsExistByLogin(String login) throws SQLException {
         boolean result = false;
         PreparedStatement preparedStatement = connection.prepareStatement(USER_EXIST);

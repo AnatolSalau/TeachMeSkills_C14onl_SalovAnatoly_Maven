@@ -12,25 +12,26 @@ import org.springframework.stereotype.Component;
 @Component
 public class Aspects {
 
+    private static Logger logger = LoggerFactory.getLogger(Aspects.class);
+
     @Before("@annotation(by.salov.lesson29_spring_aop.annotations.LogBefore)")
-    public void checkSomethingBefore(JoinPoint joinPoint) {
+    public void logBefore(JoinPoint joinPoint) {
+        logger.error("Log before method : " + joinPoint.getSignature().getName() + ".\n");
         System.out.println("Log before");
     }
 
     @AfterReturning(pointcut = "@annotation(by.salov.lesson29_spring_aop.annotations.LogAfter)")
-    public void checkSomethingAfter(JoinPoint joinPoint) {
+    public void logAfter(JoinPoint joinPoint) {
         System.out.println("Log after");
     }
 
     @AfterThrowing(pointcut = "@annotation(by.salov.lesson29_spring_aop.annotations.LogAfterThrowing)", throwing = "ex")
-    public void checkSomethingAfterThrowingAnException(JoinPoint joinPoint, Exception ex) {
+    public void logAfterThrowingAnException(JoinPoint joinPoint, Exception ex) {
         System.out.println("Log after throwing " + ex);
     }
 
     @Around("@annotation(by.salov.lesson29_spring_aop.annotations.LogAround)")
-    public Object checkSomethingAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        Logger logger = LoggerFactory.getLogger(Aspects.class);
-        logger.info("Hi from logger");
+    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("Log around execution. - Roles: ");
         Object result = joinPoint.proceed();
         return result;
