@@ -9,11 +9,10 @@ public class ThreadImplementationStandartRunnable implements Runnable{
 
     @Override
     public void run() {
-        //Бесконечный поток
+
         while (isRun) {
             int sleep = 1_000;
             try {
-                //Задержка 2000 мсек
                 Thread.sleep(sleep);
             } catch (InterruptedException e) {
                 e.printStackTrace();

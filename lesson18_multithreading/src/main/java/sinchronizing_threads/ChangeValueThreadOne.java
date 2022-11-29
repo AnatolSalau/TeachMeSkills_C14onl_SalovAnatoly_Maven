@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 public class ChangeValueThreadOne implements Runnable {
     private final Value value;
     private long count;
+    PrintSynchro printSynchro;
 
     @Override
     public void run() {
@@ -14,5 +15,13 @@ public class ChangeValueThreadOne implements Runnable {
                 value.setValue(value.getValue()+1);
             }
         }
+
+            try {
+                printSynchro.print();
+            } catch (InterruptedException e) {
+                //call synchronized method
+                e.printStackTrace();
+            }
+
     }
 }

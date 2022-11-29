@@ -5,10 +5,12 @@ public class Main_SinchronizingThreads {
 
 
         Value value = new Value(0);
-        long count = 1_000_000;
+        long count = 1;
+        PrintSynchro printSynchro = new PrintSynchro();
 
-        ChangeValueThreadOne runnableThreadOne = new ChangeValueThreadOne(value,count);
-        ChangeValueThreadTwo runnableThreadTwo = new ChangeValueThreadTwo(value,count);
+        //Synchronized by Value
+        ChangeValueThreadOne runnableThreadOne = new ChangeValueThreadOne(value,count,printSynchro);
+        ChangeValueThreadTwo runnableThreadTwo = new ChangeValueThreadTwo(value,count,printSynchro);
 
         Thread threadOne = new Thread(runnableThreadOne);
         Thread threadTwo = new Thread(runnableThreadTwo);
