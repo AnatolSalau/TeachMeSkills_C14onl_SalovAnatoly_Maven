@@ -16,15 +16,5 @@ public class Main_OldStandartThreads {
         //Thread implements Thread
         Runnable threadImplementationStandartRunnable = new ThreadImplementationStandartRunnable();
         Thread threadImplStandardRunnable = new Thread(threadImplementationStandartRunnable);
-        // Бесконечный поток iplements Runnable
-        /* MyThreadImplementsEndless myThreadImplementsEndless = new MyThreadImplementsEndless();
-        Thread threadInpl = new Thread(myThreadImplementsEndless);
-        threadInpl.start();*/
-        //Нельзя изменить переменную isRun на false!!! (поток iplements Runnable)
-
-        //.join - главный поток будет ждать пока не завершаться
-        //потоки которые были вызванны
-
-
     }
 }
