@@ -1,6 +1,8 @@
 package sinchronizing_threads;
 
 public class PrintSynchroWaitNotify {
+
+
     //synchronized method - if one thread use this method, the rest will be waiting
     synchronized public void print() throws InterruptedException {
         Thread.sleep(100);
@@ -14,3 +16,4 @@ public class PrintSynchroWaitNotify {
         Thread.sleep(100);
     }
 }
+
