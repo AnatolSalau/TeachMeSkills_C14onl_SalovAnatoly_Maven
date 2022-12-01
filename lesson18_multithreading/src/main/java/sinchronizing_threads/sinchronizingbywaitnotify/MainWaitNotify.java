@@ -12,8 +12,15 @@ public class MainWaitNotify {
         Thread threadOne = new Thread(printSynchroWaitNotifyThreadOne);
         Thread threadTwo = new Thread(printSynchroWaitNotifyThreadTwo);
 
+        //create thread as demon
+        /*
+        threadOne.setDaemon(true);
+        threadTwo.setDaemon(true);
+        */
+
         threadOne.start();
         threadTwo.start();
 
+        System.out.println("Main thread stop");
     }
 }
