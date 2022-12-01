@@ -6,9 +6,8 @@
       <GradleProjectSettings>
         <option name="delegatedBuild" value="true" />
         <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="LOCAL" />
+        <option name="distributionType" value="WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/lesson18_multithreading" />
-        <option name="gradleHome" value="C:/JAVA/gradle-7.5.1" />
         <option name="gradleJvm" value="liberica-17" />
         <option name="modules">
           <set>
