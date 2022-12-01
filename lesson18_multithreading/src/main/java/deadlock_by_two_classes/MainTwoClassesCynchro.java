@@ -1,8 +1,15 @@
 package deadlock_by_two_classes;
 
+import java.lang.management.ManagementFactory;
+
 public class MainTwoClassesCynchro {
 
     public static void main(String[] args) {
+
+        ManagementFactory.getPlatformMBeanServer();
+
+
+
         ABClassService abClassService =
                 new ABClassService(new AClass(), new BClass());
 
