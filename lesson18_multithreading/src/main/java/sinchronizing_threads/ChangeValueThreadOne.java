@@ -1,6 +1,7 @@
 package sinchronizing_threads;
 
 import lombok.AllArgsConstructor;
+import sinchronizing_threads.sinchronizingbywaitnotify.PrintSynchroWaitNotify;
 
 @AllArgsConstructor
 public class ChangeValueThreadOne implements Runnable {
