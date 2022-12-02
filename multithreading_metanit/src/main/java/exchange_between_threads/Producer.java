@@ -1,7 +1,4 @@
 package exchange_between_threads;
-
-import lombok.AllArgsConstructor;
-
 import java.util.concurrent.Exchanger;
 
 
