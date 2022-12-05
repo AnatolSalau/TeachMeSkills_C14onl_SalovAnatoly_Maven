@@ -3,14 +3,14 @@ package locks;
 import lombok.Getter;
 
 @Getter
-public class ConcumerThread extends Thread {
+public class ConcumerThread implements Runnable {
     private final StoreThread storeThread;
     private final Thread currentThread;
 
     public ConcumerThread(StoreThread storeThread) {
         this.storeThread = storeThread;
-        new Thread(this, "CONCUMER_THREAD").start();
-        currentThread = Thread.currentThread();
+        currentThread = new Thread(this::run, "CONCUMER_THREAD");
+        currentThread.start();
     }
 
     @Override

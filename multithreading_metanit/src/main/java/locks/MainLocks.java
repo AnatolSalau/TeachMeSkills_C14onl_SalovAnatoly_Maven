@@ -12,11 +12,13 @@ public class MainLocks {
         ConcumerThread concumerThread = new ConcumerThread(storeThread);
 
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
         storeThread.setOpen(false);
         System.out.println("Magazine is closed");
 
+        Thread.sleep(3000);
+        System.out.println("storeThread : " + storeThread);
         System.out.println("storeThread is alive : " + storeThread.getCurrentThread().isAlive());
         System.out.println("producerThread is alive : " + producerThread.getCurrentThread().isAlive());
         System.out.println("concumerThread is alive : " + concumerThread.getCurrentThread().isAlive());
@@ -25,6 +27,5 @@ public class MainLocks {
         producerThread is alive : true
         concumerThread is alive : true
          */
-        producerThread.getCurrentThread().stop();
     }
 }

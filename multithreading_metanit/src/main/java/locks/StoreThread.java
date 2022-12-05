@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 //Class Store - store manufactured products
 @Getter
 @Setter
-public class StoreThread extends Thread {
+public class StoreThread implements Runnable {
     private volatile int productQuantity = 0;
     private final ReentrantLock lock;
     private final Condition condition;
@@ -21,7 +21,7 @@ public class StoreThread extends Thread {
         this.lock = new ReentrantLock();
         //get condition from lock
         this.condition = lock.newCondition();
-        new Thread(this::run,"STORE_THREAD").start();
+        new Thread(this,"STORE_THREAD").start();
         currentThread = Thread.currentThread();
     }
 
@@ -38,13 +38,15 @@ public class StoreThread extends Thread {
         lock.lock();
         try {
             //await while
-            while (productQuantity <1) {
+            while (productQuantity <1 ) {
+                if (isOpen == false) break;
                 condition.await();
             }
             setProductQuantity(this.getProductQuantity() -1);
 
             System.out.println("Customer buy 1 product");
             System.out.println("Product quantity: " + productQuantity);
+
 
             condition.signalAll();
 
@@ -60,6 +62,7 @@ public class StoreThread extends Thread {
         try {
             //while store has more than 3 products we await
             while (productQuantity >=3) {
+                if (isOpen == false) break;
                 condition.await();
             }
             setProductQuantity(getProductQuantity()+1);

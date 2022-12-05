@@ -3,14 +3,14 @@ package locks;
 import lombok.Getter;
 
 @Getter
-public class ProducerThread extends Thread {
+public class ProducerThread implements Runnable {
     private final StoreThread storeThread;
     private final Thread currentThread;
 
     public ProducerThread(StoreThread storeThread) {
         this.storeThread = storeThread;
-        new Thread(this::run, "PRODUCER_THREAD").start();
-        currentThread = Thread.currentThread();
+        currentThread = new Thread(this::run, "PRODUCER_THREAD");
+        currentThread.start();
     }
 
     @Override
