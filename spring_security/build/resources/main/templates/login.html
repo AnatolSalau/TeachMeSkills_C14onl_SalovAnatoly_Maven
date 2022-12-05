@@ -1,0 +1,26 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Login page</title>
+</head>
+<body>
+<div>
+<!--    <div th:text="|${title}|"></div>-->
+    <!-- user and pass - parameter names from post
+        this parameters will be post on spring securiry
+        /perform-login - end point of spring securiry login
+    -->
+    <form name="f" th:action="@{/perform-login}" method="post">
+        <fieldset>
+            <legend>Войдите</legend>
+            <label for="user">Имя</label>
+            <input type="text" id="user" name="user"/>
+            <label for="pass">Пароль</label>
+            <input type="password" id="pass" name="pass"/>
+            <div class="form-actions">
+                <button type="submit" class="btn">Войти</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

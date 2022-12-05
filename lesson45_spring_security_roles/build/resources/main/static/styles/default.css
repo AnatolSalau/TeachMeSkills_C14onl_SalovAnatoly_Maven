@@ -1,0 +1,11 @@
+#wrapper {
+    height: 100%;
+    width: 100%;
+}
+.hello {
+    font-size: large;
+    color: blue;
+}
+.invalidUsernamePassword {
+    color: blue;
+}

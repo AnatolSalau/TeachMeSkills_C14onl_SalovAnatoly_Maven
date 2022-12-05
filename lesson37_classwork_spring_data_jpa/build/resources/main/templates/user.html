@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<!-- | | Insert variables in text -->
+<div th:text="|User with name: ${userFromDB.getName}|"></div>
+<div th:text="${userFromDB.getName}"></div>
+<div th:text="${userFromDB.getAge}"></div>
+<div th:text="${userFromDB.Birthday}"></div>
+Get static field from model object attribute
+<div th:text="${T(by.salov.entity.UserDTO).getStaticField()}"></div>
+</body>
+</html>

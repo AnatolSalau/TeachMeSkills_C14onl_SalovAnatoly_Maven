@@ -1,0 +1,21 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Logout page</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <script type="module" th:src="@{/js/actions.js}"></script>
+</head>
+<body>
+<div>
+    <form th:action="@{/logout}" method="post" >
+        <div>
+<!--            <button type="submit" value="Logout" th:onclick="'window.location.href = \'' + @{/login} + '\''">
+                Logout
+            </button>-->
+        <button type="submit" value="Logout" id="logoutButton">
+            Logout
+        </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
