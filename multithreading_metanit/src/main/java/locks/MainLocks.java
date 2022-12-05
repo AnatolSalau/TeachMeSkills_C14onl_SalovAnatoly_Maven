@@ -2,6 +2,12 @@ package locks;
 
 import java.lang.management.ManagementFactory;
 
+/**
+ * Condition condition from RerentalLock
+ *  await() = wait()
+ *  signall() = notify()
+ * Current program cant stop producer thread
+ */
 public class MainLocks {
     public static void main(String[] args) throws InterruptedException {
         ManagementFactory. getPlatformMBeanServer() ;
@@ -10,18 +16,20 @@ public class MainLocks {
         StoreThread storeThread = new StoreThread();
         ProducerThread producerThread = new ProducerThread(storeThread);
         ConcumerThread concumerThread = new ConcumerThread(storeThread);
+        producerThread.start();
+        concumerThread.start();
 
+        Thread.sleep(4000);
 
-        Thread.sleep(3000);
+        storeThread.closeMagazine();
 
-        storeThread.setOpen(false);
         System.out.println("Magazine is closed");
 
-        Thread.sleep(3000);
-        System.out.println("storeThread : " + storeThread);
+        Thread.sleep(2000);
+        producerThread.interrupt();
         System.out.println("storeThread is alive : " + storeThread.getCurrentThread().isAlive());
-        System.out.println("producerThread is alive : " + producerThread.getCurrentThread().isAlive());
-        System.out.println("concumerThread is alive : " + concumerThread.getCurrentThread().isAlive());
+
+
         /*
         storeThread is alive : true
         producerThread is alive : true

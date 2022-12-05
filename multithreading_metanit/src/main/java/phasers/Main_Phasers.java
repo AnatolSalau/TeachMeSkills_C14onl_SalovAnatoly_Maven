@@ -2,6 +2,12 @@ package phasers;
 
 import java.util.concurrent.Phaser;
 
+/**
+ * Run thread by phases
+ * phase 1
+ * phase 2
+ * etc
+ */
 public class Main_Phasers {
     public static void main(String[] args)  {
 

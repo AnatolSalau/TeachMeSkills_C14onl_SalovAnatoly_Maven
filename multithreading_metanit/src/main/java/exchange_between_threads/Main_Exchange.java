@@ -2,6 +2,9 @@ package exchange_between_threads;
 
 import java.util.concurrent.Exchanger;
 
+/**
+ * Exchange for messaging between threads
+ */
 public class Main_Exchange {
     public static void main(String[] args) {
         Exchanger<String> exgr = new Exchanger<String>();

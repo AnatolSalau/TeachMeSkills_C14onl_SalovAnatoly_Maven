@@ -1,21 +1,20 @@
 package locks;
 
 import lombok.Getter;
+import lombok.Setter;
 
+@Setter
 @Getter
-public class ConcumerThread implements Runnable {
+public class ConcumerThread extends Thread {
     private final StoreThread storeThread;
-    private final Thread currentThread;
 
     public ConcumerThread(StoreThread storeThread) {
         this.storeThread = storeThread;
-        currentThread = new Thread(this::run, "CONCUMER_THREAD");
-        currentThread.start();
     }
 
     @Override
     public void run() {
-        while (storeThread.isOpen() == true) {
+        while (storeThread.isOpen()) {
             storeThread.getProductAutomatic();
             try {
 

@@ -27,10 +27,8 @@ public class StoreThread implements Runnable {
 
     @Override
     public void run() {
-        while (isOpen) {
-            if(!isOpen) {
-                break;
-            }
+        while (isOpen==true) {
+
         }
     }
 
@@ -38,8 +36,7 @@ public class StoreThread implements Runnable {
         lock.lock();
         try {
             //await while
-            while (productQuantity <1 ) {
-                if (isOpen == false) break;
+            while (productQuantity < 1 ) {
                 condition.await();
             }
             setProductQuantity(this.getProductQuantity() -1);
@@ -47,8 +44,7 @@ public class StoreThread implements Runnable {
             System.out.println("Customer buy 1 product");
             System.out.println("Product quantity: " + productQuantity);
 
-
-            condition.signalAll();
+            condition.signal();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -61,15 +57,14 @@ public class StoreThread implements Runnable {
         lock.lock();
         try {
             //while store has more than 3 products we await
-            while (productQuantity >=3) {
-                if (isOpen == false) break;
+            while (productQuantity >=3 && isOpen) {
                 condition.await();
             }
             setProductQuantity(getProductQuantity()+1);
             System.out.println("Concumer add product");
             System.out.println("Product quantity: " + productQuantity);
             // start
-            condition.signalAll();
+            condition.signal();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -77,5 +72,9 @@ public class StoreThread implements Runnable {
         } finally {
             lock.unlock();
         }
+    }
+
+    public void closeMagazine() throws InterruptedException {
+        isOpen = false;
     }
 }
