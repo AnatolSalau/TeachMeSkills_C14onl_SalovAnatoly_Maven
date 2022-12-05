@@ -12,5 +12,12 @@
 <div th:text="${userFromDB.Birthday}"></div>
 Get static field from model object attribute
 <div th:text="${T(by.salov.entity.UserDTO).getStaticField()}"></div>
+<!--Print all projection by thymeleafeProjection-->
+<ul>
+    <th:block th:each="userProjection : ${listUserProjection}">
+        <li th:utext="|Id : ${userProjection.getId}, name : ${userProjection.getName}, age : ${userProjection.getAge}, getIsActive : ${userProjection.getIsActive} |">..</li>
+    </th:block>
+</ul>
+
 </body>
 </html>

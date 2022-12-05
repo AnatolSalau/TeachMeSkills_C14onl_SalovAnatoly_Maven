@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+Hello user html
+<!--Get field from model object attribute-->
+<div th:text="${user.getName()}"></div>
+<!--Get static field from model object attribute-->
+<div th:text="${T(by.salov.lesson43_thymeleafe_classwork.models.User).MAX_LEN}"></div>
+
+</body>
+</html>
