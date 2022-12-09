@@ -5,26 +5,24 @@ import lombok.AllArgsConstructor;
 import java.util.concurrent.locks.Lock;
 
 /**
- * Method print only if lock is false
+ * Method print only if lock is true
  */
 @AllArgsConstructor
 public class ThreadTryLockTwo {
-    private Lock lock;
+    private final Lock lock;
 
     public void print() {
+        System.out.println("Thread " + Thread.currentThread().getName() + " started");
         while (true) {
-            if (lock.tryLock()) {
-                for (int i = 0; i < 10; i++) {
-                    System.out.println("ThreadTryLockTwo : ");
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
+            boolean isLock = lock.tryLock();
+            if (isLock) {
+                System.out.println("Thread  " + Thread.currentThread().getName() + " start work, lock is " + isLock);
+                System.out.println("Thread  " + Thread.currentThread().getName() + " finish work");
                 break;
+            } else {
+                System.out.println("Thread is " + Thread.currentThread().getName() + " waiting, lock is " + isLock );
             }
-
         }
+        System.out.println("Thread " + Thread.currentThread().getName() + " finished");
     }
 }
