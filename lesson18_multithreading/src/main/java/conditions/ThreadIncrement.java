@@ -9,14 +9,23 @@ import java.util.concurrent.locks.Lock;
 public class ThreadIncrement {
     private Lock lock;
     private CommonResource commonResource;
+    private Condition condition;
 
     public void increment() {
-        lock.lock();
-        if(commonResource.getCount().intValue() <= 10 ) {
-            for (int i = 0; i < 10; i++) {
-                commonResource.getCount().addAndGet(1);
+        while (true) {
+            if (commonResource == null) {
+                try {
+                    condition.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(commonResource.getIsAvalible().get() == false) {
+                break;
             }
         }
+        lock.lock();
+        condition.signalAll();
         lock.unlock();
     }
 }

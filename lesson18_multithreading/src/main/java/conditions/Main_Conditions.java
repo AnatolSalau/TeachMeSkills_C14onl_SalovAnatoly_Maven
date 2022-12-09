@@ -8,9 +8,9 @@ public class Main_Conditions {
     public static void main(String[] args) throws InterruptedException {
         Lock lock = new ReentrantLock();
         Condition condition = lock.newCondition();
-        CommonResource commonResource = new CommonResource();
+        CommonResource commonResource = new CommonResource(condition,lock);
         ThreadDecrement threadDecrement = new ThreadDecrement(lock,commonResource);
-        ThreadIncrement threadIncrement = new ThreadIncrement(lock,commonResource);
+        ThreadIncrement threadIncrement = new ThreadIncrement(lock,commonResource,condition);
 
         Thread increment = new Thread(threadIncrement::increment);
         Thread decrement = new Thread(threadDecrement::decrement);
@@ -18,11 +18,6 @@ public class Main_Conditions {
         System.out.println("Common resource before increment " + commonResource.getCount());
         increment.start();
         decrement.start();
-
-        while (increment.isAlive() & decrement.isAlive()) {
-            Thread.sleep(100);
-        }
-        System.out.println("Common resource after increment " + commonResource.getCount());
 
     }
 }
