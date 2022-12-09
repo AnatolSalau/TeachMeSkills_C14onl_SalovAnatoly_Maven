@@ -20,24 +20,22 @@ public class CommonResource {
     public CommonResource(Condition condition, Lock lock) {
         this.condition = condition;
         this.lock = lock;
-        this.isAvalible = new AtomicBoolean(true);
         this.count = new AtomicInteger(0);
-
-        lock.lock();
-        condition.signal();
-        lock.unlock();
+        this.isAvalible = new AtomicBoolean(false);
     }
 
     public void start() {
         try {
             Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            isAvalible.set(false);
+            this.isAvalible.setRelease(true);
+            Thread.sleep(10);
             lock.lock();
             condition.signalAll();
             lock.unlock();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+
         }
     }
 }

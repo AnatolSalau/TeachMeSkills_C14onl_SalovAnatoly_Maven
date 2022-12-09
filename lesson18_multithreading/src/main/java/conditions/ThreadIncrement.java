@@ -12,17 +12,19 @@ public class ThreadIncrement {
     private Condition condition;
 
     public void increment() {
-        while (true) {
-            if (commonResource == null) {
+        System.out.println("Increment  is running");
+        while (commonResource == null || commonResource.getIsAvalible().get() == false) {
+            //wait when common resource is running
+                System.out.println("common resource is not creating - stop increment thread");
+                lock.lock();
                 try {
                     condition.await();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                } finally {
+                    lock.unlock();
                 }
-            }
-            if(commonResource.getIsAvalible().get() == false) {
-                break;
-            }
+
         }
         lock.lock();
         condition.signalAll();
