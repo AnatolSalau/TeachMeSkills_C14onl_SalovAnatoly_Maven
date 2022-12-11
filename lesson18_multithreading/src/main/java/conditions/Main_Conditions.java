@@ -15,7 +15,6 @@ public class Main_Conditions {
         Thread increment = new Thread(threadIncrement::increment);
         Thread decrement = new Thread(threadDecrement::decrement);
 
-
         System.out.println("Common resource before increment " + commonResource.getCount());
         increment.start();
         Thread.sleep(10);

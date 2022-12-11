@@ -26,9 +26,10 @@ public class CommonResource {
 
     public void start() {
         try {
-            Thread.sleep(10);
             this.isAvalible.setRelease(true);
-            Thread.sleep(10);
+            Thread.sleep(5000);
+            //Будем все потоки, если какие то в режиме ожидания,
+            // чтобы они закончили выполнение и программа завершилась
             lock.lock();
             condition.signalAll();
             lock.unlock();
