@@ -25,7 +25,7 @@ public class ThreadIncrement {
                     lock.unlock();
                 }
         }
-        //Запускаем остальные потоки, после завешения потока increment
+        //run other threads after end  increment
         lock.lock();
         condition.signalAll();
         lock.unlock();

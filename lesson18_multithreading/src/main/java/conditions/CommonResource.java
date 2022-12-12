@@ -28,8 +28,8 @@ public class CommonResource {
         try {
             this.isAvalible.setRelease(true);
             Thread.sleep(5000);
-            //Будем все потоки, если какие то в режиме ожидания,
-            // чтобы они закончили выполнение и программа завершилась
+            //await all threads in wainting
+            // so they finish execution and programming will done
             lock.lock();
             condition.signalAll();
             lock.unlock();
