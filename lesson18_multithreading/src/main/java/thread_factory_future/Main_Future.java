@@ -64,7 +64,7 @@ public class Main_Future {
             System.out.println("Thread : " + Thread.currentThread().getName() + " is running");
             Thread.sleep(100);
         }
-        System.out.println("Result of two feature: " + completableFutureOne.get() + completableFutureTwo.get());
+        System.out.println("Result of two feature: " + ( completableFutureOne.get() + completableFutureTwo.get() ) );
         System.out.println("END PROGRAM");
     }
 }
