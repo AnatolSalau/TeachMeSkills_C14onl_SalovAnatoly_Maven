@@ -62,8 +62,8 @@ public class Main_CompletableFeature {
         ExecutorService callableExecutorService = Executors.newSingleThreadExecutor(new CustomThreadFactory());
 
         //Put in that executors two task
-        CompletableFuture<Void> completableFutureOne = CompletableFuture.runAsync(intSupplierOne::getAsInt, callableExecutorService);
-        CompletableFuture<Void> completableFutureTwo = CompletableFuture.runAsync(intSupplierTwo::getAsInt, callableExecutorService);
+        CompletableFuture<Integer> completableFutureOne = CompletableFuture.supplyAsync(intSupplierOne::getAsInt, callableExecutorService);
+        CompletableFuture<Integer> completableFutureTwo = CompletableFuture.supplyAsync(intSupplierTwo::getAsInt, callableExecutorService);
 
         //Close ThreadExecutor
         callableExecutorService.shutdown();
@@ -74,7 +74,7 @@ public class Main_CompletableFeature {
             System.out.println("Thread : " + Thread.currentThread().getName() + " is running");
             Thread.sleep(100);
         }
-        //System.out.println("Result of two feature: " + ( completableFutureOne.get() + completableFutureTwo.get() ) );
+        System.out.println("Result of two feature: " + ( completableFutureOne.get() + completableFutureTwo.get() ) );
         System.out.println("END PROGRAM");
     }
 }
