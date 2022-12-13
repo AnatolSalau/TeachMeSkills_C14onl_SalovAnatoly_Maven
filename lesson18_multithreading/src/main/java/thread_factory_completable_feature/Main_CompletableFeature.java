@@ -1,42 +1,52 @@
-package thread_factory_future;
+package thread_factory_completable_feature;
 
 import java.util.concurrent.*;
+import java.util.function.IntConsumer;
+import java.util.function.IntSupplier;
 
-public class Main_Future {
+public class Main_CompletableFeature {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         System.out.println("START PROGRAM");
         //Create CallableOne
-        Callable<Integer> callableOne = new Callable<Integer>() {
+        IntSupplier intSupplierOne = new IntSupplier() {
             @Override
-            public Integer call() throws Exception {
-                System.out.println("Start work callableOne");
-                Integer result = 0;
-                for (int i = 0; i < 10; i++) {
-                    //Check that CustomThreadFactory is work
-                    System.out.println("Thread Name" + Thread.currentThread().getName() + " : " + result);
-                    Thread.sleep(100);
-                    result +=1;
-                }
-
-                System.out.println("End work callableOne");
-                return result;
-            }
-        };
-        //Create CallableTwo
-        Callable<Integer> callableTwo = new Callable<Integer>() {
-            @Override
-            public Integer call() throws Exception {
-                System.out.println("Start work callableTwo");
+            public int getAsInt() {
+                System.out.println("Start work intSupplierOne");
                 Integer result = 0;
                 for (int i = 0; i < 10; i++) {
                     //Check that CustomThreadFactory is work
                     System.out.println("Thread Name" + Thread.currentThread().getName()+ " : " + result);
-                    Thread.sleep(100);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     result +=1;
                 }
 
-                System.out.println("End work callableTwo");
+                System.out.println("End work intSupplierOne");
+                return result;
+            }
+        };
+        //Create CallableTwo
+        IntSupplier intSupplierTwo = new IntSupplier() {
+            @Override
+            public int getAsInt() {
+                System.out.println("Start work intSupplierTwo");
+                Integer result = 0;
+                for (int i = 0; i < 10; i++) {
+                    //Check that CustomThreadFactory is work
+                    System.out.println("Thread Name" + Thread.currentThread().getName()+ " : " + result);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    result +=1;
+                }
+
+                System.out.println("End work intSupplierTwo");
                 return result;
             }
         };
@@ -52,8 +62,8 @@ public class Main_Future {
         ExecutorService callableExecutorService = Executors.newSingleThreadExecutor(new CustomThreadFactory());
 
         //Put in that executors two task
-        Future<Integer> futureOne = callableExecutorService.submit(callableOne);
-        Future<Integer> futureTwo = callableExecutorService.submit(callableTwo);
+        CompletableFuture<Void> completableFutureOne = CompletableFuture.runAsync(intSupplierOne::getAsInt, callableExecutorService);
+        CompletableFuture<Void> completableFutureTwo = CompletableFuture.runAsync(intSupplierTwo::getAsInt, callableExecutorService);
 
         //Close ThreadExecutor
         callableExecutorService.shutdown();
@@ -64,7 +74,7 @@ public class Main_Future {
             System.out.println("Thread : " + Thread.currentThread().getName() + " is running");
             Thread.sleep(100);
         }
-        System.out.println("Result of two feature: " + ( futureOne.get() + futureTwo.get() ) );
+        //System.out.println("Result of two feature: " + ( completableFutureOne.get() + completableFutureTwo.get() ) );
         System.out.println("END PROGRAM");
     }
 }
