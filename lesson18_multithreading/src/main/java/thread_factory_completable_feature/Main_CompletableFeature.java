@@ -62,6 +62,7 @@ public class Main_CompletableFeature {
         ExecutorService callableExecutorService = Executors.newSingleThreadExecutor(new CustomThreadFactory());
 
         //Put in that executors two task
+        //Use CompletableFuture.supplyAsync - becouse .supplyAsync() can return Result - not onlu Void
         CompletableFuture<Integer> completableFutureOne = CompletableFuture.supplyAsync(intSupplierOne::getAsInt, callableExecutorService);
         CompletableFuture<Integer> completableFutureTwo = CompletableFuture.supplyAsync(intSupplierTwo::getAsInt, callableExecutorService);
 
