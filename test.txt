@@ -1,0 +1,7 @@
+16:15:50.675 208  INFO  fork_join_framework.Main - App is started! INFO
+16:18:20.104 244  DEBUG fork_join_framework.Main - App is started! DEBUG
+16:18:20.108 248  INFO  fork_join_framework.Main - App is started! INFO
+16:19:20.103 219  DEBUG fork_join_framework.Main - App is started! DEBUG
+16:19:20.105 221  INFO  fork_join_framework.Main - App is started! INFO
+16:19:32.260 208  DEBUG fork_join_framework.Main - App is started! DEBUG
+16:19:32.262 210  INFO  fork_join_framework.Main - App is started! INFO
