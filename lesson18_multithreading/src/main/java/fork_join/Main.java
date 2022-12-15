@@ -15,7 +15,6 @@ public class Main {
         forkJoinPool.invoke(new RecursiveTaskService(
                 -4_000_000_000_0L,8_000_000_000_0L
         ));
-
         forkJoinPool.shutdown();
 
     }

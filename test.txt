@@ -5,3 +5,10 @@
 16:19:20.105 221  INFO  fork_join_framework.Main - App is started! INFO
 16:19:32.260 208  DEBUG fork_join_framework.Main - App is started! DEBUG
 16:19:32.262 210  INFO  fork_join_framework.Main - App is started! INFO
+20:38:11.321 188  DEBUG fork_join_framework.Main - App is started! DEBUG
+20:38:11.324 191  INFO  fork_join_framework.Main - App is started! INFO
+21:19:26.015 176  INFO  fork_join_framework.Main - Mid : 5
+21:21:51.552 196  INFO  fork_join_framework.Main - Left : 2147483647
+21:21:51.555 199  INFO  fork_join_framework.Main - Mid : 1073741825
+21:22:26.103 167  INFO  fork_join_framework.Main - Left : 2147483647
+21:22:26.106 170  INFO  fork_join_framework.Main - Mid : 2147483647
