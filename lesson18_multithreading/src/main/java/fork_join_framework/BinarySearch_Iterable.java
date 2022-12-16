@@ -21,7 +21,7 @@ public class BinarySearch_Iterable {
             // Quiet from cycle if we find
             if (searchingValue == sortedArray[middleIndex]) {
                 log.info("We find value, index is {}", middleIndex);
-                return maxIndex;
+                return middleIndex;
             }
 
             //Move left boundary
@@ -36,7 +36,8 @@ public class BinarySearch_Iterable {
                 log.info("Move right boundary : right is {}",maxIndex);
             }
         }
-        //If we there we dont find result
+
+        //Error return -2
         log.info("We didn't find value");
         return -1;
     }

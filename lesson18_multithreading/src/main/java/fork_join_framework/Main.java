@@ -18,9 +18,13 @@ public class Main {
         }
 
         BinarySearch_Iterable iterableSearch = new BinarySearch_Iterable();
-        BinarySearch_Recursion recursion = new BinarySearch_Recursion();
+        BinarySearch_Recursion recursionSearch = new BinarySearch_Recursion();
 
         //Iterable search
-        iterableSearch.search(sortedArray, 2);
+        int iterate = iterableSearch.search(sortedArray, 0);
+        log.info("Iterable searc is : {}", iterate);
+        //Recursion search
+        int recursion = recursionSearch.search(sortedArray, 0, sortedArray.length, 2);
+        log.info("Recursion searc is : {}", recursion);
     }
 }
