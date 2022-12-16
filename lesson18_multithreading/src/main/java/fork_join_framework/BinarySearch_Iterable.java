@@ -1,8 +1,6 @@
 package fork_join_framework;
 
 import lombok.extern.slf4j.Slf4j;
-
-
 @Slf4j
 public class BinarySearch_Iterable {
     public int search(int[] sortedArray, int searchingValue) {
