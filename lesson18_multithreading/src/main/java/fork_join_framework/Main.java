@@ -11,5 +11,16 @@ public class Main {
         int mid = left + (right - left) / 2;
         log.info("Mid : {}" , mid);
 
+        //Create array
+        int[] sortedArray = new int[10];
+        for (int i = 0; i < sortedArray.length; i++) {
+            sortedArray[i] = i;
+        }
+
+        BinarySearch_Iterable iterableSearch = new BinarySearch_Iterable();
+        BinarySearch_Recursion recursion = new BinarySearch_Recursion();
+
+        //Iterable search
+        iterableSearch.search(sortedArray, 2);
     }
 }
