@@ -1,4 +1,4 @@
-package fork_join_framework;
+package fork_join_framework.binary_search;
 
 import lombok.extern.slf4j.Slf4j;
 

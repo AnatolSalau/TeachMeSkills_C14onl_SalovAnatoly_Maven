@@ -1,14 +1,12 @@
-15:59:08.548 214  INFO  fork_join_framework.Main - Left : 2147483647
-15:59:08.551 217  INFO  fork_join_framework.Main - Mid : 2147483647
-15:59:08.552 218  INFO  f.BinarySearch_Iterable - Iterate 1, middle is 4
-15:59:08.552 218  INFO  f.BinarySearch_Iterable - Move right boundary : right is 3
-15:59:08.552 218  INFO  f.BinarySearch_Iterable - Iterate 2, middle is 1
-15:59:08.552 218  INFO  f.BinarySearch_Iterable - Move right boundary : right is 0
-15:59:08.552 218  INFO  f.BinarySearch_Iterable - Iterate 3, middle is 0
-15:59:08.552 218  INFO  f.BinarySearch_Iterable - We find value, index is 0
-15:59:08.552 218  INFO  fork_join_framework.Main - Iterable searc is : 0
-15:59:08.552 218  INFO  f.BinarySearch_Recursion - Call search 0, middle is 5
-15:59:08.553 219  INFO  f.BinarySearch_Recursion - Move right boundary : right is 4
-15:59:08.553 219  INFO  f.BinarySearch_Recursion - Call search 1, middle is 2
-15:59:08.553 219  INFO  f.BinarySearch_Recursion - We find value, index is 2
-15:59:08.553 219  INFO  fork_join_framework.Main - Recursion searc is : 2
+01:10:59.916 168  INFO  fork_join_framework.MainFindSum - [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+01:10:59.919 171  INFO  fork_join_framework.MainFindSum - Summ Arr is 45
+01:10:59.922 174  INFO  f.FindSummArrayRecursiveTaskEx - Enter in recursion, task is 0, min part is 2, left is 0, right is 10
+01:10:59.922 174  INFO  f.FindSummArrayRecursiveTaskEx - Enter in recursion, task is 1, min part is 2, left is 0, right is 4
+01:10:59.922 174  INFO  f.FindSummArrayRecursiveTaskEx - Enter in recursion, task is 2, min part is 2, left is 5, right is 10
+01:10:59.923 175  INFO  f.FindSummArrayRecursiveTaskEx - Enter in recursion, task is 4, min part is 2, left is 7, right is 10
+01:11:00.026 278  INFO  f.FindSummArrayRecursiveTaskEx - Quit from recursion, task is 2, min part is 2, left is 0, right is 1
+01:11:00.353 605  INFO  f.FindSummArrayRecursiveTaskEx - Quit from recursion, task is 3, min part is 2, left is 2, right is 4
+01:11:00.572 824  INFO  f.FindSummArrayRecursiveTaskEx - Quit from recursion, task is 3, min part is 2, left is 5, right is 6
+01:11:00.681 933  INFO  f.FindSummArrayRecursiveTaskEx - Quit from recursion, task is 5, min part is 2, left is 7, right is 7
+01:11:01.006 1258 INFO  f.FindSummArrayRecursiveTaskEx - Quit from recursion, task is 6, min part is 2, left is 8, right is 10
+01:11:01.006 1258 INFO  fork_join_framework.MainFindSum - Summ arr recursive is : 87
