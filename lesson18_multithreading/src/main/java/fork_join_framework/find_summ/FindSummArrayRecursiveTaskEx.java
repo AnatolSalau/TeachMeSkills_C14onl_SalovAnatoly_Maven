@@ -1,6 +1,5 @@
-package fork_join_framework;
+package fork_join_framework.find_summ;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.RecursiveTask;
@@ -15,49 +14,50 @@ public class FindSummArrayRecursiveTaskEx extends RecursiveTask<Integer> {
     private int[] arr;
     private int minPart;
 
-    private int task;
-
-    public FindSummArrayRecursiveTaskEx(int left, int right, int[] arr, int quantityThreads, int task, int minPart) {
+    public FindSummArrayRecursiveTaskEx(int left, int right, int[] arr, int quantityThreads, int minPart) {
         this.left = left;
         this.right = right;
         this.arr = arr;
         this.minPart = minPart;
-        this.task = task;
     }
 
     @Override
     protected Integer compute() {
         // 1. First of all - we need to create quit from recursion
-
         if (right - left <= minPart) {
+            //log.info("left is {}, right is {}", this.minPart, this.left, this.right);
             // Find max in arr
             int currSumm = 0;
-            for (int i = 0; i < right; i++) {
+            //log.info("Current summ before cycle  is : {}", currSumm);
+            for (int i = left; i <= right; i++) {
+                /*
+                log.info("currSumm {} += {} ;", currSumm,arr[i]);
+                */
                 currSumm += arr[i];
+                /*
+                log.info("currSumm is {}",currSumm);
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {}
+                */
             }
-            log.info("Quit from recursion, task is {}, min part is {}, left is {}, right is {}", this.task, this.minPart, this.left, this.right);
+            //log.info("Current summ is : {}, left is {}, right is {}", currSumm, this.left, this.right);
             return currSumm;
         }   else {
-            log.info("Enter in recursion, task is {}, min part is {}, left is {}, right is {}", this.task, this.minPart, this.left, this.right);
             // Enter in recursion - split array
             int mid = (left + right) / 2;
 
-            FindSummArrayRecursiveTaskEx leftTask = new FindSummArrayRecursiveTaskEx(left, mid-1, arr, minPart, ++ task, minPart);
-            FindSummArrayRecursiveTaskEx rightTask = new FindSummArrayRecursiveTaskEx(mid, right, arr, minPart, ++ task, minPart);
+            FindSummArrayRecursiveTaskEx leftTask = new FindSummArrayRecursiveTaskEx(left, mid, arr, minPart, minPart);
+            FindSummArrayRecursiveTaskEx rightTask = new FindSummArrayRecursiveTaskEx(mid + 1, right, arr, minPart, minPart);
 
             //Put our recursive logic in ExecutorThreadPool
             leftTask.fork();
             rightTask.fork();
-
             return leftTask.join() + rightTask.join();
-        }
+
             //like Oracle documentation
-            /*
-            leftTask.fork();
-            return rightTask.compute() + leftTask.join();
-            */
+/*            leftTask.fork();
+            return rightTask.compute() + leftTask.join();*/
+        }
     }
 }

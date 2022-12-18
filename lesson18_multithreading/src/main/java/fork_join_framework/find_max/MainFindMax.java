@@ -1,4 +1,4 @@
-package fork_join_framework;
+package fork_join_framework.find_max;
 
 import lombok.extern.slf4j.Slf4j;
 
