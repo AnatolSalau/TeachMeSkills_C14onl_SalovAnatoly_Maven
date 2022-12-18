@@ -25,6 +25,7 @@ public class FindSummArrayRecursiveTaskEx extends RecursiveTask<Integer> {
     protected Integer compute() {
         // 1. First of all - we need to create quit from recursion
         if (right - left <= minPart) {
+            System.out.println(Thread.currentThread().getName());
             //log.info("left is {}, right is {}", this.minPart, this.left, this.right);
             // Find max in arr
             int currSumm = 0;

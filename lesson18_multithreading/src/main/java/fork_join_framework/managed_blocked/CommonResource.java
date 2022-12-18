@@ -16,6 +16,8 @@ public class CommonResource extends RecursiveAction {
 
     @Override
     protected void compute() {
+
+
         while (isRun.get()){
             System.out.println("CommonResource is run in Thread : "
                     + Thread.currentThread().getName()

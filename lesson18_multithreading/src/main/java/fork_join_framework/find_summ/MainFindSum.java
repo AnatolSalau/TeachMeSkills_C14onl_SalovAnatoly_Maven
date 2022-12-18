@@ -8,9 +8,9 @@ import java.util.concurrent.ForkJoinPool;
 public class MainFindSum {
     public static void main(String[] args) {
         //ThreadQuantity
-        int threadQuantity = 16;
+        int threadQuantity = 1;
         //Create array
-        int[] arr = new int[100_000_000];
+        int[] arr = new int[10000];
 
         int minPart = 10;
 
