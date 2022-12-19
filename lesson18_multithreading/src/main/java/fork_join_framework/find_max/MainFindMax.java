@@ -16,6 +16,7 @@ public class MainFindMax {
         log.info(Arrays.toString(arr));
 
         FindMaxRecursiveTaskEx findMaxTask = new FindMaxRecursiveTaskEx(0, arr.length,arr,1);
+        //use 10 threads
         ForkJoinPool forkJoinPool = new ForkJoinPool(10);
 
         //put Task in our ForkJoinPool
