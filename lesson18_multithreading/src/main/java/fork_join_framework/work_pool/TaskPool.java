@@ -23,8 +23,6 @@ public class TaskPool extends RecursiveAction {
     @Override
     protected void compute() {
         this.isRun.set(true);
-
-
         System.out.println(
                 "counter=" + counter + " ID : " + id +
                         " activeThreads=" + pool.getActiveThreadCount() +
@@ -35,7 +33,6 @@ public class TaskPool extends RecursiveAction {
                         " parallelism=" + pool.getParallelism() +
                         " stealCount=" + pool.getStealCount());
         System.out.println(Thread.currentThread().getName());
-
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {}

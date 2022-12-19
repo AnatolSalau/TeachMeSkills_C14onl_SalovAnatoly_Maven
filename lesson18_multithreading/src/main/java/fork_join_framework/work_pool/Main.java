@@ -20,22 +20,23 @@ public class Main {
                 false);
         ReentrantLock lock = new ReentrantLock();
         TaskPool taskPool1 = new TaskPool("1", 3, forkJoinPool);
-        tasks.putIfAbsent("1", true);
+        tasks.putIfAbsent("1", false);
 
         //TaskPool taskPool2 = new TaskPool("2", 3, forkJoinPool, tasks, lock);
 
 
-        TaskPoolWithBlocking taskPoolWithBlockin1 = new TaskPoolWithBlocking("3",1,forkJoinPool);
+        TaskPoolWithBlocking taskPoolWithBlockin1 = new TaskPoolWithBlocking("1",1,forkJoinPool, tasks);
+        TaskPoolWithBlocking taskPoolWithBlockin2 = new TaskPoolWithBlocking("2",1,forkJoinPool, tasks);
         //forkJoinPool.execute(taskPool1);
         //forkJoinPool.execute(taskPool2);
         forkJoinPool.execute(taskPoolWithBlockin1);
+        //forkJoinPool.execute(taskPoolWithBlockin2);
 
-        Thread.sleep(5000);
-
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
         //taskPool1.stop();
         //taskPool2.stop();
         taskPoolWithBlockin1.stop();
+        //taskPoolWithBlockin2.stop();
     }
 }

@@ -19,9 +19,12 @@ public class ManagedBlockerImpl implements ForkJoinPool.ManagedBlocker {
         if (!isLocked){
             rtlock.lock();
         }
+        System.out.println("BLOCK");
         return true;
     }
     public boolean isReleasable() {
-        return isLocked || (isLocked = rtlock.tryLock());
+        System.out.println("IS_RELEASE");
+        rtlock.lock();
+        return isLocked || (isLocked = rtlock.isLocked());
     }
 }
