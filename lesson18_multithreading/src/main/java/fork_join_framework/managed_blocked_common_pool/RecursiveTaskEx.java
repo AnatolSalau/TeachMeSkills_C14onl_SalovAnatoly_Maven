@@ -1,4 +1,4 @@
-package fork_join_framework.managed_blocked;
+package fork_join_framework.managed_blocked_common_pool;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;

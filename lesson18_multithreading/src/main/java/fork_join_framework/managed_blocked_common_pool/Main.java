@@ -1,14 +1,11 @@
-package fork_join_framework.managed_blocked;
+package fork_join_framework.managed_blocked_common_pool;
 
-import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
-import java.util.concurrent.ThreadFactory;
 
-import static java.util.concurrent.TimeUnit.MINUTES;
-
+/**
+ * ForkJoinPool with
+ */
 public class Main {
-
     public static void main(String[] args) throws InterruptedException {
         CommonResource commonResource = new CommonResource();
         RecursiveTaskEx recursiveTaskEx1 = new RecursiveTaskEx(1,commonResource);
@@ -21,17 +18,8 @@ public class Main {
         RecursiveTaskEx recursiveTaskEx8 = new RecursiveTaskEx(8,commonResource);
         RecursiveTaskEx recursiveTaskEx9 = new RecursiveTaskEx(9,commonResource);
 
-        int parallelism = 4;
-/*        ForkJoinPool.ForkJoinWorkerThreadFactory defaultForkJoinWorkerThreadFactory = ForkJoinPool.defaultForkJoinWorkerThreadFactory;
-        Thread.UncaughtExceptionHandler uncaughtExceptionHandler = Thread.currentThread().getUncaughtExceptionHandler();
-        ForkJoinPool forkJoinPool = new ForkJoinPool(
-                parallelism,
-                defaultForkJoinWorkerThreadFactory,
-                uncaughtExceptionHandler,
-                false, 1, 1, 1, null, 1, MINUTES
-        );*/
-        //ForkJoinPool forkJoinPool = new ForkJoinPool(parallelism);
         ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+
         forkJoinPool.execute(commonResource.fork());
         forkJoinPool.execute(recursiveTaskEx1.fork());
         forkJoinPool.execute(recursiveTaskEx2.fork());

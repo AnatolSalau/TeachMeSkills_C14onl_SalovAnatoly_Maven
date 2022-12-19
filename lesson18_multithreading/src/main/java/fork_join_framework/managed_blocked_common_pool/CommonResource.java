@@ -1,7 +1,6 @@
-package fork_join_framework.managed_blocked;
+package fork_join_framework.managed_blocked_common_pool;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -21,7 +20,7 @@ public class CommonResource extends RecursiveAction {
         while (isRun.get()){
             System.out.println("CommonResource is run in Thread : "
                     + Thread.currentThread().getName()
-            + " isRun is " + this.isRun.get());
+            + " Common pool size is " + this.isRun.get());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {}
