@@ -4,8 +4,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Common resource - contain Tasks ID
+ * If task see own ID - it will be blocked
+ * If doesn't - do personal work
+ */
 public class CommonResource extends RecursiveAction {
     private AtomicBoolean isRun;
+    //Pull for tasks ID
     private ConcurrentLinkedQueue<Integer> tasksID;
 
     public CommonResource() {
@@ -15,12 +21,10 @@ public class CommonResource extends RecursiveAction {
 
     @Override
     protected void compute() {
-
-
+        //Our work
         while (isRun.get()){
             System.out.println("CommonResource is run in Thread : "
-                    + Thread.currentThread().getName()
-            + " Common pool size is " + this.isRun.get());
+                    + Thread.currentThread().getName());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {}

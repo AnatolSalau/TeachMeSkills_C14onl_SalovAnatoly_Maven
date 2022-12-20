@@ -22,6 +22,5 @@ public class MainFindMax {
         //put Task in our ForkJoinPool
         Integer maxInArr = forkJoinPool.invoke(findMaxTask);
         log.info("Max in array : {}", maxInArr);
-
     }
 }

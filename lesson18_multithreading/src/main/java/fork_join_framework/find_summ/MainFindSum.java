@@ -8,12 +8,14 @@ import java.util.concurrent.ForkJoinPool;
 public class MainFindSum {
     public static void main(String[] args) {
         //ThreadQuantity
-        int threadQuantity = 1;
+        int threadQuantity = 10;
         //Create array
         int[] arr = new int[10000];
 
-        int minPart = 10;
+        //Minimum length of part array for summ
+        int minLengthOfPart = 1000;
 
+        //Summ for checking between simple loop and recursion
         int sumArr = 0;
         for (int i = 0; i < arr.length; i++) {
             arr[i] = i;
@@ -23,7 +25,7 @@ public class MainFindSum {
         log.info("Summ Arr is {}",sumArr);
 
         FindSummArrayRecursiveTaskEx findMaxTask =
-                new FindSummArrayRecursiveTaskEx(0, arr.length-1,arr,threadQuantity, minPart);
+                new FindSummArrayRecursiveTaskEx(0, arr.length-1,arr, minLengthOfPart);
         ForkJoinPool forkJoinPool = new ForkJoinPool(threadQuantity);
 
         //put Task in our ForkJoinPool

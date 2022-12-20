@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 public class TaskPoolWithBlocking extends RecursiveAction {
 
-    private int counter;         //recursive counter
+    private int counter;         //recursive counter of threads
     private ForkJoinPool pool;
     private String id;
     private AtomicBoolean isRun;
@@ -42,7 +42,9 @@ public class TaskPoolWithBlocking extends RecursiveAction {
 
     @Override
     protected void compute() {
+        //if we dont create recursion - we ignore that
         while (isRecursion) {
+            //blocking by continue
             if(tasks.get(id)) {
                 continue;
             }
@@ -61,9 +63,10 @@ public class TaskPoolWithBlocking extends RecursiveAction {
             } catch (InterruptedException e) {}
         }
 
-        //break;
+        //break from recursion;
         if (counter <= 0) return;
 
+        // we create new Task
         for (int i = 0; i < counter; i++) {
             TaskPoolWithBlocking next = new TaskPoolWithBlocking(id,counter-1, pool, true, tasks);
             next.fork();

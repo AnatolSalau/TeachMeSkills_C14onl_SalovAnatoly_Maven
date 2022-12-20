@@ -3,40 +3,41 @@ package fork_join_framework.managed_blocked_common_pool;
 import java.util.concurrent.ForkJoinPool;
 
 /**
- * ForkJoinPool with
+ * ForkJoinPool without recursion, and we use ForkJoinPool.commonPool();
+ * .commonPool() - Returns the common pool instance. This pool is statically constructed;
+ * its run state is unaffected by attempts to shutdown() or shutdownNow().
+ * However this pool and any ongoing processing are automatically terminated
+ * upon program System.exit(int). Any program that relies on asynchronous task processing
+ * to complete before program termination should invoke commonPool().awaitQuiescence, before exit.
  */
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+        //Create tasks or actions by RecursiveTask or RecursiveAction
         CommonResource commonResource = new CommonResource();
         RecursiveTaskEx recursiveTaskEx1 = new RecursiveTaskEx(1,commonResource);
         RecursiveTaskEx recursiveTaskEx2 = new RecursiveTaskEx(2,commonResource);
         RecursiveTaskEx recursiveTaskEx3 = new RecursiveTaskEx(3,commonResource);
-        RecursiveTaskEx recursiveTaskEx4 = new RecursiveTaskEx(4,commonResource);
-        RecursiveTaskEx recursiveTaskEx5 = new RecursiveTaskEx(5,commonResource);
-        RecursiveTaskEx recursiveTaskEx6 = new RecursiveTaskEx(6,commonResource);
-        RecursiveTaskEx recursiveTaskEx7 = new RecursiveTaskEx(7,commonResource);
-        RecursiveTaskEx recursiveTaskEx8 = new RecursiveTaskEx(8,commonResource);
-        RecursiveTaskEx recursiveTaskEx9 = new RecursiveTaskEx(9,commonResource);
 
+        //Create default static pool
         ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
 
+
+        //Run tasks without recursion, right here
         forkJoinPool.execute(commonResource.fork());
         forkJoinPool.execute(recursiveTaskEx1.fork());
         forkJoinPool.execute(recursiveTaskEx2.fork());
         forkJoinPool.execute( recursiveTaskEx3.fork());
-        forkJoinPool.execute( recursiveTaskEx4.fork());
-        forkJoinPool.execute( recursiveTaskEx5.fork());
-        forkJoinPool.execute( recursiveTaskEx6.fork());
-        forkJoinPool.execute( recursiveTaskEx7.fork());
-        forkJoinPool.execute( recursiveTaskEx8.fork());
-        forkJoinPool.execute( recursiveTaskEx9.fork());
 
         Thread.sleep(2000);
+        //block thread by ManagedBlocked
+        System.out.println("Block task 1");
         commonResource.addIdTask(1);
         commonResource.printAllID();
 
         Thread.sleep(2000);
+        //delete block thread
         commonResource.deleteIdTask(1);
+        System.out.println("Release task 1");
         commonResource.printAllID();
 
         Thread.sleep(2000);
@@ -49,6 +50,7 @@ public class Main {
         commonResource.deleteIdTask(1);
         commonResource.printAllID();
 
+        //Stop while in common resource
         commonResource.stop();
 
     }

@@ -6,6 +6,9 @@ import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * TaskPool for infinity creating new Tasks
+ */
 public class TaskPool extends RecursiveAction {
 
     private int counter;         //recursive counter
@@ -37,12 +40,14 @@ public class TaskPool extends RecursiveAction {
             Thread.sleep(1000);
         } catch (InterruptedException e) {}
 
-        //break;
+        //break from method if created as many threads of our task as needed
         if (counter <= 0) return;
 
+        //crate new threads - infinity loop
         while (isRun.get()) {
             TaskPool next = new TaskPool(id,counter-1, pool);
             next.fork();
+            //wait - while new task return result
             next.join();
         }
     }

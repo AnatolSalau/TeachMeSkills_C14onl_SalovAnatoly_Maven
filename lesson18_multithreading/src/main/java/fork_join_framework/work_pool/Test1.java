@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
+/**
+ * Create Tasks only in worked pool. Worked pool have max size
+ */
 public class Test1 {
 
     private static ForkJoinPool pool = new ForkJoinPool(2);
@@ -12,7 +15,7 @@ public class Test1 {
     private static class SomeAction extends RecursiveAction {
 
         private int counter;         //recursive counter
-        private int childrenCount=80;//amount of children to spawn
+        private int childrenCount=10;//amount of children to spawn
         private int idx;             // just for displaying
 
         private SomeAction(int counter, int idx) {
@@ -42,7 +45,6 @@ public class Test1 {
                 next.fork();
             }
 
-
             for (SomeAction action:list){
                 action.join();
             }
@@ -50,6 +52,6 @@ public class Test1 {
     }
 
     public static void main(String[] args) throws Exception{
-        pool.invoke(new SomeAction(2,0));
+        pool.invoke(new SomeAction(4,0));
     }
 }

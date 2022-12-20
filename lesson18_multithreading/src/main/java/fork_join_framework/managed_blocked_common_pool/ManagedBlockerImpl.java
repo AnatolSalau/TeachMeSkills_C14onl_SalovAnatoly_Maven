@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Class for blocking thread in ForkJoinPool
+ */
 @Slf4j
 public class ManagedBlockerImpl implements ForkJoinPool.ManagedBlocker {
 

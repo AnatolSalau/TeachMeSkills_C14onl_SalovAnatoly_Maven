@@ -4,14 +4,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.locks.ReentrantLock;
 
-
+/**
+ * Execute Tasks by Recursive ForkJoinPool with ThreadFactory and UncaughtExceptionHandler
+ */
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         ConcurrentHashMap<String,Boolean> tasks = new ConcurrentHashMap<>();
 
-        ForkJoinPool.ForkJoinWorkerThreadFactory defaultForkJoinWorkerThreadFactory = ForkJoinPool.defaultForkJoinWorkerThreadFactory;
-        Thread.UncaughtExceptionHandler uncaughtExceptionHandler = Thread.currentThread().getUncaughtExceptionHandler();
+        //Create ForkJoinThreadFactory with ThreadFactory and UncaughtExceptionHandler
+        ForkJoinPool.ForkJoinWorkerThreadFactory defaultForkJoinWorkerThreadFactory =
+                ForkJoinPool.defaultForkJoinWorkerThreadFactory;
+        Thread.UncaughtExceptionHandler uncaughtExceptionHandler =
+                Thread.currentThread().getUncaughtExceptionHandler();
 
         ForkJoinPool forkJoinPool = new ForkJoinPool(
                 3,

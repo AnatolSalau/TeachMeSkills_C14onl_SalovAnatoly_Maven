@@ -6,6 +6,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Task for something work in infinity while loop
+ */
 public class RecursiveTaskEx extends RecursiveTask<Integer> {
     private CommonResource commonResource;
     private final AtomicInteger taskID;
@@ -28,6 +31,7 @@ public class RecursiveTaskEx extends RecursiveTask<Integer> {
                 Thread.sleep(500);
             } catch (InterruptedException e) {}
 
+            //If we have in common resource - ID - we block our thread
             if (!commonResource.isContain(taskID.get())) {
                 System.out.println("Task " + taskID + " is doing something work ");
                 try {
@@ -35,6 +39,7 @@ public class RecursiveTaskEx extends RecursiveTask<Integer> {
                 } catch (InterruptedException e) {}
             } else {
                 try {
+                    System.out.println("Task " + taskID + " is blocked ");
                     ForkJoinPool.managedBlock(new ManagedBlockerImpl(lock));
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
