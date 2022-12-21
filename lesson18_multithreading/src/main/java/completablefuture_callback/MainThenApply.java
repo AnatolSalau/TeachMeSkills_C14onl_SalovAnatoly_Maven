@@ -4,7 +4,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-public class Main {
+public class MainThenApply {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         CompletableFuture<Integer> function =CompletableFuture
                 .supplyAsync(() -> {
