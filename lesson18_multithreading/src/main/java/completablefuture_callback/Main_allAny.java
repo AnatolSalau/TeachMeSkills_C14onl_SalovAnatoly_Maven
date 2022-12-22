@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**+
  * CompletableFuture allOff - run result after the end each future in the list
  */
-public class Main_ApplyOf_ApplyAny {
+public class Main_allAny {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         List<Integer> list = new ArrayList<>();
 
