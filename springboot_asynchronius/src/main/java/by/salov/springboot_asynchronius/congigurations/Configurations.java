@@ -23,5 +23,4 @@ public class Configurations {
         threadPoolTaskExecutor.setThreadNamePrefix(" Custom Thread Pool - ");
         return threadPoolTaskExecutor;
     }
-
 }
