@@ -32,10 +32,10 @@ public class ProducerConsumerCreator {
         //Create our producers with loop
         while (i <= 3) {
             Producer producer = new Producer(
-                    queue, isStop, "Producer " + i, 1000
+                    queue, isStop, "Producer " + i, 500
             );
             Consumer consumer = new Consumer(
-                    queue, isStop, "Consumer " + i, 500
+                    queue, isStop, "Consumer " + i, 1000
             );
             producers.add(producer);
             consumers.add(consumer);
@@ -46,11 +46,11 @@ public class ProducerConsumerCreator {
         }
         System.out.println("Producers and Consumers will be created");
         //Change our value is after 10 sec
-/*        scheduledExecutorService.schedule(() -> isStop.set(true),
-                10, TimeUnit.SECONDS);*/
-        for (int j = 0; j < 4; j++) {
+        scheduledExecutorService.schedule(() -> isStop.set(true),
+                10, TimeUnit.SECONDS);
+/*        for (int j = 0; j < 4; j++) {
             TimeUnit.SECONDS.sleep(1);
-        }
+        }*/
 
         isStop.set(true);
         scheduledExecutorService.shutdown();

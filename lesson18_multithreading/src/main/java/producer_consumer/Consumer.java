@@ -6,6 +6,10 @@ import java.util.Date;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Consumer class
+ * We must create one current Thread in Executors.newSingleThreadExecutor()
+ */
 public class Consumer {
     private final ConcurrentLinkedQueue<String> queue;
     private final AtomicBoolean isStop;
