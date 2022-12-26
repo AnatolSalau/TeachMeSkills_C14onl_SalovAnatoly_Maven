@@ -12,11 +12,12 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Service responding data from server
+ */
 @Service
 @NoArgsConstructor
 public class EntityService {
-
-
     public List<Car> getAllCars() throws InterruptedException {
         TimeUnit.SECONDS.sleep(5);
         Car car1 = new Car("X1", "BMW");

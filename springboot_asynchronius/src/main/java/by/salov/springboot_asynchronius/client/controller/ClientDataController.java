@@ -21,6 +21,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Controller for using asynchronous request by RestClient
+ */
 @RestController
 @RequestMapping(value = "/client")
 public class ClientDataController {
@@ -34,7 +37,6 @@ public class ClientDataController {
         CompletableFuture<List<Car>> futureCarList = asyncDataService.getFutureCarList();
         CompletableFuture<List<City>> futureCityList = asyncDataService.getFutureCityList();
         CompletableFuture<List<User>> futureUserList = asyncDataService.getFutureUserList();
-
 
         List<Car> cars = futureCarList.get();
         System.out.println(cars);
