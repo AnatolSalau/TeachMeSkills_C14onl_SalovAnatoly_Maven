@@ -11,7 +11,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Predicate;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +35,6 @@ public class CarCRUDService {
     private void init() {
         System.out.println("______________________________________________________________");
         System.out.println(sessionFactory.toString());
-        System.out.println(entityManagerFactory);
         //saveCar();
         criteriaHibernate("CarTwo", null,null);
         System.out.println("______________________________________________________________");
@@ -73,5 +75,12 @@ public class CarCRUDService {
 
         transaction.commit();
         session.close();
+    }
+
+    private void entityManager() {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        criteriaBuilder.and((Predicate) Restrictions.eq("name", "CarOne"));
+
     }
 }

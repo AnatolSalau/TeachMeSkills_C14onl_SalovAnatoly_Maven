@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -47,10 +48,10 @@ public class DataBaseConfiguration {
         return sessionFactory;
     }
 
-    @Bean
+/*    @Bean
     EntityManagerFactory entityManagerFactory() {
         EntityManagerFactory testName = Persistence.createEntityManagerFactory("testName");
         return testName;
-    }
+    }*/
 
 }
