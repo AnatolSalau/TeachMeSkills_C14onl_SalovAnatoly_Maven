@@ -80,8 +80,9 @@ public class CarCRUDService {
         transaction.commit();
         session.close();
     }
-
+    //Get JPA EntityManager from Hibernate
     private List<Car> entityManager(String name) {
+        //Get entity manager
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Car> query = criteriaBuilder.createQuery(Car.class);
