@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManagerFactory;
 import java.util.Date;
 import java.util.List;
 
@@ -22,12 +23,16 @@ public class CarCRUDService {
     private  SessionFactory sessionFactory;
 
     @Autowired
+    private EntityManagerFactory entityManagerFactory;
+
+    @Autowired
     public CarCRUDService() {
     }
     @PostConstruct
     private void init() {
         System.out.println("______________________________________________________________");
         System.out.println(sessionFactory.toString());
+        System.out.println(entityManagerFactory);
         //saveCar();
         criteriaHibernate("CarTwo", null,null);
         System.out.println("______________________________________________________________");
