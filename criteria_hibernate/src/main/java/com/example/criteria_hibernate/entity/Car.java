@@ -23,7 +23,6 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
     private String name;
     @Enumerated(EnumType.STRING)
     private CarType carType;
