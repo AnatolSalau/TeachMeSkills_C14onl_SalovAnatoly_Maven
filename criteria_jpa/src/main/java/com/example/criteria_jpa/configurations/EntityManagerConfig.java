@@ -11,12 +11,12 @@ import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 @Configuration
 public class EntityManagerConfig {
 
-
     @Bean
     EntityManager entityManager() {
         try(EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(
                 "Car"
         )) {
+            System.out.println(entityManagerFactory);
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             return entityManager;
         }
