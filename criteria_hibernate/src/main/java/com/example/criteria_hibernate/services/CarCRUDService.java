@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +28,7 @@ public class CarCRUDService {
     @Autowired
     private  SessionFactory sessionFactory;
 
+    //Load EntityManagerFactory or EntityManager
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
@@ -40,7 +41,7 @@ public class CarCRUDService {
         System.out.println(sessionFactory.toString());
         //saveCar();
         criteriaHibernate("CarTwo", null,null);
-        entityManager("CarOne");
+        criteriaJPAFromHibernate("CarOne");
         System.out.println("______________________________________________________________");
     }
 
@@ -81,11 +82,14 @@ public class CarCRUDService {
         session.close();
     }
     //Get JPA EntityManager from Hibernate
-    private List<Car> entityManager(String name) {
+    private List<Car> criteriaJPAFromHibernate(String name) {
         //Get entity manager
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+        //Get criteriaBuilder
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        //Create query from criteria
         CriteriaQuery<Car> query = criteriaBuilder.createQuery(Car.class);
+        //Get Root class
         Root<Car> carRoot = query.from(Car.class);
         query.where(criteriaBuilder.equal(carRoot.get("name"), name ));
         TypedQuery<Car> typedQuery = entityManager.createQuery(query);

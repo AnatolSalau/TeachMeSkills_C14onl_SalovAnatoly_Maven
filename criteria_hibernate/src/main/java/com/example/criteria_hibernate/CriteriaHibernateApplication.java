@@ -9,5 +9,4 @@ public class CriteriaHibernateApplication {
     public static void main(String[] args) {
         SpringApplication.run(CriteriaHibernateApplication.class, args);
     }
-
 }

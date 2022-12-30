@@ -4,11 +4,10 @@ import com.example.criteria_hibernate.entity.Car;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+
+
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -48,4 +47,5 @@ public class DataBaseConfiguration {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         return sessionFactory;
     }
+
 }
