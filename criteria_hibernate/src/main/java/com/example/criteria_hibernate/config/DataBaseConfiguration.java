@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -42,16 +43,9 @@ public class DataBaseConfiguration {
     }
     @Bean
     //@Qualifier("default_sessionfactory")
-    SessionFactory sessionFactory(/*@Qualifier("default_configuration")*/ Configuration configuration)
+    SessionFactory sessionFactory( Configuration configuration)
             throws HibernateException {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         return sessionFactory;
     }
-
-/*    @Bean
-    EntityManagerFactory entityManagerFactory() {
-        EntityManagerFactory testName = Persistence.createEntityManagerFactory("testName");
-        return testName;
-    }*/
-
 }

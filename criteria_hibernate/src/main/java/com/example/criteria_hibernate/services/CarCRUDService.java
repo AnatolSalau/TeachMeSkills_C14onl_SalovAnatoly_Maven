@@ -13,8 +13,11 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +40,7 @@ public class CarCRUDService {
         System.out.println(sessionFactory.toString());
         //saveCar();
         criteriaHibernate("CarTwo", null,null);
+        entityManager("CarOne");
         System.out.println("______________________________________________________________");
     }
 
@@ -77,10 +81,15 @@ public class CarCRUDService {
         session.close();
     }
 
-    private void entityManager() {
+    private List<Car> entityManager(String name) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        criteriaBuilder.and((Predicate) Restrictions.eq("name", "CarOne"));
-
+        CriteriaQuery<Car> query = criteriaBuilder.createQuery(Car.class);
+        Root<Car> carRoot = query.from(Car.class);
+        query.where(criteriaBuilder.equal(carRoot.get("name"), name ));
+        TypedQuery<Car> typedQuery = entityManager.createQuery(query);
+        List<Car> resultList = typedQuery.getResultList();
+        System.out.println(resultList);
+        return resultList;
     }
 }
