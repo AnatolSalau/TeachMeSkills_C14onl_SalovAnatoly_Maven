@@ -31,10 +31,10 @@ public class Car {
     @UpdateTimestamp
     @Column(name = "updatind_inside_database")
     private Date updatingInsideDatabase;
-    boolean hasCar;
+    Boolean hasCar;
     @Version
     private int version;
-    public Car(String name, CarType carType, Date dateCreationCar,boolean hasCar) {
+    public Car(String name, CarType carType, Date dateCreationCar,Boolean hasCar) {
         this.name = name;
         this.carType = carType;
         this.dateCreationCar = dateCreationCar;
