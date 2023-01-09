@@ -40,4 +40,13 @@ public class Car {
         this.dateCreationCar = dateCreationCar;
         this.hasCar = hasCar;
     }
+
+    @PrePersist
+    public void prePersist() {
+        System.out.println("----------------------PRE PERSIST-----------------------------");
+    }
+    @PostPersist
+    public void postPersist() {
+        System.out.println("--------------------POST PERSIST-----------------------------");
+    }
 }

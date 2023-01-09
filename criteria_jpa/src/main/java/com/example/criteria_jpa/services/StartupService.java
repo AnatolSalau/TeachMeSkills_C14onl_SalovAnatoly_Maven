@@ -19,7 +19,7 @@ public class StartupService {
     @PostConstruct
     public void init() {
         Car car1 = new Car("CarThree", CarType.MERCEDES, new Date(),true);
-        //carJpaRepository.save(car1);
+        carJpaSpecificationService.save(car1);
         //Audi searchRequest
         SearchRequest searchRequest = SearchRequest.builder()
                 .carType(CarType.BMW)

@@ -25,4 +25,8 @@ public class CarJpaSpecificationService {
         List<Car> all = carJpaRepository.findAll(carSpecification);
         return all;
     }
+
+    public void save(Car car) {
+        carJpaRepository.save(car);
+    }
 }
