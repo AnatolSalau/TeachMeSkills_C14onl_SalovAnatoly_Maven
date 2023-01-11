@@ -20,46 +20,6 @@ public class SimpleThreadpool {
     // Holds the "pool" of threads
     private List<SimpleThreadpoolThread> threads;
 
-    /**
-     * Thrown when there's a RuntimeException or InterruptedException when executing a runnable from the queue, or awaiting termination
-     */
-    private class ThreadpoolException extends RuntimeException {
-        public ThreadpoolException(Throwable cause) {
-            super(cause);
-        }
-    }
-
-    /**
-     * Inner Thread class which represents the threads in the pool. It acts as a wrapper for all runnables in the queue.
-     */
-    private class SimpleThreadpoolThread extends Thread {
-        private AtomicBoolean execute;
-        private ConcurrentLinkedQueue<Runnable> runnables;
-
-        public SimpleThreadpoolThread(String name, AtomicBoolean execute, ConcurrentLinkedQueue<Runnable> runnables) {
-            super(name);
-            this.execute = execute;
-            this.runnables = runnables;
-        }
-
-        @Override
-        public void run() {
-            try {
-                // Continue to execute when the execute flag is true, or when there are runnables in the queue
-                while (execute.get() || !runnables.isEmpty()) {
-                    Runnable runnable;
-                    // Poll a runnable from the queue and execute it
-                    while ((runnable = runnables.poll()) != null) {
-                        runnable.run();
-                    }
-                    // Sleep in case there wasn't any runnable in the queue. This helps to avoid hogging the CPU.
-                    Thread.sleep(1);
-                }
-            } catch (RuntimeException | InterruptedException e) {
-                throw new ThreadpoolException(e);
-            }
-        }
-    }
 
     /**
      * Private constructor to control the creation of threadpools. Increments the poolcount whenever a new pool is created.
