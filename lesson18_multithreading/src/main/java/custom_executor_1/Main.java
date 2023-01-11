@@ -1,22 +1,22 @@
 package custom_executor_1;
 
+// Class 5
+// Main Class
 public class Main {
-    public static void main(String[] args) {
-        //Create customThreadPool
-        CustomThreadPool customThreadPool =
-                new CustomThreadPool(3,10);
-        //Create tasks
-        for (int i = 0; i < 10 ; i++) {
-            int taskNumber = i;
-            //Create logic in task
-            Runnable task = () -> {
-                    System.out.println(
-                            Thread.currentThread().getName() + ", task : " + taskNumber
-                    );
-            };
-            customThreadPool.execute(task);
+    // Main driver method
+    public static void main(String[] args)
+    {
+        // Getting the object of MyExcutorService by using
+        //  the factory method myNewFixedThreadPool
+
+        // Passing number of threads as 3
+        ThreadPool service
+                = ThreadPoolService.myNewFixedThreadPool(3);
+
+        for (int i = 0; i < 5; i++) {
+
+            // Creating 20 tasks and passing them to execute
+            service.execute(new Mytask());
         }
-        customThreadPool.waitUntilAllTasksFinished();
-        customThreadPool.stop();
     }
 }

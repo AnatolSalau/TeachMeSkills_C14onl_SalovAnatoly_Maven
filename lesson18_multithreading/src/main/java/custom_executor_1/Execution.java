@@ -1,8 +1,10 @@
-package custom_executor_2;
+package custom_executor_1;
 
 // Class 3
 // Helper class extending Runnable interface
 class Execution implements Runnable {
+    private boolean isStopped = false;
+    private Thread currentThread;
     // Method 1 of  this class
     void executeMyMethod() {
         // At start the current capacity will be 0
@@ -19,10 +21,10 @@ class Execution implements Runnable {
             MyFixedThreadPoolImpl.currentCapacity++;
 
             // Creating object of Thread class
-            Thread t = new Thread(new Execution());
+            currentThread = new Thread(new Execution());
 
             // Starting the thread
-            t.start();
+            currentThread.start();
         }
     }
 
@@ -32,7 +34,7 @@ class Execution implements Runnable {
     {
 
         // Till it is true
-        while (true) {
+        while (!isStopped) {
 
             // Here we are fetching the tasks from the
             // linkedblocking queue
@@ -44,5 +46,9 @@ class Execution implements Runnable {
                         .run();
             }
         }
+    }
+
+    public  void stop() {
+        this.isStopped = true;
     }
 }
