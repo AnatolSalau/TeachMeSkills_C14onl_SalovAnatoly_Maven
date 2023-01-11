@@ -4,8 +4,7 @@ package custom_executor_2;
 // Helper class extending Runnable interface
 class Execution implements Runnable {
     // Method 1 of  this class
-    void executeMyMethod()
-    {
+    void executeMyMethod() {
         // At start the current capacity will be 0
         // The another capacity is the number of threads we
         // want to create so we will increase the current

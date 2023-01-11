@@ -14,7 +14,7 @@ class Mytask implements Runnable {
         try {
             // Making thread to pause fo a second
             // using sleep() method
-            Thread.sleep(1000);
+            Thread.sleep(100);
         }
         // Catch block to check for exceptions
         catch (InterruptedException e) {

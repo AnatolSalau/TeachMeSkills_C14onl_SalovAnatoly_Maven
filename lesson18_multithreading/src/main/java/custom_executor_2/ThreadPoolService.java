@@ -7,7 +7,7 @@ public class ThreadPoolService {
 
     // Passing the number of threads that
     // will be in the thread pool
-    static FixedThreadPool myNewFixedThreadPool(int capacity)
+    static ThreadPool myNewFixedThreadPool(int capacity)
     {
         return new MyFixedThreadPoolImpl(capacity);
     }

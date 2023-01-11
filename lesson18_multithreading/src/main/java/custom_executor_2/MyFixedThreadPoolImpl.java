@@ -2,20 +2,20 @@ package custom_executor_2;
 
 import java.util.concurrent.LinkedBlockingQueue;
 // Class 2
-// Helper class extending to MyExecutorService interface
-class MyFixedThreadPoolImpl implements FixedThreadPool {
+// ThreadPool implementation
+class MyFixedThreadPoolImpl implements ThreadPool {
 
     // Member variables of this class
     static int capacity;
     static int currentCapacity;
+    Execution execution;
 
     // Creating object of LinkedBlockingQueue class
     // Declaring object of type Runnable
-    static LinkedBlockingQueue<Runnable>
-            linkedTaskBlockingQueue;
+    static LinkedBlockingQueue<Runnable> linkedTaskBlockingQueue;
 
     // Member variables of this class
-    Execution e;
+
 
     // Method 1
     public MyFixedThreadPoolImpl(int capacity)
@@ -34,7 +34,7 @@ class MyFixedThreadPoolImpl implements FixedThreadPool {
                 = new LinkedBlockingQueue<Runnable>();
 
         // Creating the object of execution class
-        e = new Execution();
+        execution = new Execution();
     }
 
     // Method 2
@@ -48,6 +48,6 @@ class MyFixedThreadPoolImpl implements FixedThreadPool {
 
         // executeMyMethod() method of Execution class
         // which will execute the tasks
-        e.executeMyMethod();
+        execution.executeMyMethod();
     }
 }
