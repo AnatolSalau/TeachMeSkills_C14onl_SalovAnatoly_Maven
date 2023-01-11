@@ -29,7 +29,8 @@ public class CustomThreadPool {
         }
         //Run every ThreadPoolRunnable from listOfRunnables im new Thread
         for (ThreadPoolRunnable threadPoolRunnable : listOfRunnables) {
-            new Thread(threadPoolRunnable).start();
+            Thread thread = new Thread(threadPoolRunnable);
+            thread.start();
         }
     }
 
