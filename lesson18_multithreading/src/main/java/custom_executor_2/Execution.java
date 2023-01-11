@@ -15,9 +15,9 @@ class Execution implements Runnable {
         // us i.e number of threads we want to create.
 
         // In this case 3 threads will get created
-        if (MyThreadPool.currentCapacity
-                < MyThreadPool.capacity) {
-            MyThreadPool.currentCapacity++;
+        if (MyFixedThreadPoolImpl.currentCapacity
+                < MyFixedThreadPoolImpl.capacity) {
+            MyFixedThreadPoolImpl.currentCapacity++;
 
             // Creating object of Thread class
             Thread t = new Thread(new Execution());
@@ -39,9 +39,9 @@ class Execution implements Runnable {
             // linkedblocking queue
             // which we have submitted using execute method
             // and executing them
-            if (MyThreadPool.linkedTaskBlockingQueue.size()
+            if (MyFixedThreadPoolImpl.linkedTaskBlockingQueue.size()
                     != 0) {
-                MyThreadPool.linkedTaskBlockingQueue.poll()
+                MyFixedThreadPoolImpl.linkedTaskBlockingQueue.poll()
                         .run();
             }
         }

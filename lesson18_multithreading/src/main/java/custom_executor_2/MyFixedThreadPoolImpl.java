@@ -3,7 +3,7 @@ package custom_executor_2;
 import java.util.concurrent.LinkedBlockingQueue;
 // Class 2
 // Helper class extending to MyExecutorService interface
-class MyThreadPool implements MyExecutorService {
+class MyFixedThreadPoolImpl implements FixedThreadPool {
 
     // Member variables of this class
     static int capacity;
@@ -18,7 +18,7 @@ class MyThreadPool implements MyExecutorService {
     Execution e;
 
     // Method 1
-    public MyThreadPool(int capacity)
+    public MyFixedThreadPoolImpl(int capacity)
     {
 
         // Member variables of this class

@@ -10,8 +10,8 @@ public class Main {
         //  the factory method myNewFixedThreadPool
 
         // Passing number of threads as 3
-        MyExecutorService service
-                = MyExecutors.myNewFixedThreadPool(3);
+        FixedThreadPool service
+                = ThreadPoolService.myNewFixedThreadPool(3);
 
         for (int i = 0; i < 20; i++) {
 

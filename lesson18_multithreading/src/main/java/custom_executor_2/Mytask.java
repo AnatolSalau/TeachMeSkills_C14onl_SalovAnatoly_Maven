@@ -10,15 +10,12 @@ class Mytask implements Runnable {
     // @Override
     public void run()
     {
-
         // Try block to check for exceptions
         try {
-
             // Making thread to pause fo a second
             // using sleep() method
             Thread.sleep(1000);
         }
-
         // Catch block to check for exceptions
         catch (InterruptedException e) {
 
