@@ -18,6 +18,15 @@ public class UserController {
         return user;
     }
 
+    @GetMapping("/{userId}")
+    public User getUserById(@PathVariable("userId") Long userId) {
+        System.out.println("Get by id : " + userId);
+        User user = new User(1L,"user",
+                "1111", Gender.MALE, new Date());
+        user.setId(userId);
+        return user;
+    }
+
     @PostMapping
     public User addUser(@RequestBody User user) {
         System.out.println(user);
@@ -27,6 +36,15 @@ public class UserController {
     @PutMapping
     public User updateUser(@RequestBody User user) {
         System.out.println("User : " + user + " was update");
+        return user;
+    }
+
+    @DeleteMapping("/{userId}")
+    public User delete(@PathVariable("userId") Long userId) {
+        System.out.println("Delete user with id : " + userId);
+        User user = new User(1L,"user",
+                "1111", Gender.MALE, new Date());
+        user.setId(userId);
         return user;
     }
 }
