@@ -50,4 +50,9 @@ class MyFixedThreadPoolImpl implements ThreadPool {
         // which will execute the tasks
         execution.executeMyMethod();
     }
+
+    //Method 3 stop
+    public void stop(){
+        this.execution.stop();
+    }
 }

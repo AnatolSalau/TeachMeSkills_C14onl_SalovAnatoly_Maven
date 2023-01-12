@@ -5,4 +5,5 @@ package custom_executor_1;
 public interface ThreadPool {
     // Method
     void execute(Runnable r);
+    void stop();
 }

@@ -49,6 +49,7 @@ class Execution implements Runnable {
     }
 
     public  void stop() {
+        this.currentThread.interrupt();
         this.isStopped = true;
     }
 }
