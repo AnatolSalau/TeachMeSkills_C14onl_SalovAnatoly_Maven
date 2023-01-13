@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Just object, which RestAdviceController will response to client
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
