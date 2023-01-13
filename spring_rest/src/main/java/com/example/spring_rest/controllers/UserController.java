@@ -1,6 +1,7 @@
 package com.example.spring_rest.controllers;
 
 import com.example.spring_rest.dto.Gender;
+import com.example.spring_rest.dto.SearchDTO;
 import com.example.spring_rest.dto.User;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.CacheControl;
@@ -66,6 +67,22 @@ public class UserController {
                 .status(201)
                 .header("testHeader", "user was created")
                 .body(user);
+    }
+    //search user by post
+    @PostMapping(path = "/search")
+    public ResponseEntity<List<User>> searchUser(@RequestBody SearchDTO searchDTO) {
+        System.out.println("SearchDTO : " + searchDTO);
+        User user1 = new User(searchDTO.getMinId(), searchDTO.getLogin(),
+                "1111", searchDTO.getGender(), new Date());
+        User user2 = new User(searchDTO.getMaxId(), searchDTO.getLogin(),
+                "2222", searchDTO.getGender(), new Date());
+        List<User> users = new ArrayList<>();
+        users.add(user1);
+        users.add(user2);
+        //Add custom header
+        return ResponseEntity
+                .status(200)
+                .body(users);
     }
 
     @PutMapping
