@@ -5,6 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Handler for exceptions, that send ErrorDTO to client
+ */
 @RestControllerAdvice
 public class MyExceptionHandler {
 
