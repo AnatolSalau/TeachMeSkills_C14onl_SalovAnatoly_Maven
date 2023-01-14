@@ -25,6 +25,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Cpntroller with HATEOAS
+ *  and @Tag from swagger
+ */
 @RestController
 @RequestMapping(path = "/api/user")
 /*@Tag(name = "User controller",
@@ -32,7 +36,8 @@ import java.util.concurrent.TimeUnit;
 public class UserController {
 
     /**
-     * Controller with HATEOAS
+     * Method with HATEOAS
+     *  and @Tag from swagger
      * @return - list of users
      */
     @GetMapping
@@ -45,7 +50,9 @@ public class UserController {
         User user2 = new User(2L,"user",
                 "1111", Gender.MALE, new Date());
 
-        //HATEOAS
+        //HATEOAS links
+        //.withRel("get user with 1L ID"); - name link in JSON that we
+        //get in client
         Link linkUser1 = WebMvcLinkBuilder
                 .linkTo(
                         WebMvcLinkBuilder
