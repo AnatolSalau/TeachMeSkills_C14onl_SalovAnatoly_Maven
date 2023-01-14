@@ -3,6 +3,7 @@ package com.example.spring_rest.controllers;
 import com.example.spring_rest.dto.Gender;
 import com.example.spring_rest.dto.SearchDTO;
 import com.example.spring_rest.dto.User;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping(path = "/api/user")
+@Tag(name = "User controller",
+        description = "User CRUD operations" )
 public class UserController {
 
     @GetMapping

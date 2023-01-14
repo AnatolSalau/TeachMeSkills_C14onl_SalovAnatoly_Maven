@@ -1,6 +1,7 @@
 package com.example.spring_rest.controllers;
 
 import com.example.spring_rest.services.ExceptionService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(path = "/api/exception")
+@Tag(name = "Test exception controller",
+        description = "Controller for testing RestAdviceController")
 public class ExceptionController {
 
     @Autowired
