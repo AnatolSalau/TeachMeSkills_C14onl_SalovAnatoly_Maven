@@ -20,6 +20,7 @@ public class ExceptionController {
     private  ExceptionService exceptionService;
 
     @GetMapping()
+    @Tag(name = "get exception", description = "get exception for test")
     public void getException() {
         //throw runtime exception
         exceptionService.doSmth();
