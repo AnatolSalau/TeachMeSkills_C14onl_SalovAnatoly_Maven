@@ -64,11 +64,11 @@ public class UserController {
                     description = "Success operation",
                     headers = {
                         @Header(name = "testHeader", required = true,
-                        description = "just for test")
+                                description = "just for test")
                     },
                     content = {
-                    @Content(mediaType = "application/json",
-                             schema = @Schema(implementation = User.class))
+                        @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = User.class))
                     }
             ),
             @ApiResponse(
@@ -80,10 +80,9 @@ public class UserController {
                     },
                     content = {
                             @Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = ErrorDTO.class))
+                                        schema = @Schema(implementation = ErrorDTO.class))
                     }
             )
-
     })
     public ResponseEntity<?> getErrorById(@PathVariable("userId") Long userId) {
 
