@@ -11,6 +11,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.CacheControl;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,13 +31,39 @@ import java.util.concurrent.TimeUnit;
         description = "User CRUD operations" )*/
 public class UserController {
 
+    /**
+     * Controller with HATEOAS
+     * @return - list of users
+     */
     @GetMapping
     @Tag(name = "get All", description = "Get all users")
     public ResponseEntity<List<User>> getAllUsers() {
+
+
         User user1 = new User(1L,"user",
                 "1111", Gender.MALE, new Date());
         User user2 = new User(2L,"user",
                 "1111", Gender.MALE, new Date());
+
+        //HATEOAS
+        Link linkUser1 = WebMvcLinkBuilder
+                .linkTo(
+                        WebMvcLinkBuilder
+                                .methodOn(UserController.class)
+                                .getUserById(1L)
+
+                )
+                .withRel("get user with 1L ID");
+        Link linkUser2 = WebMvcLinkBuilder
+                .linkTo(
+                        WebMvcLinkBuilder
+                                .methodOn(UserController.class)
+                                .getUserById(2L)
+                )
+                .withSelfRel();
+        user1.add(linkUser1);
+        user2.add(linkUser2);
+
         List<User> users = new ArrayList<>();
         users.add(user1);
         users.add(user2);
