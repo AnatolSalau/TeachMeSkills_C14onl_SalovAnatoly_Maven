@@ -46,7 +46,14 @@ public class UserDBService {
         User newUser = new User(user.getLogin(),
                 user.getPassword(),
                 user.getEmail());
-        User userById = userRepository.save(newUser);
+        //Wrap Runtime exception in custom UserRuntimeException
+        User userById = null;
+        try{
+            userById = userRepository.save(newUser);
+        } catch (RuntimeException exception) {
+            throw new UserRuntimeException("Cant save user : " + exception.getMessage());
+        }
+
         UserDTO userDTO = new UserDTO(
                 userById.getLogin(),
                 userById.getPassword(),

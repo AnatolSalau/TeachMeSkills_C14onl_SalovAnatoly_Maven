@@ -21,7 +21,6 @@ public class UserController {
     @GetMapping()
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         List<UserDTO> allUsers = userDBService.getAllUsers();
-
         return ResponseEntity.ok(allUsers);
     }
 
@@ -37,7 +36,6 @@ public class UserController {
     @PostMapping()
     public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO) {
         UserDTO userDTOFromDb = userDBService.saveUser(userDTO);
-
         return ResponseEntity.ok(userDTOFromDb);
     }
 }
