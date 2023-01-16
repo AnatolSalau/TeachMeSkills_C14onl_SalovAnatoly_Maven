@@ -17,10 +17,10 @@ public class UserController {
 
     @GetMapping()
     public ResponseEntity<List<UserDTO>> getAllUsers() {
-        UserDTO userDTO1 = new UserDTO(UUID.randomUUID(), "login1",
+        UserDTO userDTO1 = new UserDTO( "login1",
                 "password1", "email1@mail.com"
                 );
-        UserDTO userDTO2 = new UserDTO(UUID.randomUUID(), "login2",
+        UserDTO userDTO2 = new UserDTO( "login2",
                 "password2", "email2@mail.com"
         );
         List<UserDTO> list = new ArrayList<>();
@@ -34,7 +34,7 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserByLogin(
             @PathVariable(name = "userLogin")String userLogin
             ) {
-        UserDTO userDTO1 = new UserDTO(UUID.randomUUID(), "login1",
+        UserDTO userDTO1 = new UserDTO( "login1",
                 "password1", "email1@mail.com"
         );
         userDTO1.setLogin(userLogin);
