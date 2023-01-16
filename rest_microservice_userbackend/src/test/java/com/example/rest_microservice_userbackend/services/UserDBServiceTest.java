@@ -32,7 +32,7 @@ class UserDBServiceTest {
 
     @Test
     void testGetUserDTOByLogin() {
-        UserDTO userDTOFromDB = userDBService.getUserDTOByLogin("firstLogin");
+        UserDTO userDTOFromDB = userDBService.getUserDTOByLogin("first2Login");
 
         UserDTO userDTO = new UserDTO("firstLogin",
                 "firstPassword", "firstemail@mail.ru");

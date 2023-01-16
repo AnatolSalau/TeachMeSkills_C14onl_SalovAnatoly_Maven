@@ -2,6 +2,7 @@ package com.example.rest_microservice_userbackend.services;
 
 import com.example.rest_microservice_userbackend.dto.UserDTO;
 import com.example.rest_microservice_userbackend.entities.User;
+import com.example.rest_microservice_userbackend.exceptions.UserRuntimeException;
 import com.example.rest_microservice_userbackend.projections.UserProjection;
 import com.example.rest_microservice_userbackend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,15 @@ public class UserDBService {
     }
 
     public UserDTO getUserDTOByLogin(String login) {
-        UserProjection userById = userRepository.findUserByLogin(login);
+        UserProjection userByLogin = userRepository.findUserByLogin(login);
         UserDTO userDTO = new UserDTO(
-                userById.getLogin(),
-                userById.getPassword(),
-                userById.getEmail()
+                userByLogin.getLogin(),
+                userByLogin.getPassword(),
+                userByLogin.getEmail()
         );
+        if(userByLogin == null) {
+            throw new UserRuntimeException("Users in DB were not found found");
+        }
         return userDTO;
     }
 
@@ -52,6 +56,9 @@ public class UserDBService {
 
     public List<UserDTO> getAllUsers() {
         List<UserProjection> allProjectedBy = userRepository.findAllProjectedBy();
+        if(allProjectedBy == null || allProjectedBy.isEmpty()) {
+            throw new RuntimeException("Users in DB were not found");
+        }
         List<UserDTO> userDTOList = new ArrayList<>();
         for (UserProjection projection : allProjectedBy) {
             userDTOList.add(new UserDTO(projection.getLogin(),
