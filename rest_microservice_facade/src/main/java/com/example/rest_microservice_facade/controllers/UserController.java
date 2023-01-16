@@ -1,6 +1,9 @@
 package com.example.rest_microservice_facade.controllers;
 
 import com.example.rest_microservice_facade.dto.UserDTO;
+import com.example.rest_microservice_facade.services.UserLinkService;
+import com.example.rest_microservice_facade.services.UserLinkServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,29 +18,22 @@ import java.util.UUID;
 @RequestMapping(path = "/api/v1/user")
 public class UserController {
 
+    @Autowired
+    private  UserLinkServiceImpl userLinkService;
+
     @GetMapping()
     public ResponseEntity<List<UserDTO>> getAllUsers() {
-        UserDTO userDTO1 = new UserDTO(UUID.randomUUID(), "login1",
-                "password1", "email1@mail.com"
-                );
-        UserDTO userDTO2 = new UserDTO(UUID.randomUUID(), "login2",
-                "password2", "email2@mail.com"
-        );
-        List<UserDTO> list = new ArrayList<>();
-        list.add(userDTO1);
-        list.add(userDTO2);
+        List<UserDTO> allUsers = userLinkService.getAllUsers();
 
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok(allUsers);
     }
 
     @GetMapping(path = "/{userLogin}")
     public ResponseEntity<UserDTO> getUserByLogin(
             @PathVariable(name = "userLogin")String userLogin
             ) {
-        UserDTO userDTO1 = new UserDTO(UUID.randomUUID(), "login1",
-                "password1", "email1@mail.com"
-        );
-        userDTO1.setLogin(userLogin);
-        return ResponseEntity.ok(userDTO1);
+        UserDTO userByLogin = userLinkService.getUserByLogin(userLogin);
+        return ResponseEntity.ok(userByLogin);
     }
+
 }
