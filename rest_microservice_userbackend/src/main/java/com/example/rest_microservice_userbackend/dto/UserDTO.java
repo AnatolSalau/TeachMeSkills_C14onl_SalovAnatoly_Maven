@@ -6,12 +6,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+
 @NoArgsConstructor
 @Data
 
 public class UserDTO {
 
-    private UUID id;
     private String login;
     private String password;
     private String email;
