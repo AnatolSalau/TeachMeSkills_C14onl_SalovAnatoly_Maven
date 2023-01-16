@@ -16,12 +16,16 @@ import java.util.List;
 public class MyExceptionHandler {
 
     @ExceptionHandler(value
-            = {UserRuntimeException.class, RuntimeException.class })
-    public ResponseEntity<ErrorDTO> exceptError(UserRuntimeException userRuntimeException,
-                                                RuntimeException exception) {
+            = {RuntimeException.class, UserRuntimeException.class})
+    public ResponseEntity<ErrorDTO> exceptRuntimeException(
+            RuntimeException exception, UserRuntimeException userRuntimeException) {
         List<String> messages = new ArrayList<>();
-        messages.add(exception.getMessage());
-        messages.add(userRuntimeException.getMessage());
+        if (exception != null) {
+            messages.add(exception.getMessage());
+        }
+        if (userRuntimeException != null) {
+            messages.add(userRuntimeException.getMessage());
+        }
         return ResponseEntity
                 . status(400)
                 .body(new ErrorDTO(messages));

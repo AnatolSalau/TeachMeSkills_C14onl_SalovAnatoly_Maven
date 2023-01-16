@@ -30,14 +30,15 @@ public class UserDBService {
 
     public UserDTO getUserDTOByLogin(String login) {
         UserProjection userByLogin = userRepository.findUserByLogin(login);
+
+        if(userByLogin == null) {
+            throw new UserRuntimeException("User with login " + login + " was not found");
+        }
         UserDTO userDTO = new UserDTO(
                 userByLogin.getLogin(),
                 userByLogin.getPassword(),
                 userByLogin.getEmail()
         );
-        if(userByLogin == null) {
-            throw new UserRuntimeException("Users in DB were not found found");
-        }
         return userDTO;
     }
 
