@@ -15,7 +15,7 @@ configurations {
     }
 }
 bootWar {
-    archiveName 'userbackend.war'
+    archiveName 'springrestuserbackend.war'
 }
 repositories {
     mavenCentral()
