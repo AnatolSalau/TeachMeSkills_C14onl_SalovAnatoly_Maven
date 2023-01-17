@@ -32,7 +32,7 @@ public class UserDBService {
         UserProjection userByLogin = userRepository.findUserByLogin(login);
 
         if(userByLogin == null) {
-            throw new UserRuntimeException("User with login " + login + " was not found");
+            throw new UserRuntimeException(500 ,"User with login " + login + " was not found");
         }
         UserDTO userDTO = new UserDTO(
                 userByLogin.getLogin(),
@@ -51,7 +51,7 @@ public class UserDBService {
         try{
             userById = userRepository.save(newUser);
         } catch (RuntimeException exception) {
-            throw new UserRuntimeException("Cant save user : " + exception.getMessage());
+            throw new UserRuntimeException(500, "Cant save user : " + exception.getMessage());
         }
 
         UserDTO userDTO = new UserDTO(
