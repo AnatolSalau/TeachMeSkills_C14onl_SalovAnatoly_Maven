@@ -36,13 +36,6 @@ public class UserLinkServiceImpl implements UserLinkService {
         ResponseEntity<UserDTO[]> responseEntityFromBackend = restTemplate
                 .getForEntity(GET_ALL_USERS, UserDTO[].class);
         UserDTO[] userDTOArray = responseEntityFromBackend.getBody();
-        //Error handle
-        HttpStatusCode statusCode = responseEntityFromBackend.getStatusCode();
-        if (statusCode.is5xxServerError()) {
-            System.out.println(userDTOArray);
-            System.out.println(userDTOArray);
-            System.out.println();
-        }
         return Arrays.asList(userDTOArray);
     }
 
@@ -57,14 +50,19 @@ public class UserLinkServiceImpl implements UserLinkService {
 
     @Override
     public UserDTO getUserById(UUID id) {
-        return null;
+        ResponseEntity<UserDTO> responseEntityFromBackend = restTemplate
+                .getForEntity(GET_USER_BY_ID + "/" + id, UserDTO.class);
+        UserDTO userDTO = responseEntityFromBackend.getBody();
+
+        return userDTO;
     }
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
-
-        return null;
+        ResponseEntity<UserDTO> userDTOResponseEntity = restTemplate
+                .postForEntity(SAVE_USER, userDTO , UserDTO.class);
+        UserDTO userDTOFromDB = userDTOResponseEntity.getBody();
+        return userDTOFromDB;
     }
-
 
 }

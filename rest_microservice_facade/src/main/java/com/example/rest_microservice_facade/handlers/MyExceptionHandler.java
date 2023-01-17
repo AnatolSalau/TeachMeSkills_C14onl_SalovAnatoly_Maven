@@ -12,6 +12,8 @@ import java.util.List;
 
 /**
  * Handler for exceptions, that send ErrorDTO to client
+ * !!!!
+ * Handle Runtime exception from RestTemplate
  */
 @RestControllerAdvice
 public class MyExceptionHandler {
