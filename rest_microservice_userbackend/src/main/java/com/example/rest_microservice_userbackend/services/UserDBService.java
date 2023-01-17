@@ -30,7 +30,7 @@ public class UserDBService {
 
     public UserDTO getUserDTOByLogin(String login) {
         UserProjection userByLogin = userRepository.findUserByLogin(login);
-
+        //if userByLogin not found throw UserRuntimeException
         if(userByLogin == null) {
             throw new UserRuntimeException(500 ,"User with login " + login + " was not found");
         }
