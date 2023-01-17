@@ -20,7 +20,6 @@ public class MyExceptionHandler {
     public ResponseEntity<ErrorDTO> exceptRuntimeException(RuntimeException exception) {
 
         String message = exception.getMessage();
-
         return ResponseEntity
                 .status(500)
                 .body(new ErrorDTO(500, message));
