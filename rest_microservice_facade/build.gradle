@@ -20,6 +20,12 @@ bootWar {
 repositories {
     mavenCentral()
 }
+//we must indicate version of SpringCloud to use OpenFeignClient
+/*
+ext {
+    set("springCloudVersion", "2021.0.3")
+}
+*/
 
 dependencies {
     //turn on actuator
@@ -33,6 +39,10 @@ dependencies {
     //turn on hateoas
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hateoas
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+
+    //we must indicate version of SpringCloud to use OpenFeignClient
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
+    //implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
