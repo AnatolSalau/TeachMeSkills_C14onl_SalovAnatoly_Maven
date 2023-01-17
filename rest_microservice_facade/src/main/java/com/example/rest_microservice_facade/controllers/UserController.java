@@ -47,5 +47,4 @@ public class UserController {
         UserDTO userDTOFromDb = userLinkService.saveUser(userDTO);
         return ResponseEntity.ok(userDTOFromDb);
     }
-
 }
