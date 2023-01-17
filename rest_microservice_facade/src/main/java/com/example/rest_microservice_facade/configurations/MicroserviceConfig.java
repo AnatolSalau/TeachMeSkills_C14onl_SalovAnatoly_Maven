@@ -12,7 +12,11 @@ import org.springframework.web.client.RestTemplate;
  */
 @Configuration
 public class MicroserviceConfig {
-
+    /**
+     * @return RestTemplate by RestTemplateBuilder
+     * .errorHandler(new RestTemplateErrorHandler())
+     * we indicate handler of errors, implementation of ResponseErrorHandler
+     */
     @Bean
     RestTemplate restTemplate() {
         RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
