@@ -18,20 +18,20 @@ public class MyExceptionHandler {
     @ExceptionHandler(value
             = {RuntimeException.class})
     public ResponseEntity<ErrorDTO> exceptRuntimeException(RuntimeException exception) {
-        List<String> messages = new ArrayList<>();
-        messages.add(exception.getMessage());
+
+        String message = exception.getMessage();
+
         return ResponseEntity
-                . status(500)
-                .body(new ErrorDTO(messages));
+                .status(500)
+                .body(new ErrorDTO(500, message));
     }
 
     @ExceptionHandler(value
             = {UserRuntimeException.class })
     public ResponseEntity<ErrorDTO> exceptUserRuntimeException(UserRuntimeException exception) {
-        List<String> messages = new ArrayList<>();
-        messages.add(exception.getMessage());
+        String message = exception.getMessage();
         return ResponseEntity
-                . status(500)
-                .body(new ErrorDTO(messages));
+                .status(500)
+                .body(new ErrorDTO(500, message));
     }
 }
