@@ -29,7 +29,7 @@ public class UserLinkServiceImpl implements UserLinkService {
         ResponseEntity<UserDTO[]> responseEntityFromBackend = restTemplate
                 .getForEntity(GET_ALL_USERS, UserDTO[].class);
         HttpStatusCode statusCode = responseEntityFromBackend.getStatusCode();
-
+        if (statusCode.is5xxServerError())
         UserDTO[] userDTOArray = responseEntityFromBackend.getBody();
 
 
