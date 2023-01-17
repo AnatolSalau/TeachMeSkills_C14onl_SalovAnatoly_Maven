@@ -21,7 +21,7 @@ public class MyExceptionHandler {
         List<String> messages = new ArrayList<>();
         messages.add(exception.getMessage());
         return ResponseEntity
-                . status(400)
+                . status(500)
                 .body(new ErrorDTO(messages));
     }
 
@@ -31,7 +31,7 @@ public class MyExceptionHandler {
         List<String> messages = new ArrayList<>();
         messages.add(exception.getMessage());
         return ResponseEntity
-                . status(400)
+                . status(500)
                 .body(new ErrorDTO(messages));
     }
 }
