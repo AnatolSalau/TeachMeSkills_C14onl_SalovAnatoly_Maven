@@ -19,8 +19,8 @@ public class UserLinkServiceImpl implements UserLinkService {
     private RestTemplate restTemplate;
 
     private final String GET_ALL_USERS = "http://127.0.0.1:8082/api/v2/user";
-    private final String GET_USER_BY_LOGIN = "http://127.0.0.1:8082/api/v2/user/userFromPostman";
-    private final String GET_USER_BY_ID = "http://127.0.0.1:8082/api/v2/user/id/a6b83e41-ed13-417f-aaeb-2548a1b289bd";
+    private final String GET_USER_BY_LOGIN = "http://127.0.0.1:8082/api/v2/user";
+    private final String GET_USER_BY_ID = "http://127.0.0.1:8082/api/v2/user/id";
     private final String SAVE_USER = "http://127.0.0.1:8082/api/v2/user";
 
     @Override
@@ -34,8 +34,10 @@ public class UserLinkServiceImpl implements UserLinkService {
 
     @Override
     public UserDTO getUserByLogin(String userLogin) {
-
-        return null;
+        ResponseEntity<UserDTO> responseEntityFromBackend = restTemplate
+                .getForEntity(GET_USER_BY_LOGIN + "/" + userLogin, UserDTO.class);
+        UserDTO userDTO = responseEntityFromBackend.getBody();
+        return userDTO;
     }
 
 
