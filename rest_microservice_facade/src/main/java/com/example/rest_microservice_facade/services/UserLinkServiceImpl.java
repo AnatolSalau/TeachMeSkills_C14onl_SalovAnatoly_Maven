@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,9 +25,11 @@ public class UserLinkServiceImpl implements UserLinkService {
 
     @Override
     public List<UserDTO> getAllUsers() {
-        ResponseEntity<UserDTO> forEntity = restTemplate
-                .getForEntity(GET_ALL_USERS, UserDTO.class);
-        return null;
+        ResponseEntity<UserDTO[]> responseEntityFromBackend = restTemplate
+                .getForEntity(GET_ALL_USERS, UserDTO[].class);
+        UserDTO[] userDTOArray = responseEntityFromBackend.getBody();
+
+        return Arrays.asList(userDTOArray);
     }
 
     @Override
