@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/api/v1/user")
+@RequestMapping(path = "/api/v2/user")
 public class UserController {
 
     @Autowired
@@ -31,6 +31,15 @@ public class UserController {
         UserDTO userDTO1 = userDBService.getUserDTOByLogin(userLogin);
 
         return ResponseEntity.ok(userDTO1);
+    }
+
+    @GetMapping(path = "/id/{userId}")
+    public ResponseEntity<UserDTO> getUserById(
+            @PathVariable(name = "userId")String userId
+    ) {
+        UserDTO userById = userDBService.getUserDTOById(UUID.fromString(userId));
+
+        return ResponseEntity.ok(userById);
     }
 
     @PostMapping()
