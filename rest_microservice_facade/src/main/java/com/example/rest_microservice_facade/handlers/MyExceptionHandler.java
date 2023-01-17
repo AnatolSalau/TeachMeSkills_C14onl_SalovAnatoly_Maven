@@ -1,7 +1,8 @@
 package com.example.rest_microservice_facade.handlers;
 
-import com.example.rest_microservice_userbackend.dto.ErrorDTO;
-import com.example.rest_microservice_userbackend.exceptions.UserRuntimeException;
+
+import com.example.rest_microservice_facade.dto.ErrorDTO;
+import com.example.rest_microservice_facade.exception.UserRuntimeException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

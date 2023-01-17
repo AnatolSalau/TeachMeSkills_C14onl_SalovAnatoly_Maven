@@ -2,6 +2,7 @@ package com.example.rest_microservice_facade.services;
 
 import com.example.rest_microservice_facade.dto.ErrorDTO;
 import com.example.rest_microservice_facade.dto.UserDTO;
+import com.example.rest_microservice_facade.exception.UserRuntimeException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -39,6 +40,8 @@ public class UserLinkServiceImpl implements UserLinkService {
         HttpStatusCode statusCode = responseEntityFromBackend.getStatusCode();
         if (statusCode.is5xxServerError()) {
             System.out.println(userDTOArray);
+            System.out.println(userDTOArray);
+            System.out.println();
         }
         return Arrays.asList(userDTOArray);
     }
