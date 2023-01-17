@@ -2,6 +2,7 @@ package com.example.rest_microservice_facade.services;
 
 import com.example.rest_microservice_facade.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -27,7 +28,10 @@ public class UserLinkServiceImpl implements UserLinkService {
     public List<UserDTO> getAllUsers() {
         ResponseEntity<UserDTO[]> responseEntityFromBackend = restTemplate
                 .getForEntity(GET_ALL_USERS, UserDTO[].class);
+        HttpStatusCode statusCode = responseEntityFromBackend.getStatusCode();
+
         UserDTO[] userDTOArray = responseEntityFromBackend.getBody();
+
 
         return Arrays.asList(userDTOArray);
     }
