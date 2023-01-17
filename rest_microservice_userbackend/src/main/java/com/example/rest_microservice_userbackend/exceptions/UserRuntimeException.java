@@ -1,5 +1,8 @@
 package com.example.rest_microservice_userbackend.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public class UserRuntimeException extends RuntimeException{
     private int statusCode;
     public UserRuntimeException(int statusCode, String message) {

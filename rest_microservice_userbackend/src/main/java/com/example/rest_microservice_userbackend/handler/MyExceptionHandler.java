@@ -29,9 +29,10 @@ public class MyExceptionHandler {
     @ExceptionHandler(value
             = {UserRuntimeException.class })
     public ResponseEntity<ErrorDTO> exceptUserRuntimeException(UserRuntimeException exception) {
+        int statusCode = exception.getStatusCode();
         String message = exception.getMessage();
         return ResponseEntity
                 .status(500)
-                .body(new ErrorDTO(500, message));
+                .body(new ErrorDTO(statusCode, message));
     }
 }
