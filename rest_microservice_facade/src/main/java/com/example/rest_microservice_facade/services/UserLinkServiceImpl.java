@@ -38,7 +38,7 @@ public class UserLinkServiceImpl implements UserLinkService {
         //Error handle
         HttpStatusCode statusCode = responseEntityFromBackend.getStatusCode();
         if (statusCode.is5xxServerError()) {
-            
+            System.out.println(userDTOArray);
         }
         return Arrays.asList(userDTOArray);
     }
