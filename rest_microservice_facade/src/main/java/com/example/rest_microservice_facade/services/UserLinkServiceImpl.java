@@ -1,6 +1,8 @@
 package com.example.rest_microservice_facade.services;
 
+import com.example.rest_microservice_facade.dto.ErrorDTO;
 import com.example.rest_microservice_facade.dto.UserDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Rest template for link with other microservice
@@ -18,6 +21,9 @@ import java.util.UUID;
 public class UserLinkServiceImpl implements UserLinkService {
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     private final String GET_ALL_USERS = "http://127.0.0.1:8082/api/v2/user";
     private final String GET_USER_BY_LOGIN = "http://127.0.0.1:8082/api/v2/user";
@@ -28,11 +34,12 @@ public class UserLinkServiceImpl implements UserLinkService {
     public List<UserDTO> getAllUsers() {
         ResponseEntity<UserDTO[]> responseEntityFromBackend = restTemplate
                 .getForEntity(GET_ALL_USERS, UserDTO[].class);
-        HttpStatusCode statusCode = responseEntityFromBackend.getStatusCode();
-        if (statusCode.is5xxServerError())
         UserDTO[] userDTOArray = responseEntityFromBackend.getBody();
-
-
+        //Error handle
+        HttpStatusCode statusCode = responseEntityFromBackend.getStatusCode();
+        if (statusCode.is5xxServerError()) {
+            
+        }
         return Arrays.asList(userDTOArray);
     }
 
