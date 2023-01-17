@@ -15,5 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 
 public class ErrorDTO {
-    private List<String> messages = new ArrayList<>();
+    private int statusCode;
+    private String messages;
 }

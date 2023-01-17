@@ -2,6 +2,7 @@ package com.example.rest_microservice_facade.handlers;
 
 
 import com.example.rest_microservice_facade.dto.ErrorDTO;
+import com.example.rest_microservice_facade.exception.UserRuntimeException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.client.ClientHttpResponse;
@@ -26,6 +27,7 @@ public class RestTemplateErrorHandler implements ResponseErrorHandler {
         InputStream body = response.getBody();
         byte[] bytes = body.readAllBytes();
         ErrorDTO errorDTO = objectMapper.readValue(bytes, ErrorDTO.class);
-
+        throw new UserRuntimeException(errorDTO.getStatusCode(),
+                errorDTO.getMessages());
     }
 }
