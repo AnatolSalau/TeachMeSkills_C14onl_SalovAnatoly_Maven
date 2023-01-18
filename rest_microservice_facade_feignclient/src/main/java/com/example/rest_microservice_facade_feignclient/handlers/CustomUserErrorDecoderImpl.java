@@ -1,5 +1,7 @@
 package com.example.rest_microservice_facade_feignclient.handlers;
 
+import com.example.rest_microservice_facade_feignclient.dto.ErrorDTO;
+import com.example.rest_microservice_facade_feignclient.dto.UserDTO;
 import com.example.rest_microservice_facade_feignclient.exception.UserRuntimeException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,9 +21,11 @@ public class CustomUserErrorDecoderImpl implements ErrorDecoder {
         try {
             InputStream body = response.body().asInputStream(); ;
             byte[] bytes = body.readAllBytes() ;
-            UserRuntimeException userRuntimeException = objectMapper
-                    .readValue(bytes, UserRuntimeException.class);
-            System.out.println(userRuntimeException);
+            ErrorDTO errorDTO = objectMapper
+                    .readValue(bytes, ErrorDTO.class);
+            UserRuntimeException userRuntimeException = new UserRuntimeException(
+                    errorDTO.getStatusCode(), errorDTO.getMessages()
+            );
             return  userRuntimeException;
         } catch (IOException e) {
             throw new UserRuntimeException(400,
