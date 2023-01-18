@@ -20,17 +20,17 @@ public class MyExceptionHandler {
     public ResponseEntity<ErrorDTO> exceptRuntimeException(RuntimeException exception) {
         String message = exception.getMessage();
         return ResponseEntity
-                . status(500)
+                .status(500)
                 .body(new ErrorDTO(500, message));
     }
 
     @ExceptionHandler(value
-            = {UserRuntimeException.class })
+            = {UserRuntimeException.class})
     public ResponseEntity<ErrorDTO> exceptUserRuntimeException(UserRuntimeException exception) {
         int statusCode = exception.getStatusCode();
         String message = exception.getMessage();
         return ResponseEntity
-                . status(500)
+                .status(500)
                 .body(new ErrorDTO(statusCode, message));
     }
 }

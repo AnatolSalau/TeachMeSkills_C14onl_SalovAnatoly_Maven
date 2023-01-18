@@ -14,7 +14,7 @@ import java.util.UUID;
 public class UserController {
 
     @Autowired
-    private  UserLinkServiceImpl userLinkService;
+    private UserLinkServiceImpl userLinkService;
 
     @GetMapping()
     public ResponseEntity<List<UserDTO>> getAllUsers() {
@@ -24,7 +24,7 @@ public class UserController {
 
     @GetMapping(path = "/{userLogin}")
     public ResponseEntity<UserDTO> getUserByLogin(
-            @PathVariable(name = "userLogin")String userLogin
+            @PathVariable(name = "userLogin") String userLogin
     ) {
         UserDTO userByLogin = userLinkService.getUserByLogin(userLogin);
 
@@ -33,7 +33,7 @@ public class UserController {
 
     @GetMapping(path = "/id/{userId}")
     public ResponseEntity<UserDTO> getUserById(
-            @PathVariable(name = "userId")String userId
+            @PathVariable(name = "userId") String userId
     ) {
         UserDTO userById = userLinkService.getUserById(UUID.fromString(userId));
 

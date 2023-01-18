@@ -14,44 +14,28 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
-bootWar {
-    archiveName 'springrestfacade.war'
-}
+
 repositories {
     mavenCentral()
 }
-//we must indicate version of SpringCloud to use OpenFeignClient
-/*
+
 ext {
-    set("springCloudVersion", "2021.0.3")
+    set('springCloudVersion', "2022.0.0")
 }
-*/
 
 dependencies {
-    //turn on actuator
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
-    //turn on open api for rest
-    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
-
-    //turn on hateoas
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hateoas
-    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
-
-    //we must indicate version of SpringCloud to use OpenFeignClient
-    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
-    //implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
-    providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    //providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 tasks.named('test') {

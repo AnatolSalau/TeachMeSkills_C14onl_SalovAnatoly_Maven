@@ -56,7 +56,7 @@ public class UserLinkServiceImpl implements UserLinkService {
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
         ResponseEntity<UserDTO> userDTOResponseEntity = restTemplate
-                .postForEntity(SAVE_USER, userDTO , UserDTO.class);
+                .postForEntity(SAVE_USER, userDTO, UserDTO.class);
         UserDTO userDTOFromDB = userDTOResponseEntity.getBody();
         return userDTOFromDB;
     }

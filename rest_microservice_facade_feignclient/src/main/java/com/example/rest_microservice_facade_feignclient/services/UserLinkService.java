@@ -7,9 +7,11 @@ import java.util.UUID;
 
 public interface UserLinkService {
     List<UserDTO> getAllUsers();
+
     UserDTO getUserByLogin(String userLogin);
 
     UserDTO getUserById(UUID id);
+
     UserDTO saveUser(UserDTO userDTO);
 
 }
