@@ -8,8 +8,23 @@
         <processorPath useClasspath="false">
           <entry name="C:/JAVA/gradle-7.5.1/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
         </processorPath>
-        <module name="rest_microservice_userbackend.main" />
+      </profile>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="lesson_23_classwork_javaee" />
+        <module name="rest_microservice_userbackend_feignlient" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="rest_microservice_userbackend.main" target="17" />
+      <module name="rest_microservice_userbackend.test" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="rest_microservice_userbackend_feignlient" options="-parameters" />
+    </option>
   </component>
 </project>

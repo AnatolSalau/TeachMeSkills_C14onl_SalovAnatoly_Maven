@@ -8,6 +8,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/rest_microservice_userbackend_feignlient/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
