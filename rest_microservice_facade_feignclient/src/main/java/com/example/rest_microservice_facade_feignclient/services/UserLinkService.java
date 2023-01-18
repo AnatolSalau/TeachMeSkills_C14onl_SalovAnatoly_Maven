@@ -13,5 +13,4 @@ public interface UserLinkService {
     UserDTO getUserById(UUID id);
 
     UserDTO saveUser(UserDTO userDTO);
-
 }

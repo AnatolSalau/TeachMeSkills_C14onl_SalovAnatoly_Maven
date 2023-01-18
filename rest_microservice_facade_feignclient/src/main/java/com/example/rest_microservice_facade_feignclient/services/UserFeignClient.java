@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * OpenFeignClient for connect with User microservice
+ */
 @FeignClient(
         name = "user-feign",
         url = "http://127.0.0.1:8082/api/v2/user/"
