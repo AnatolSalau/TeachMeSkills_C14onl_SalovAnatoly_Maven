@@ -8,13 +8,7 @@
         <processorPath useClasspath="false">
           <entry name="C:/JAVA/gradle-7.5.1/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
         </processorPath>
-      </profile>
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="lesson_23_classwork_javaee" />
-        <module name="rest_microservice_userbackend_feignlient" />
+        <module name="rest_microservice_userbackend_feignlient.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
