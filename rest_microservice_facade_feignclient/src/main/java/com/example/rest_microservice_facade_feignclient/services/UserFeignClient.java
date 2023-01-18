@@ -12,16 +12,16 @@ import java.util.UUID;
 
 @FeignClient(
         name = "user-feign",
-        url = "http://127.0.0.1:8082/api/v2/user"
+        url = "http://127.0.0.1:8082/api/v2/user/"
 )
 public interface UserFeignClient {
 
     @GetMapping()
     List<UserDTO> getAllUsers();
 
-    @GetMapping()
+    @GetMapping(path = "{userLogin}")
     UserDTO getUserByLogin(@PathVariable("userLogin")String userLogin);
-    @GetMapping(path = "/id")
+    @GetMapping(path = "id/{id}")
     UserDTO getUserById(@PathVariable("id")UUID id);
     @PostMapping()
     UserDTO saveUser(@RequestBody UserDTO userDTO);
