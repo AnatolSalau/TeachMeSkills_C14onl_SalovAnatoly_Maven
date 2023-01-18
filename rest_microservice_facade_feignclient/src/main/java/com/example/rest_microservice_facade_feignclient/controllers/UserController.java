@@ -2,7 +2,6 @@ package com.example.rest_microservice_facade_feignclient.controllers;
 
 import com.example.rest_microservice_facade_feignclient.dto.UserDTO;
 import com.example.rest_microservice_facade_feignclient.services.UserLinkFeignClientService;
-import com.example.rest_microservice_facade_feignclient.services.UserLinkServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

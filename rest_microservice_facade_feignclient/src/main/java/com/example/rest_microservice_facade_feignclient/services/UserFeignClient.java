@@ -1,5 +1,6 @@
 package com.example.rest_microservice_facade_feignclient.services;
 
+import com.example.rest_microservice_facade_feignclient.configurations.FeignClientConfiguration;
 import com.example.rest_microservice_facade_feignclient.dto.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,8 @@ import java.util.UUID;
  */
 @FeignClient(
         name = "user-feign",
-        url = "http://127.0.0.1:8082/api/v2/user/"
+        url = "http://127.0.0.1:8082/api/v2/user/",
+        configuration = FeignClientConfiguration.class
 )
 public interface UserFeignClient {
 
