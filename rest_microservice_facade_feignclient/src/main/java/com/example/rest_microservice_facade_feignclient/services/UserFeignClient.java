@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * OpenFeignClient for connect with User microservice
+ *  OpenFeignClient to connect with User microservice
  */
 @FeignClient(
         name = "user-feign",
