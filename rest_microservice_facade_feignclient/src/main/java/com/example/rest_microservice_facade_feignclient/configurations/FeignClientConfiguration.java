@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FeignClientConfiguration {
+    /**
+     * @return ErrorDecoder for handle exception
+     */
     @Bean
     ErrorDecoder errorDecoder() {
         return new CustomUserErrorDecoderImpl();
