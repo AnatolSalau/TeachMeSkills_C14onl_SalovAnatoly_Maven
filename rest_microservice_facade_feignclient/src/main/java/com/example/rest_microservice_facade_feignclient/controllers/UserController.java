@@ -1,6 +1,7 @@
 package com.example.rest_microservice_facade_feignclient.controllers;
 
 import com.example.rest_microservice_facade_feignclient.dto.UserDTO;
+import com.example.rest_microservice_facade_feignclient.services.UserLinkFeignClientService;
 import com.example.rest_microservice_facade_feignclient.services.UserLinkServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +15,11 @@ import java.util.UUID;
 public class UserController {
 
     @Autowired
-    private UserLinkServiceImpl userLinkService;
+    private UserLinkFeignClientService userLinkFeignClientService;
 
     @GetMapping()
     public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> allUsers = userLinkService.getAllUsers();
+        List<UserDTO> allUsers = userLinkFeignClientService.getAllUsers();
         return ResponseEntity.ok(allUsers);
     }
 
@@ -26,7 +27,7 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserByLogin(
             @PathVariable(name = "userLogin") String userLogin
     ) {
-        UserDTO userByLogin = userLinkService.getUserByLogin(userLogin);
+        UserDTO userByLogin = userLinkFeignClientService.getUserByLogin(userLogin);
 
         return ResponseEntity.ok(userByLogin);
     }
@@ -35,14 +36,14 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserById(
             @PathVariable(name = "userId") String userId
     ) {
-        UserDTO userById = userLinkService.getUserById(UUID.fromString(userId));
+        UserDTO userById = userLinkFeignClientService.getUserById(UUID.fromString(userId));
 
         return ResponseEntity.ok(userById);
     }
 
     @PostMapping()
     public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO) {
-        UserDTO userDTOFromDb = userLinkService.saveUser(userDTO);
+        UserDTO userDTOFromDb = userLinkFeignClientService.saveUser(userDTO);
         return ResponseEntity.ok(userDTOFromDb);
     }
 }
