@@ -87,6 +87,7 @@ public class InMemorySecurityConfiguration {
     @Value("${spring.websecurity.debug:false}")
     boolean webSecurityDebug;
 
+    //Add path to ignore authentication
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.debug(webSecurityDebug)
