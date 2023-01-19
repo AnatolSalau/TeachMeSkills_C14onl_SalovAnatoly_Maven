@@ -1,5 +1,7 @@
 package com.example.spring_security_jwt_without_oauth.configurations;
 
+import com.example.spring_security_jwt_without_oauth.handlers.CustomAccessDeniedHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 
 /**
  * Security configuration without DB in memory
@@ -24,6 +28,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class InMemorySecurityConfiguration {
 
+    @Autowired
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -73,14 +79,23 @@ public class InMemorySecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf().disable()
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers(HttpMethod.GET, "/", "/permitall/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/", "/permitall/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/users/").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/users/").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/admins/").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/admins/").hasRole("ADMIN")
-                        .anyRequest().denyAll())
+                .authorizeHttpRequests(requests -> {
+                    try {
+                        requests
+                                .requestMatchers(HttpMethod.GET, "/", "/permitall/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/", "/permitall/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/v1/users/").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/api/v1/users/").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/api/v1/admins/").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/api/v1/admins/").hasRole("ADMIN")
+                                .anyRequest().denyAll()
+                                .and()
+                                .exceptionHandling()
+                                .accessDeniedHandler(customAccessDeniedHandler);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e.getMessage());
+                    }
+                })
                 .httpBasic();
         return  httpSecurity.build();
     }
@@ -93,5 +108,10 @@ public class InMemorySecurityConfiguration {
         return (web) -> web.debug(webSecurityDebug)
                 .ignoring()
                 .requestMatchers("/ignoring/**", "/favicon.ico");
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
     }
 }
