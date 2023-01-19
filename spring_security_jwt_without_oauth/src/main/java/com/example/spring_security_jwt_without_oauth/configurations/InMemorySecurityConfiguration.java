@@ -2,6 +2,7 @@ package com.example.spring_security_jwt_without_oauth.configurations;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,9 +19,15 @@ import org.springframework.security.web.SecurityFilterChain;
 /**
  * Security configuration without DB in memory
  */
+@Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class InMemorySecurityConfiguration {
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
     //Create InMemoryUserDetailService which return users from memory
     @Bean
     public UserDetailsService userDetailsService(BCryptPasswordEncoder bCryptPasswordEncoder) {

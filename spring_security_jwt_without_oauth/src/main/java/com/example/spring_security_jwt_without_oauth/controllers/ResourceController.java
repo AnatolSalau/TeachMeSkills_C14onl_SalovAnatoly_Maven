@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/")
 public class ResourceController {
-    @GetMapping(path = "permitall/**")
+    @GetMapping()
     public ResponseEntity<String> getIndex() {
         return ResponseEntity.ok("Get index");
     }
