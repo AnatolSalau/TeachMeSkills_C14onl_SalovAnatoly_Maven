@@ -18,17 +18,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 
 /**
  * Security configuration without DB in memory
  */
-/*
-    @Configuration
-    @EnableWebSecurity
-    @EnableMethodSecurity
-*/
-public class InMemorySecurityConfiguration {
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
+public class InDBSecurityConfiguration {
 
     @Autowired
     private CustomAccessDeniedHandler customAccessDeniedHandler;
