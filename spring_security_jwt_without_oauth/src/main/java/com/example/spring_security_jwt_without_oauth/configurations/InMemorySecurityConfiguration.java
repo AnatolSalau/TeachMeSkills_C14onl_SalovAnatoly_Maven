@@ -76,11 +76,11 @@ public class InMemorySecurityConfiguration {
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers(HttpMethod.GET, "/", "/permitall/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/", "/permitall/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/users/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/users/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/users/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/users/**").hasRole("ADMIN")
-                        .anyRequest().permitAll())
+                        .requestMatchers(HttpMethod.GET, "/api/v1/users").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/admins").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/admins").hasRole("ADMIN")
+                        .anyRequest().denyAll())
                 .httpBasic();
         return  httpSecurity.build();
     }
@@ -91,6 +91,6 @@ public class InMemorySecurityConfiguration {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.debug(webSecurityDebug)
                 .ignoring()
-                .requestMatchers("ignoring/**", "/favicon.ico");
+                .requestMatchers("/ignoring/**", "/favicon.ico");
     }
 }
