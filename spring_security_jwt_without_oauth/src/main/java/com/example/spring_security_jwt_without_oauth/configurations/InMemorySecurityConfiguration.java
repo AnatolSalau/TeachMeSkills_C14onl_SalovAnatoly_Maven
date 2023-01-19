@@ -76,10 +76,10 @@ public class InMemorySecurityConfiguration {
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers(HttpMethod.GET, "/", "/permitall/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/", "/permitall/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/users").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/users").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/admins").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/admins").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/users/").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users/").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/admins/").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/admins/").hasRole("ADMIN")
                         .anyRequest().denyAll())
                 .httpBasic();
         return  httpSecurity.build();
