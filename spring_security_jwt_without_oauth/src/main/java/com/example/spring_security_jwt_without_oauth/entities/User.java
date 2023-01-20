@@ -3,6 +3,7 @@ package com.example.spring_security_jwt_without_oauth.entities;
 import com.example.spring_security_jwt_without_oauth.enums.RolesAll;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 
 @NoArgsConstructor
 @EqualsAndHashCode
+@Getter
 
 @Entity
 @Table(name = "users")
