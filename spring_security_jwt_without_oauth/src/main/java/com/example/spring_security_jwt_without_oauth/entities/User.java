@@ -1,5 +1,6 @@
 package com.example.spring_security_jwt_without_oauth.entities;
 
+import com.example.spring_security_jwt_without_oauth.enums.RolesAll;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -23,22 +24,24 @@ public class User {
     @Column(nullable = false)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     private String login;
-
     @Column(nullable = false)
     private String password;
 
-    @EqualsAndHashCode.Exclude
-    @ManyToMany(
-            cascade = {
-                    CascadeType.ALL,
-            },
+
+    @OneToMany(
+            orphanRemoval = true,
+            cascade ={ CascadeType.ALL},
             fetch = FetchType.EAGER
     )
+    @JoinColumn(name = "user_id")
+    @Column(nullable = false)
     private Set<Role> roles = new HashSet<>() ;
-    public User(String login, String password) {
+
+    public User(String login, String password, RolesAll role) {
         this.login = login;
         this.password = password;
+        this.roles.add(new Role(role));
     }
 }

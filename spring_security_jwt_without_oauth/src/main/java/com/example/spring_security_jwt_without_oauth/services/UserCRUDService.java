@@ -3,13 +3,14 @@ package com.example.spring_security_jwt_without_oauth.services;
 import com.example.spring_security_jwt_without_oauth.entities.User;
 import com.example.spring_security_jwt_without_oauth.exceptions.UserRuntimeException;
 import com.example.spring_security_jwt_without_oauth.repository.UserJpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class UserCRUDService {
-
+    @Autowired
     private UserJpaRepository userJpaRepository;
 
     public List<User> findAllUsers() {
@@ -24,6 +25,7 @@ public class UserCRUDService {
     }
 
     public User saveUser(User user) {
+        System.out.println(user);
         User savedUser = userJpaRepository.save(user);
         if (savedUser == null) {
             throw new UserRuntimeException(

@@ -1,4 +1,4 @@
-create table if not exists roles
+/*create table if not exists roles
 ( id bigint not null primary key,
   name varchar (255) not null
 );
@@ -15,9 +15,31 @@ create table if not exists users
 
 CREATE SEQUENCE IF NOT EXISTS users_id_seq
 start 1
+increment 1;*/
+CREATE SEQUENCE IF NOT EXISTS roles_id_seq
+start 1
 increment 1;
 
-insert into roles (id, name)
+CREATE SEQUENCE IF NOT EXISTS users_id_seq
+start 1
+increment 1;
+
+
+create table if not exists users
+(
+    id bigint not null primary key,
+    login varchar(255) unique not null,
+    password varchar(255) not null
+);
+
+create table if not exists roles
+(
+    id bigint not null primary key,
+    role varchar(255) not null,
+    user_id  bigint  references users
+);
+
+/*insert into roles (id, name)
 values (-1, 'ROLE_ADMIN'),
        (-2, 'ROLE_DOCTOR'),
        (-3, 'ROLE_USER');
@@ -27,4 +49,4 @@ values (-1, 'admin',
        (-2, 'doctor',
         '$2a$12$t3btj.mOyPWOlSsxvG4Ajev/y9nDunjwUa7Pp1CnIkDHN41ZwGbdW'),
        (-3, 'user',
-        '$2a$12$14MAJqLY1kmV7aLpaXaHwu1ILzl5hQHRuX6M5IA2dzB.PGQRmLwH6');
+        '$2a$12$14MAJqLY1kmV7aLpaXaHwu1ILzl5hQHRuX6M5IA2dzB.PGQRmLwH6');*/

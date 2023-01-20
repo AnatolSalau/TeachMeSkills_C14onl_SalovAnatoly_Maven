@@ -4,12 +4,13 @@ import com.example.spring_security_jwt_without_oauth.enums.RolesAll;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 @NoArgsConstructor
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "users")
+@Table(name = "roles")
 @SequenceGenerator(sequenceName = "roles_id_seq",
         name = "roles_id_seq", allocationSize = 1)
 public class Role {
@@ -21,8 +22,8 @@ public class Role {
     @Column(nullable = false)
     private String role;
 
-
     public Role(RolesAll role) {
         this.role = role.toString();
     }
+
 }
