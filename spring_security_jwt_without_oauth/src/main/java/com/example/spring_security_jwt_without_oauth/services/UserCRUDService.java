@@ -24,6 +24,17 @@ public class UserCRUDService {
         return allUsers;
     }
 
+    public User findUserByLogin(String login) {
+        User userByLogin = userJpaRepository.findUserByLogin(login);
+        if (userByLogin == null) {
+            throw new UserRuntimeException(
+                    500,
+                    ("Cant find user with login : " + login)
+            );
+        }
+        return userByLogin;
+    }
+
     public User saveUser(User user) {
         System.out.println(user);
         User savedUser = userJpaRepository.save(user);
