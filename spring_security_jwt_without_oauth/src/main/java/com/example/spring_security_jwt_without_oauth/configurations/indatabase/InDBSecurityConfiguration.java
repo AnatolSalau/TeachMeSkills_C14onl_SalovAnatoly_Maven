@@ -1,6 +1,7 @@
 package com.example.spring_security_jwt_without_oauth.configurations.indatabase;
 
 import com.example.spring_security_jwt_without_oauth.handlers.CustomAccessDeniedHandler;
+import com.example.spring_security_jwt_without_oauth.services.UserDetailslServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +29,9 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 public class InDBSecurityConfiguration {
 
     @Autowired
+    private UserDetailslServiceImpl userDetailslServiceImpl;
+
+    @Autowired
     private CustomAccessDeniedHandler customAccessDeniedHandler;
 
     @Bean
@@ -35,28 +39,10 @@ public class InDBSecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
     //Create InMemoryUserDetailService which return users from memory
-    @Bean
-    public UserDetailsService userDetailsService(BCryptPasswordEncoder bCryptPasswordEncoder) {
-        InMemoryUserDetailsManager inMemoryUserDetailsManager =
-                new InMemoryUserDetailsManager();
-        //Create user
-        inMemoryUserDetailsManager
-                .createUser(
-                        User.withUsername("user")
-                                .password(bCryptPasswordEncoder.encode("user"))
-                                .roles("USER")
-                                .build()
-                );
-        //Create admin
-        inMemoryUserDetailsManager
-                .createUser(
-                        User.withUsername("admin")
-                                .password(bCryptPasswordEncoder.encode("admin"))
-                                .roles("USER", "ADMIN")
-                                .build()
-                );
-        return inMemoryUserDetailsManager;
 
+    @Bean
+    public UserDetailsSe rvice userDetailsService() {
+        return userDetailslServiceImpl;
     }
 
     //Create AuthenticationManager which compare login and passwords
