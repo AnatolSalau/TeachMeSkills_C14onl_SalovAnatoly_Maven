@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -16,7 +18,9 @@ class UserCRUDServiceTest {
 
     @Test
     void findAllUsers() {
-
+        List<User> allUsers = userCRUDService.findAllUsers();
+        Assertions.assertThat(allUsers.size()).isEqualTo(1);
+        System.out.println(allUsers);
     }
 
     @Test
