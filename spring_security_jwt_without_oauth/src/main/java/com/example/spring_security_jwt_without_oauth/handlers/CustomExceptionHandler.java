@@ -1,6 +1,6 @@
 package com.example.spring_security_jwt_without_oauth.handlers;
 
-import com.example.spring_security_jwt_without_oauth.ErrorDTO;
+import com.example.spring_security_jwt_without_oauth.dto.ErrorDTO;
 import com.example.spring_security_jwt_without_oauth.exceptions.UserRuntimeException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

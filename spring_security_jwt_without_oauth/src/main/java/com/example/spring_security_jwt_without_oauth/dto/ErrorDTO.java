@@ -1,4 +1,4 @@
-package com.example.spring_security_jwt_without_oauth;
+package com.example.spring_security_jwt_without_oauth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.example.spring_security_jwt_without_oauth.configurations;
+package com.example.spring_security_jwt_without_oauth.configurations.inmemory;
 
 import com.example.spring_security_jwt_without_oauth.handlers.CustomAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +18,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 
 /**
  * Security configuration without DB in memory
  */
-@Configuration
-@EnableWebSecurity
-@EnableMethodSecurity
-public class InDBSecurityConfiguration {
+/*
+    @Configuration
+    @EnableWebSecurity
+    @EnableMethodSecurity
+*/
+public class InMemorySecurityConfiguration {
 
     @Autowired
     private CustomAccessDeniedHandler customAccessDeniedHandler;
