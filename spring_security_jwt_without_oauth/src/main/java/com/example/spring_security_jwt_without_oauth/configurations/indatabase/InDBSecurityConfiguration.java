@@ -41,7 +41,7 @@ public class InDBSecurityConfiguration {
     //Create InMemoryUserDetailService which return users from memory
 
     @Bean
-    public UserDetailsSe rvice userDetailsService() {
+    public UserDetailsService userDetailsService() {
         return userDetailslServiceImpl;
     }
 
