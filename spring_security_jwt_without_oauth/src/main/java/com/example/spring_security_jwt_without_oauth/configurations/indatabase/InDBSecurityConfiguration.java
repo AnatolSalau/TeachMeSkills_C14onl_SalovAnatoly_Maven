@@ -28,9 +28,11 @@ import org.springframework.security.web.access.AccessDeniedHandler;
  * Security configuration with DB
  */
 
+/*
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+*/
 
 public class InDBSecurityConfiguration {
 

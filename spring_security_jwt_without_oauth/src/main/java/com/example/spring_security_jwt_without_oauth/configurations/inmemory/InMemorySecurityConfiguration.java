@@ -23,11 +23,11 @@ import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 /**
  * Security configuration without DB in memory
  */
-/*
+
     @Configuration
     @EnableWebSecurity
     @EnableMethodSecurity
-    */
+
 public class InMemorySecurityConfiguration {
 
     @Autowired
@@ -92,14 +92,15 @@ public class InMemorySecurityConfiguration {
                                 .requestMatchers(HttpMethod.GET, "/api/v1/admins/").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.POST, "/api/v1/admins/").hasRole("ADMIN")
                                 .anyRequest().denyAll()
-                                .and()
-                                .exceptionHandling()
-                                .accessDeniedHandler(customAccessDeniedHandler);
+                                .and();
+/*                                .exceptionHandling()
+                                .accessDeniedHandler(customAccessDeniedHandler);*/
                     } catch (Exception e) {
                         throw new RuntimeException(e.getMessage());
                     }
                 })
-                .httpBasic();
+                //.httpBasic();
+                .formLogin();
         return  httpSecurity.build();
     }
     @Value("${spring.websecurity.debug:false}")
