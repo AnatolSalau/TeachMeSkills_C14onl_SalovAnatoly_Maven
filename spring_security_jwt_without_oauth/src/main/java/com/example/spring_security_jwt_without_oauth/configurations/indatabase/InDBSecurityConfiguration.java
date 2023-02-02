@@ -89,11 +89,13 @@ public class InDBSecurityConfiguration {
                                 //.and()
                                 //.exceptionHandling()
                                 //.accessDeniedHandler(customAccessDeniedHandler);
+
                     } catch (Exception e) {
                         throw new RuntimeException(e.getMessage());
                     }
                 })
-                .httpBasic();
+                //.httpBasic();
+                .formLogin();
         return  httpSecurity.build();
     }
     @Value("${spring.websecurity.debug:false}")
