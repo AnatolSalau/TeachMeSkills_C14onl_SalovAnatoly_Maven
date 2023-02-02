@@ -25,6 +25,10 @@ public class UserDetailslServiceImpl implements UserDetailsService {
                     ("Cant create userDetails in" + this.getClass().getSimpleName())
             );
         }
+        System.out.println("---------------------User details---------------------------");
+        System.out.println(userDetails);
+        System.out.println(userDetails.getUsername());
+        System.out.println(userDetails.getPassword());
         return userDetails;
     }
 }

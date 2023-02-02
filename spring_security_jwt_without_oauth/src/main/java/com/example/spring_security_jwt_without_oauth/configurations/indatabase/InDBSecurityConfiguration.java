@@ -18,6 +18,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -38,9 +40,18 @@ public class InDBSecurityConfiguration {
     @Autowired
     private CustomAccessDeniedHandler customAccessDeniedHandler;
 
+/*
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
+
         return new BCryptPasswordEncoder();
+    }
+    */
+
+    @Bean
+    public PasswordEncoder bCryptPasswordEncoder() {
+
+        return NoOpPasswordEncoder.getInstance();
     }
 
     @Bean
@@ -58,6 +69,8 @@ public class InDBSecurityConfiguration {
         return authenticationProvider;
     }
 
+
+
     //Chain of configuration, HTTP settings
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -72,10 +85,10 @@ public class InDBSecurityConfiguration {
                                 .requestMatchers(HttpMethod.POST, "/api/v1/users/").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers(HttpMethod.GET, "/api/v1/admins/").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.POST, "/api/v1/admins/").hasRole("ADMIN")
-                                .anyRequest().denyAll()
-                                .and()
-                                .exceptionHandling()
-                                .accessDeniedHandler(customAccessDeniedHandler);
+                                .anyRequest().denyAll();
+                                //.and()
+                                //.exceptionHandling()
+                                //.accessDeniedHandler(customAccessDeniedHandler);
                     } catch (Exception e) {
                         throw new RuntimeException(e.getMessage());
                     }
