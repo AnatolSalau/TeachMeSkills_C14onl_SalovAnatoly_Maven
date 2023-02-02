@@ -25,8 +25,9 @@ class UserCRUDServiceTest {
 
     @Test
     void saveUser() {
-        User newUser = new User("user", "user", RolesAll.USER);
-        User user = userCRUDService.saveUser(newUser);
-        Assertions.assertThat(user).isEqualTo(newUser);
+        //User newUser = new User("user", "user", RolesAll.USER);
+        User newAdmin = new User("admin", "admin", RolesAll.ADMIN);
+        User user = userCRUDService.saveUser(newAdmin);
+        Assertions.assertThat(user).isEqualTo(newAdmin);
     }
 }

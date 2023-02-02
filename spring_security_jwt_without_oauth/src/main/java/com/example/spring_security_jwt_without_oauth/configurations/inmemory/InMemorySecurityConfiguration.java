@@ -27,7 +27,7 @@ import org.springframework.security.web.access.AccessDeniedHandlerImpl;
     @Configuration
     @EnableWebSecurity
     @EnableMethodSecurity
-*/
+    */
 public class InMemorySecurityConfiguration {
 
     @Autowired

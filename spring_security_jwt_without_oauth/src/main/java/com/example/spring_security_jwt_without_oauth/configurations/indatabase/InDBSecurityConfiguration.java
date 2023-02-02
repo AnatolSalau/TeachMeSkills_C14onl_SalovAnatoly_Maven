@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,11 +23,13 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
- * Security configuration without DB in memory
+ * Security configuration with DB
  */
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+
 public class InDBSecurityConfiguration {
 
     @Autowired
@@ -38,7 +42,6 @@ public class InDBSecurityConfiguration {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    //Create InMemoryUserDetailService which return users from memory
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -47,17 +50,12 @@ public class InDBSecurityConfiguration {
 
     //Create AuthenticationManager which compare login and passwords
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity httpSecurity,
-                                                       BCryptPasswordEncoder bCryptPasswordEncoder,
-                                                       UserDetailsService userDetailsService)
+    public AuthenticationProvider authenticationManager()
         throws Exception {
-        AuthenticationManager authenticationManager = httpSecurity
-                .getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(bCryptPasswordEncoder)
-                .and()
-                .build();
-        return authenticationManager;
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService());
+        authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+        return authenticationProvider;
     }
 
     //Chain of configuration, HTTP settings
@@ -94,10 +92,5 @@ public class InDBSecurityConfiguration {
         return (web) -> web.debug(webSecurityDebug)
                 .ignoring()
                 .requestMatchers("/ignoring/**", "/favicon.ico");
-    }
-
-    @Bean
-    public AccessDeniedHandler accessDeniedHandler() {
-        return new CustomAccessDeniedHandler();
     }
 }
