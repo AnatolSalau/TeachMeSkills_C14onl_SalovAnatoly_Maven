@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @EqualsAndHashCode
-
 public class UserDetailsImpl implements UserDetails {
     private final String name;
     private final String password;

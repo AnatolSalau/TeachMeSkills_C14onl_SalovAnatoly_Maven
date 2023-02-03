@@ -53,13 +53,13 @@ public class InDBSecurityConfiguration {
 
     //Create AuthenticationManager which compare login and passwords
     @Bean
-    public AuthenticationProvider authenticationManager(UserDetailsService userDetailsService,
-                                                        PasswordEncoder bCryptPasswordEncoder )
+    public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailslServiceImpl userDetailService)
         throws Exception {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder);
-        return authenticationProvider;
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                .userDetailsService(userDetailService)
+                .passwordEncoder(bCryptPasswordEncoder)
+                .and()
+                .build();
     }
 
     //Chain of configuration, HTTP settings
