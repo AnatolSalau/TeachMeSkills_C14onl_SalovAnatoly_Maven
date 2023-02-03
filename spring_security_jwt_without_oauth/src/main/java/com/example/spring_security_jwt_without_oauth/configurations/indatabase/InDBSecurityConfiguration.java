@@ -28,11 +28,9 @@ import org.springframework.security.web.access.AccessDeniedHandler;
  * Security configuration with DB
  */
 
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-
 
 public class InDBSecurityConfiguration {
 
@@ -42,18 +40,10 @@ public class InDBSecurityConfiguration {
     @Autowired
     private CustomAccessDeniedHandler customAccessDeniedHandler;
 
-/*
+
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
-
         return new BCryptPasswordEncoder();
-    }
-    */
-
-    @Bean
-    public PasswordEncoder bCryptPasswordEncoder() {
-
-        return NoOpPasswordEncoder.getInstance();
     }
 
     @Bean
@@ -76,37 +66,30 @@ public class InDBSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .csrf().disable()
-                .authorizeHttpRequests(requests -> {
-                    try {
-                        requests
-                                .requestMatchers(HttpMethod.GET, "/", "/permitall/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/", "/permitall/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/v1/users/").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers(HttpMethod.POST, "/api/v1/users/").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers(HttpMethod.GET, "/api/v1/admins/").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.POST, "/api/v1/admins/").hasRole("ADMIN")
-                                .anyRequest().denyAll();
-                                //.and()
-                                //.exceptionHandling()
-                                //.accessDeniedHandler(customAccessDeniedHandler);
+                .csrf()
+                    .disable()
+                .authorizeHttpRequests()
+                    .requestMatchers(   "/",
+                                                "/permitall/**"
+                    )
+                    .permitAll()
+                .and()
+                .authorizeHttpRequests()
+                    .requestMatchers(   "/api/v1/users/",
+                                            "/api/v1/admins/"
+                    )
+                    .authenticated()
+                .and()
+                .formLogin()
+                .and();
 
-                    } catch (Exception e) {
-                        throw new RuntimeException(e.getMessage());
-                    }
-                })
-                //.httpBasic();
-                .formLogin();
         return  httpSecurity.build();
     }
     @Value("${spring.websecurity.debug:false}")
     boolean webSecurityDebug;
 
-    //Add path to ignore authentication
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.debug(webSecurityDebug)
-                .ignoring()
-                .requestMatchers("/ignoring/**", "/favicon.ico");
+        return (web) -> web.debug(webSecurityDebug);
     }
 }

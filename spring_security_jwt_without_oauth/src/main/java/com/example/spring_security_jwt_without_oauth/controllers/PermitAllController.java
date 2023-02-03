@@ -23,20 +23,20 @@ public class PermitAllController {
     public ResponseEntity<String> getPermitAll() {
         return ResponseEntity.ok("Get PermitAll");
     }
+
     @PostMapping(path = "permitall/**")
     public ResponseEntity<String> postPermitAll() {
         return ResponseEntity.ok("Post PermitAll");
     }
+
     @GetMapping(path = "ignoring/**")
     public ResponseEntity<String> getIgnoringAll() {
         return ResponseEntity.ok("Get Ignorin");
     }
+
     @PostMapping(path = "ignoring/**")
     public ResponseEntity<String> postIgnoringAll() {
         return ResponseEntity.ok("Post Ignorin");
     }
-    @GetMapping(path = "test/**")
-    public ResponseEntity<String> getTest() {
-        return ResponseEntity.ok("Get Test");
-    }
+
 }

@@ -114,8 +114,4 @@ public class InMemorySecurityConfiguration {
                 .requestMatchers("/ignoring/**", "/favicon.ico");
     }
 
-    @Bean
-    public AccessDeniedHandler accessDeniedHandler() {
-        return new CustomAccessDeniedHandler();
-    }
 }
