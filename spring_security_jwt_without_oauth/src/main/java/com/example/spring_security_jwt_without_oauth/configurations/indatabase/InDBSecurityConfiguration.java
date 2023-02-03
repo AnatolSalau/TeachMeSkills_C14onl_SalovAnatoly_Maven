@@ -79,9 +79,12 @@ public class InDBSecurityConfiguration {
                                             "/api/v1/admins/"
                     )
                     .authenticated()
+                .anyRequest().denyAll()
                 .and()
-                .formLogin()
-                .and();
+                .exceptionHandling()
+                    .accessDeniedHandler(customAccessDeniedHandler)
+                .and()
+                .formLogin();
 
         return  httpSecurity.build();
     }

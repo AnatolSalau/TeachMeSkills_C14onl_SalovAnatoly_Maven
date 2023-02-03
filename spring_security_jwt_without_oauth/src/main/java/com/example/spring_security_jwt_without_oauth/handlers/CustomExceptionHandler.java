@@ -16,7 +16,7 @@ public class CustomExceptionHandler {
         String message = exception.getMessage() ;
         return ResponseEntity
                 . status(500)
-                .body(new ErrorDTO(500, message)) ;
+                .body(new ErrorDTO(500, "CustomExceptionHandler exceptRuntimeException" + message)) ;
     }
     @ExceptionHandler(value
             = {UserRuntimeException. class})
@@ -27,6 +27,6 @@ public class CustomExceptionHandler {
         String message = exception.getMessage() ;
         return ResponseEntity
                 . status(500)
-                .body(new ErrorDTO(statusCode, message)) ;
+                .body(new ErrorDTO(statusCode, "CustomExceptionHandler exceptUserRuntimeException " + message)) ;
     }
 }

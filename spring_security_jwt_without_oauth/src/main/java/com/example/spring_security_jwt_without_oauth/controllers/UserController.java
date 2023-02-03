@@ -14,16 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @GetMapping()
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<String> getUser() {
 
         return ResponseEntity.ok("Get user");
     }
 
     @PostMapping()
-    @PreAuthorize("hasAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<String> postUser() {
-
         return ResponseEntity.ok("Post user");
     }
 }
