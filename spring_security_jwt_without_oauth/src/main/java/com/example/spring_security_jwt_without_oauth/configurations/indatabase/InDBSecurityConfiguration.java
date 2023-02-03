@@ -28,11 +28,11 @@ import org.springframework.security.web.access.AccessDeniedHandler;
  * Security configuration with DB
  */
 
-/*
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-*/
+
 
 public class InDBSecurityConfiguration {
 
@@ -63,15 +63,14 @@ public class InDBSecurityConfiguration {
 
     //Create AuthenticationManager which compare login and passwords
     @Bean
-    public AuthenticationProvider authenticationManager()
+    public AuthenticationProvider authenticationManager(UserDetailsService userDetailsService,
+                                                        PasswordEncoder bCryptPasswordEncoder )
         throws Exception {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder);
         return authenticationProvider;
     }
-
-
 
     //Chain of configuration, HTTP settings
     @Bean

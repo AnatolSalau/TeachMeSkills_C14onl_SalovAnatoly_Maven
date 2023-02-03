@@ -23,11 +23,11 @@ import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 /**
  * Security configuration without DB in memory
  */
-
+/*
     @Configuration
     @EnableWebSecurity
     @EnableMethodSecurity
-
+*/
 public class InMemorySecurityConfiguration {
 
     @Autowired
