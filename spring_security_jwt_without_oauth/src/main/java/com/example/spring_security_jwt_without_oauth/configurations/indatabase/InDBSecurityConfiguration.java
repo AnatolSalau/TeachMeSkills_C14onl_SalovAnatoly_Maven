@@ -1,5 +1,6 @@
 package com.example.spring_security_jwt_without_oauth.configurations.indatabase;
 
+import com.example.spring_security_jwt_without_oauth.filters.JWTFilter;
 import com.example.spring_security_jwt_without_oauth.handlers.CustomAccessDeniedHandler;
 import com.example.spring_security_jwt_without_oauth.services.UserDetailslServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,6 +25,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * Security configuration with DB
@@ -33,6 +36,9 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 @EnableMethodSecurity
 
 public class InDBSecurityConfiguration {
+
+    @Autowired
+    private JWTFilter jwtFilter;
 
     @Autowired
     private UserDetailslServiceImpl userDetailslServiceImpl;
@@ -70,9 +76,13 @@ public class InDBSecurityConfiguration {
                     .disable()
                 .authorizeHttpRequests()
                     .requestMatchers(   "/",
-                                                "/permitall/**"
+                                                "/permitall/**",
+                            "/authenticate/"
                     )
                     .permitAll()
+                .and()
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
                     .requestMatchers(   "/api/v1/users/",
@@ -84,7 +94,9 @@ public class InDBSecurityConfiguration {
                 .exceptionHandling()
                     .accessDeniedHandler(customAccessDeniedHandler)
                 .and()
-                .formLogin();
+                .addFilterBefore(jwtFilter,
+                        UsernamePasswordAuthenticationFilter.class);
+                //.formLogin();
         return  httpSecurity.build();
     }
     @Value("${spring.websecurity.debug:false}")

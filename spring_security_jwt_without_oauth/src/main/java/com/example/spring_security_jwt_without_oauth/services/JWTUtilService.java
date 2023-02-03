@@ -15,7 +15,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import io.jsonwebtoken.Jwts;
-
+/**
+    Service for creating JWT token
+ */
 @Service
 public class JWTUtilService {
 
