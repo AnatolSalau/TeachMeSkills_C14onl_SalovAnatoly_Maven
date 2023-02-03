@@ -85,7 +85,6 @@ public class InDBSecurityConfiguration {
                     .accessDeniedHandler(customAccessDeniedHandler)
                 .and()
                 .formLogin();
-
         return  httpSecurity.build();
     }
     @Value("${spring.websecurity.debug:false}")
