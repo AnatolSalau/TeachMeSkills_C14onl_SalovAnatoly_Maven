@@ -7,6 +7,7 @@ import com.example.spring_security_jwt_without_oauth.services.JWTUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,7 +26,9 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class AuthenticationController {
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthenticationProvider authenticationProvider;
+    //Or we can can use AuthenticationManager
+    //private AuthenticationManager authenticationManager;
     @Autowired
     private JWTUtilService jwtTokenUtil;
 
@@ -34,7 +37,7 @@ public class AuthenticationController {
     public AuthResponse createAuthenticationToken(@RequestBody AuthRequest authRequest) {
         Authentication authentication;
         try {
-            authentication = authenticationManager
+            authentication = authenticationProvider
                     .authenticate(
                             new UsernamePasswordAuthenticationToken(
                                     authRequest.getName(),

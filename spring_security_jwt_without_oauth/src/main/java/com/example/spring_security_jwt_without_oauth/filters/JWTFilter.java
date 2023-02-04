@@ -21,8 +21,6 @@ import java.util.List;
 public class JWTFilter extends OncePerRequestFilter {
     @Autowired
     private JWTUtilService jwtUtil;
-    @Autowired
-    private UserDetailslServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)

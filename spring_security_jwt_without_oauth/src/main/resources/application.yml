@@ -4,7 +4,8 @@ spring:
   sql:
     init:
       mode: always
-
+  websecurity:
+      debug: true
 
 logging:
   level:

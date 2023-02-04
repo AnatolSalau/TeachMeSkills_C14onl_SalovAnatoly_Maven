@@ -28,7 +28,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * Security configuration with DB
+ * Spring 3.0 Security configuration with DB
  */
 
 @Configuration
@@ -36,6 +36,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 
 public class InDBSecurityConfiguration {
+    @Value("${spring.websecurity.debug}")
+    boolean webSecurityDebug;
 
     @Autowired
     private JWTFilter jwtFilter;
@@ -57,8 +59,9 @@ public class InDBSecurityConfiguration {
         return userDetailslServiceImpl;
     }
 
-    //Create AuthenticationManager which compare login and passwords
-    @Bean
+    //Create AuthenticationManager
+    //@Bean
+    /*
     public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailslServiceImpl userDetailService)
         throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
@@ -66,6 +69,16 @@ public class InDBSecurityConfiguration {
                 .passwordEncoder(bCryptPasswordEncoder)
                 .and()
                 .build();
+    }
+    */
+
+    //Create AuthenticationProvider which compare login and passwords
+    @Bean
+    public AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService());
+        authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+        return authenticationProvider;
     }
 
     //Chain of configuration, HTTP settings
@@ -77,7 +90,7 @@ public class InDBSecurityConfiguration {
                 .authorizeHttpRequests()
                     .requestMatchers(   "/",
                                                 "/permitall/**",
-                            "/authenticate/"
+                                                "/authenticate/"
                     )
                     .permitAll()
                 .and()
@@ -86,7 +99,7 @@ public class InDBSecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                     .requestMatchers(   "/api/v1/users/",
-                                            "/api/v1/admins/"
+                                                "/api/v1/admins/"
                     )
                     .authenticated()
                 .anyRequest().denyAll()
@@ -99,9 +112,7 @@ public class InDBSecurityConfiguration {
                 //.formLogin();
         return  httpSecurity.build();
     }
-    @Value("${spring.websecurity.debug:false}")
-    boolean webSecurityDebug;
-
+//  Security debugging is enabled.
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.debug(webSecurityDebug);

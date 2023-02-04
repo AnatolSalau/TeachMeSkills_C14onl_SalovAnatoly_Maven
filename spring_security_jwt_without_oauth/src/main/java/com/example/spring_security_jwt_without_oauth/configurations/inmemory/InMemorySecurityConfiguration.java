@@ -21,7 +21,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 
 /**
- * Security configuration without DB in memory
+ * Spring 3.0 Security configuration without DB, in memory
  */
 /*
     @Configuration
