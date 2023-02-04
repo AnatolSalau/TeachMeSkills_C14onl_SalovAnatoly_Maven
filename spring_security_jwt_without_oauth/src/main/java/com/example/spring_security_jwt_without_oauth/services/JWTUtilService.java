@@ -35,6 +35,7 @@ public class JWTUtilService {
                         .getAuthorities()
                         .stream().map(GrantedAuthority::getAuthority)
                         .collect(Collectors.joining(","));
+        //Add claim authorities to ou jwt token
         claims.put("authorities", commaSeparatedListOfAuthorities);
         String token = createToken(claims, userDetails.getUsername());
         return token;
@@ -44,6 +45,7 @@ public class JWTUtilService {
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
+
     //fetching authorities (inside token validation)
     public String extractAuthorities(String token) {
         Function<Claims, String> claimsListFunction = claims -> {

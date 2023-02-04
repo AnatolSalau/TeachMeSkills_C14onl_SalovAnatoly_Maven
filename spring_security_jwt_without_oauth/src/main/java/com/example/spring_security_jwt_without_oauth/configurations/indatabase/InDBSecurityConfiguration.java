@@ -28,7 +28,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * Spring 3.0 Security configuration with DB
+ * Spring 3.0 Security configuration with DB with JwtFilter (JWT token)
  */
 
 @Configuration
@@ -47,7 +47,6 @@ public class InDBSecurityConfiguration {
 
     @Autowired
     private CustomAccessDeniedHandler customAccessDeniedHandler;
-
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

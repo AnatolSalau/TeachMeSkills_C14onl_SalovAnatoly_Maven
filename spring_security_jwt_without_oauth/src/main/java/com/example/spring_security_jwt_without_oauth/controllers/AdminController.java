@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /*
 "/api/v1/users/**"
- */
+*/
 @RestController
 @RequestMapping(path = "/api/v1/admins/")
 public class AdminController {

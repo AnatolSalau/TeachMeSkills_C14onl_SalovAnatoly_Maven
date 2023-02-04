@@ -14,6 +14,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Custom implementation of UserDetails
+ */
 @EqualsAndHashCode
 public class UserDetailsImpl implements UserDetails {
     private final String name;
