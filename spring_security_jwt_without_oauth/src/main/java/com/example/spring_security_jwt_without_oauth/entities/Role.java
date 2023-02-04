@@ -27,5 +27,4 @@ public class Role {
     public Role(RolesAll role) {
         this.role = role.toString();
     }
-
 }
