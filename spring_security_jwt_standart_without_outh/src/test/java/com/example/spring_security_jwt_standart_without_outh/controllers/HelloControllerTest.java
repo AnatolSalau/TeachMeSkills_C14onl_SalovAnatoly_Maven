@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -35,6 +36,8 @@ public class HelloControllerTest {
                         .with(httpBasic("user", "password")))
                 .andExpect(status().isOk())
                 .andReturn();
+        RequestPostProcessor requestPostProcessor = httpBasic("user", "password");
+        System.out.println(requestPostProcessor);
 
         String token = result.getResponse().getContentAsString();
 

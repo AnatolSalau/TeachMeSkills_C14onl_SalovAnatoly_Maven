@@ -1,18 +1,37 @@
 spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  profiles:
+    active: development
+  # Security configuration
+  #security:
+    #user:
+      #name: user
+      #password: user
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: sA#259979148307
+  # JPA properties
   jpa:
+    hibernate:
+      ddl-auto: update # When you launch the application for the first time - switch "none" at "create"
     show-sql: true
-  sql:
-    init:
-      mode: always
-  websecurity:
-      debug: true
-
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+# Logger configuration
 logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
   level:
-    org:
-      springframework:
-        security: DEBUG
-jwt:
-  sessionTime: 120000000
-  secret: secret_key
+    org.springframework: info
+    org.hibernate: debug
+# Server configuration
+server:
+  port: 8080 #set your port
 

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * A controller for the token resource.
  *
- * @author Josh Cummings
  */
 @RestController
 public class TokenController {
