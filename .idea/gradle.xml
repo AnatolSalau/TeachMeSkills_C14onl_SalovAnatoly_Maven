@@ -33,6 +33,16 @@
           </set>
         </option>
       </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/spring_secutiry_standart_jwt_db_without_outh" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../JAVA/gradle-7.5.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/spring_secutiry_standart_jwt_db_without_outh" />
+          </set>
+        </option>
+      </GradleProjectSettings>
     </option>
   </component>
 </project>
