@@ -39,7 +39,6 @@ import org.springframework.security.web.SecurityFilterChain;
  * @author Josh Cummings
  */
 @Configuration
-@ComponentScan(basePackages = "com.example.spring_security_jwt_standart_without_outh")
 public class SecurityJWTConfig {
 
     @Value("${jwt.public.key}")

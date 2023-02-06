@@ -4,11 +4,12 @@ import com.example.spring_security_jwt_standart_without_outh.entities.User;
 import com.example.spring_security_jwt_standart_without_outh.exceptions.UserRuntimeException;
 import com.example.spring_security_jwt_standart_without_outh.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Component
 public class UserCRUDService {
     @Autowired
     private UserJpaRepository userJpaRepository;
