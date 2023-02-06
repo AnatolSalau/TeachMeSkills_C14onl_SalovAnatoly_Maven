@@ -55,13 +55,17 @@ public class SecurityJWTConfig {
                         .anyRequest().authenticated()
                 )
                 .csrf((csrf) -> csrf.ignoringRequestMatchers("/token"))
+
                 .httpBasic(Customizer.withDefaults())
+
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                /*
                 .exceptionHandling((exceptions) -> exceptions
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
                         .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
                 );
+                */
         // @formatter:on
         return http.build();
     }
@@ -76,8 +80,6 @@ public class SecurityJWTConfig {
         );
         // @formatter:on
     }
-
-
 
     @Bean
     JwtDecoder jwtDecoder() {
