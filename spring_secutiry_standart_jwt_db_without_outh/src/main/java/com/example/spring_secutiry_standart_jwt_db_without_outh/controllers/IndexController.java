@@ -1,8 +1,14 @@
 package com.example.spring_secutiry_standart_jwt_db_without_outh.controllers;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A controller for the hello resource.
@@ -12,6 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
     @GetMapping("/")
     public String hello(Authentication authentication) {
-        return "Hello, " + authentication.getName() + "!";
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        List<String> authoritiesList = authorities.stream()
+                .map(element -> new String())
+                .collect(Collectors.toList());
+        System.out.println();
+        return "Hello, name : " + authentication.getName() + " , "
+                + authoritiesList;
     }
 }
