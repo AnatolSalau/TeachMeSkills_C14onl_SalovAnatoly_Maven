@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * A controller for the token resource.
- *
+ * /token - Header: Authorization : Basic dXNlcjpwYXNzd29yZA==
  */
 @RestController
 public class TokenController {

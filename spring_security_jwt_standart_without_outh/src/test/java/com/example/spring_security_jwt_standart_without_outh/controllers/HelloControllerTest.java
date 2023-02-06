@@ -1,7 +1,7 @@
 package com.example.spring_security_jwt_standart_without_outh.controllers;
 
 
-import com.example.spring_security_jwt_standart_without_outh.configurations.RestConfig;
+import com.example.spring_security_jwt_standart_without_outh.configurations.SecurityJWTConfig;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Josh Cummings
  */
 @WebMvcTest({ HelloController.class, TokenController.class })
-@Import(RestConfig.class)
+@Import(SecurityJWTConfig.class)
 public class HelloControllerTest {
 
     @Autowired
