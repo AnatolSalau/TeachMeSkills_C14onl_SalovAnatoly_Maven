@@ -33,16 +33,16 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
- * Security configuration for the main application.
+ * Security configuration with Spring Standart JWT token
  *
- * @author Josh Cummings
  */
 @Configuration
 public class SecurityJWTConfig {
-
+    //RSAPublicKey
     @Value("${jwt.public.key}")
     RSAPublicKey key;
 
+    //RSAPrivateKey
     @Value("${jwt.private.key}")
     RSAPrivateKey priv;
 

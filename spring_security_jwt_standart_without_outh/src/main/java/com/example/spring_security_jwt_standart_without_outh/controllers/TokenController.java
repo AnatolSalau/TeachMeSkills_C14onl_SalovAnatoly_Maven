@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * A controller for the token resource.
+ * return JWT token
  * /token - Header: Authorization : Basic dXNlcjpwYXNzd29yZA==
  */
 @RestController
@@ -24,12 +25,17 @@ public class TokenController {
 
     @PostMapping("/token")
     public String token(Authentication authentication) {
+        //Obtains the current instant from the system clock.
         Instant now = Instant.now();
+
+        // value in ms - the end of token
         long expiry = 36000L;
         // @formatter:off
+        //Get all authorities (roles)
         String scope = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(" "));
+        //Create claims
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(now)
@@ -38,6 +44,7 @@ public class TokenController {
                 .claim("scope", scope)
                 .build();
         // @formatter:on
+        //Create token with claims
         return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 
