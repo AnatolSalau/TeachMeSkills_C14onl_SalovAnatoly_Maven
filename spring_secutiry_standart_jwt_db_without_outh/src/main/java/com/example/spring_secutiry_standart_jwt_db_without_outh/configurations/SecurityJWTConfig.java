@@ -84,16 +84,17 @@ public class SecurityJWTConfig {
                 .requestMatchers(
                         "/users/",
                         "/admins/",
-                        "/token"
+                        "/token",
+                        "/info"
                 )
                 .authenticated()
-                .anyRequest().authenticated()
+                .anyRequest().denyAll()
                 .and()
                 .csrf((csrf) -> csrf.ignoringRequestMatchers("/token"))
 
                 .httpBasic(Customizer.withDefaults())
 
-                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+                //.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement(
                         (session) -> session.sessionCreationPolicy(
                                 SessionCreationPolicy.STATELESS)
@@ -117,7 +118,7 @@ public class SecurityJWTConfig {
         return new InMemoryUserDetailsManager(
                 User.withUsername("user")
                         .password("{noop}password")
-                        .authorities("SCOPE_user")
+                        .authorities("USER")
                         .build()
         );
         // @formatter:on

@@ -10,9 +10,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -43,6 +45,7 @@ public class JWTFilter extends OncePerRequestFilter {
         String username = null;
         String jwt = null;
         Jwt decodedJwt = null;
+        SecurityContext context = SecurityContextHolder.getContext();
         //Cut prefix bearer if it not null and start with Bearer
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
@@ -53,17 +56,26 @@ public class JWTFilter extends OncePerRequestFilter {
             username = decodedJwt.getClaim("name");
             System.out.println(username);
         }
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null
+        ) {
 
             String commaSeparatedListOfAuthorities = decodedJwt.getClaimAsString("authorities");
             System.out.println(commaSeparatedListOfAuthorities);
             List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(commaSeparatedListOfAuthorities);
-            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                    new UsernamePasswordAuthenticationToken(
-                            username, null, authorities);
-            System.out.println(usernamePasswordAuthenticationToken);
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+
+            JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(
+                    decodedJwt, authorities, username);
+            System.out.println(jwtAuthenticationToken);
+
+            System.out.println(context);
+            context.setAuthentication(jwtAuthenticationToken);
+            System.out.println(context);
+            filterChain.doFilter(request, response);
         }
-        filterChain.doFilter(request, response);
+         else {
+            System.out.println(context);
+            filterChain.doFilter(request, response);
+        }
+
     }
 }
