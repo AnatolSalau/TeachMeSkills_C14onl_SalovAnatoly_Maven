@@ -2,11 +2,16 @@ package com.example.spring_secutiry_standart_jwt_db_without_outh.controllers;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,14 +21,36 @@ import java.util.stream.Stream;
  */
 @RestController
 public class IndexController {
+
     @GetMapping("/")
-    public String hello(Authentication authentication) {
+    public Map<String, Object> getPrincipalInfo(Authentication authentication, JwtAuthenticationToken principal) {
+
+        List<String> authoritiesJWT = principal.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         List<String> authoritiesList = authorities.stream()
                 .map(element -> new String())
                 .collect(Collectors.toList());
-        System.out.println();
-        return "Hello, name : " + authentication.getName() + " , "
-                + authoritiesList;
+
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication1 = context.getAuthentication();
+        String contextName = authentication1.getName();
+        Collection<? extends GrantedAuthority> authorities1 = authentication1.getAuthorities();
+        List<String> authorities1List = authorities.stream()
+                .map(element -> new String())
+                .collect(Collectors.toList());
+
+        Map<String, Object> info = new HashMap<>();
+        info.put(" JWT name", principal.getName());
+        info.put("JWT authorities", authoritiesJWT);
+        info.put("JWT tokenAttributes", principal.getTokenAttributes());
+        info.put("Authentication name", authentication.getName());
+        info.put("Authentication authoritiesList ", authoritiesList);
+        info.put("contextName ", contextName);
+        info.put("ContextHolder authoritiesList ", authorities1List);
+        return info;
     }
 }

@@ -1,15 +1,19 @@
 package com.example.spring_secutiry_standart_jwt_db_without_outh.configurations;
 
+import com.example.spring_secutiry_standart_jwt_db_without_outh.filters.JWTFilter;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,12 +22,14 @@ import org.springframework.security.config.annotation.web.configurers.oauth2.ser
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -48,6 +54,11 @@ public class SecurityJWTConfig {
     @Value("${jwt.private.key}")
     RSAPrivateKey priv;
 
+    @Bean
+    public JWTFilter jwtFilter(JwtDecoder jwtDecoder, AuthenticationManager authenticationManager) {
+        return new JWTFilter(jwtDecoder,authenticationManager);
+    };
+
     // Security debugging is enabled.
     @Bean
     public WebSecurityCustomizer
@@ -57,7 +68,9 @@ public class SecurityJWTConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   AuthenticationManager authenticationManager,
+                                                   JwtDecoder jwtDecoder) throws Exception {
         // @formatter:off
         http
                 .authorizeHttpRequests()
@@ -70,7 +83,8 @@ public class SecurityJWTConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(
                         "/users/",
-                        "/admins/"
+                        "/admins/",
+                        "/token"
                 )
                 .authenticated()
                 .anyRequest().authenticated()
@@ -80,7 +94,14 @@ public class SecurityJWTConfig {
                 .httpBasic(Customizer.withDefaults())
 
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .sessionManagement(
+                        (session) -> session.sessionCreationPolicy(
+                                SessionCreationPolicy.STATELESS)
+                                .and()
+                                .addFilterBefore(jwtFilter(jwtDecoder,
+                                                authenticationManager),
+                                        UsernamePasswordAuthenticationFilter.class)
+                );
                 /*
                 .exceptionHandling((exceptions) -> exceptions
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
@@ -96,10 +117,22 @@ public class SecurityJWTConfig {
         return new InMemoryUserDetailsManager(
                 User.withUsername("user")
                         .password("{noop}password")
-                        .authorities("USER")
+                        .authorities("SCOPE_user")
                         .build()
         );
         // @formatter:on
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity httpSecurity,
+                                                       UserDetailsService userDetailsService)
+            throws Exception {
+        AuthenticationManager authenticationManager = httpSecurity
+                .getSharedObject(AuthenticationManagerBuilder.class)
+                .userDetailsService(userDetailsService)
+                .and()
+                .build();
+        return authenticationManager;
     }
 
     @Bean

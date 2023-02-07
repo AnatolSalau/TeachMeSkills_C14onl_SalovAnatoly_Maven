@@ -23,10 +23,10 @@ create table if not exists roles
 );
 
 
-insert into users(id, login, password) values (-1, 'user' , '$2a$12$6BlCjcTXmS/3IfcSiNI2COpDKk8LEqKr7PXcv9GJuLWgJfIXhGvRC' ) ,
-                                             (-2, 'doctor' ,'$2a$12$Hrm75q6NsauybkERr3Kz9eKX1JzIm2FaGMpRmg9t7HizfnPoqVG/2' ) ,
-                                            (-3, 'admin' , '$2a$12$6aZWlxR/7WmzEobBqezqh.uYXjXdV0VCpO2FZVRXB/Pl9gD5D.qiC' ) ;
+insert into users(id, login, password) values (1, 'user' , '$2a$12$sU2TvDP.zj7P5vYooJNNwubl1CavXS0sTJycyrA2SgHCCWCdO3mwu' ) ,
+                                             (2, 'doctor' ,'$2a$12$Hrm75q6NsauybkERr3Kz9eKX1JzIm2FaGMpRmg9t7HizfnPoqVG/2' ) ,
+                                            (3, 'admin' , '$2a$12$O56yvyUr4weCFGPcgiKhKu6wFu//fEjbzdRnM1ZQp3HkEkGfg9Q5.' ) ;
 
-insert into roles(id, role) values (-1, 'USER' ) ,
-                                    (-2, 'DOCTOR' ) ,
-                                    (-3, 'ADMIN' ) ;
+insert into roles(id, role, user_id ) values (1, 'USER', 1 ) ,
+                                    (2, 'DOCTOR', 1 ) ,
+                                    (3, 'ADMIN', 1 ) ;

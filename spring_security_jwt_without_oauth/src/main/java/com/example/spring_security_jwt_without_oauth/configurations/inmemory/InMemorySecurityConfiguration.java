@@ -59,7 +59,6 @@ public class InMemorySecurityConfiguration {
                                 .build()
                 );
         return inMemoryUserDetailsManager;
-
     }
 
     //Create AuthenticationManager which compare login and passwords

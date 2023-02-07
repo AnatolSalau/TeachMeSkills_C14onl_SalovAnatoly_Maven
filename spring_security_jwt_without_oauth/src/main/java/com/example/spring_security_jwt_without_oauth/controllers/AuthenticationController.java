@@ -52,6 +52,7 @@ public class AuthenticationController {
         // when creating a token, the username is put in it as a Subject claim(claim subject)
         // and the list of authorities as a custom claim(claim authorities)
         String jwt = jwtTokenUtil.generateToken((UserDetailsImpl) authentication.getPrincipal());
+        System.out.println(jwt);
         return new AuthResponse(jwt);
     }
 }
