@@ -120,11 +120,13 @@ public class SecurityJWTConfig {
     }
     */
 
+    // Decored for jwt
     @Bean
     JwtDecoder jwtDecoder() {
         return NimbusJwtDecoder.withPublicKey(this.key).build();
     }
 
+    // Encoder for jwt
     @Bean
     JwtEncoder jwtEncoder() {
         JWK jwk = new RSAKey.Builder(this.key).privateKey(this.priv).build();
