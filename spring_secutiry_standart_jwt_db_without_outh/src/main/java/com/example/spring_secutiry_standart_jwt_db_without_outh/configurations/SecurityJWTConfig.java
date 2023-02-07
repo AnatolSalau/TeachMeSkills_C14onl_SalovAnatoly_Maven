@@ -55,8 +55,8 @@ public class SecurityJWTConfig {
     RSAPrivateKey priv;
 
     @Bean
-    public JWTFilter jwtFilter(JwtDecoder jwtDecoder, AuthenticationManager authenticationManager) {
-        return new JWTFilter(jwtDecoder,authenticationManager);
+    public JWTFilter jwtFilter(JwtDecoder jwtDecoder) {
+        return new JWTFilter(jwtDecoder);
     };
 
     // Security debugging is enabled.
@@ -69,7 +69,6 @@ public class SecurityJWTConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
-                                                   AuthenticationManager authenticationManager,
                                                    JwtDecoder jwtDecoder) throws Exception {
         // @formatter:off
         http
@@ -99,8 +98,7 @@ public class SecurityJWTConfig {
                         (session) -> session.sessionCreationPolicy(
                                 SessionCreationPolicy.STATELESS)
                                 .and()
-                                .addFilterBefore(jwtFilter(jwtDecoder,
-                                                authenticationManager),
+                                .addFilterBefore(jwtFilter(jwtDecoder),
                                         UsernamePasswordAuthenticationFilter.class)
                 );
                 /*
@@ -122,18 +120,6 @@ public class SecurityJWTConfig {
                         .build()
         );
         // @formatter:on
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity httpSecurity,
-                                                       UserDetailsService userDetailsService)
-            throws Exception {
-        AuthenticationManager authenticationManager = httpSecurity
-                .getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(userDetailsService)
-                .and()
-                .build();
-        return authenticationManager;
     }
 
     @Bean

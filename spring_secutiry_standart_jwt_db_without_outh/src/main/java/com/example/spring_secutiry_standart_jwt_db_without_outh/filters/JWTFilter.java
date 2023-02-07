@@ -28,9 +28,8 @@ public class JWTFilter extends OncePerRequestFilter {
 
     private AuthenticationManager authenticationManager;
 
-    public JWTFilter(JwtDecoder jwtDecoder, AuthenticationManager authenticationManager) {
+    public JWTFilter(JwtDecoder jwtDecoder) {
         this.jwtDecoder = jwtDecoder;
-        this.authenticationManager = authenticationManager;
     }
 
     @Override
