@@ -1,6 +1,9 @@
 package com.example.spring_secutiry_standart_jwt_db_without_outh.configurations;
 
 import com.example.spring_secutiry_standart_jwt_db_without_outh.filters.JWTFilter;
+import com.example.spring_secutiry_standart_jwt_db_without_outh.repository.UserJpaRepository;
+import com.example.spring_secutiry_standart_jwt_db_without_outh.services.UserCRUDService;
+import com.example.spring_secutiry_standart_jwt_db_without_outh.services.UserDetailslServiceImpl;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -11,23 +14,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -74,8 +73,7 @@ public class SecurityJWTConfig {
         http
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/permitall/**",
-                        "/users/"
+                        "/permitall/**"
                 )
                 .permitAll()
                 .and()
@@ -90,10 +88,7 @@ public class SecurityJWTConfig {
                 .anyRequest().denyAll()
                 .and()
                 .csrf((csrf) -> csrf.ignoringRequestMatchers("/token"))
-
                 .httpBasic(Customizer.withDefaults())
-
-                //.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement(
                         (session) -> session.sessionCreationPolicy(
                                 SessionCreationPolicy.STATELESS)
@@ -110,6 +105,8 @@ public class SecurityJWTConfig {
         // @formatter:on
         return http.build();
     }
+    /*
+    //In memory UserDetailService
     @Bean
     UserDetailsService users() {
         // @formatter:off
@@ -121,6 +118,7 @@ public class SecurityJWTConfig {
         );
         // @formatter:on
     }
+    */
 
     @Bean
     JwtDecoder jwtDecoder() {
@@ -133,5 +131,16 @@ public class SecurityJWTConfig {
         JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
         return new NimbusJwtEncoder(jwks);
     }
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
+    @Bean
+    public AuthenticationProvider authenticationProvider(UserDetailslServiceImpl userDetailsService){
+        DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+        return authenticationProvider;
+    }
 }
