@@ -19,3 +19,12 @@ logging:
     org:
       springframework:
         security: DEBUG
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-alias: bootsecurity
+    key-store: spring_security_https/src/main/resources/bootsecurity.p12
+    key-store-type: PKCS12
+    key-store-password: 123456789
+    key-password: 123456789
