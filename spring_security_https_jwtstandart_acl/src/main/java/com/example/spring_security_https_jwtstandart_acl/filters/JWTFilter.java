@@ -51,7 +51,6 @@ public class JWTFilter extends OncePerRequestFilter {
                   //if the signature has expired, then ExpiredJwtException
                   decodedJwt = jwtDecoder.decode(jwt) ;
                   username = decodedJwt.getClaim("name") ;
-                  System. out.println(username) ;
             }
             //Set Authentication in context
             if (username != null &&

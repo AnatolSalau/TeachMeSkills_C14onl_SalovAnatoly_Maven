@@ -137,8 +137,6 @@ public class JWTSecurityConfiguration {
                   .accessDeniedHandler(customAccessDeniedHandler)
                   .and()
                   .addFilterBefore(jwtFilter(jwtDecoder),
-                        UsernamePasswordAuthenticationFilter. class) ;
-            //.formLogin();
             return httpSecurity.build() ;
       }
       //Encoder for encode passwords from DB
