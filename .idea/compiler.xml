@@ -2,14 +2,33 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="lesson_22_classwork_servlets" />
-        <module name="lesson_22_homework_servlets" />
-        <module name="lesson_23_classwork_javaee" />
-      </profile>
+      <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="asunchronius_programming" target="17" />
+      <module name="bit_operations" target="17" />
+      <module name="lesson18_multithreading" target="17" />
+      <module name="lesson29_spring_aop" target="17" />
+      <module name="lesson37_classwork_spring_data_jpa" target="17" />
+      <module name="lesson38classworkspringdatajpa" target="17" />
+      <module name="lesson44springsecurity" target="17" />
+      <module name="lesson46_spring_security_fly_db" target="17" />
+      <module name="lesson49_testing" target="17" />
+      <module name="lesson_23_classwork_javaee" target="17" />
+      <module name="rest_microservice_facade_feignclient" target="17" />
+      <module name="rest_microservice_userbackend_feignlient" target="17" />
+      <module name="security_example_1" target="17" />
+      <module name="spring_data_jpa_flydb_postgres" target="17" />
+      <module name="spring_rest" target="17" />
+      <module name="spring_security" target="17" />
+      <module name="spring_security_https" target="17" />
+      <module name="spring_security_https.main" target="17" />
+      <module name="spring_security_https.test" target="17" />
+      <module name="spring_security_jwt_without_oauth" target="17" />
+      <module name="springboot_asynchronius" target="17" />
+      <module name="sql_postgres_spring_flydb" target="17" />
+      <module name="stream_api" target="17" />
+      <module name="tomcatdeploy" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
