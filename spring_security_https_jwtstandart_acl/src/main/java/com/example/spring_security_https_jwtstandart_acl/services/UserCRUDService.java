@@ -1,10 +1,10 @@
-package services;
+package com.example.spring_security_https_jwtstandart_acl.services;
 
-import entities.User;
-import exceptions.UserRuntimeException;
+import com.example.spring_security_https_jwtstandart_acl.entities.User;
+import com.example.spring_security_https_jwtstandart_acl.exceptions.UserRuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.UserJpaRepository;
+import com.example.spring_security_https_jwtstandart_acl.repositories.UserJpaRepository;
 
 import java.util.List;
 
@@ -44,4 +44,4 @@ public class UserCRUDService {
             return savedUser;
       }
 }
-}
+

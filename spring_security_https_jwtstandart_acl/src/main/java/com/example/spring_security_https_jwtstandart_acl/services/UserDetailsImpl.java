@@ -1,6 +1,6 @@
-package services;
+package com.example.spring_security_https_jwtstandart_acl.services;
 
-import entities.User;
+import com.example.spring_security_https_jwtstandart_acl.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

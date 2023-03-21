@@ -1,4 +1,4 @@
-package exceptions;
+package com.example.spring_security_https_jwtstandart_acl.exceptions;
 
 public class UserRuntimeException extends RuntimeException{
       private int statusCode;

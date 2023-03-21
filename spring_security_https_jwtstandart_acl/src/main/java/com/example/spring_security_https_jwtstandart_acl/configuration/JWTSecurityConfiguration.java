@@ -1,12 +1,14 @@
-package configuration;
+package com.example.spring_security_https_jwtstandart_acl.configuration;
 
+import com.example.spring_security_https_jwtstandart_acl.services.UserDetailslServiceImpl;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
-import filters.JWTFilter;
+import com.example.spring_security_https_jwtstandart_acl.filters.JWTFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +27,6 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import services.UserDetailslServiceImpl;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -34,7 +35,10 @@ import java.security.interfaces.RSAPublicKey;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class JWTConfiguration {
+public class JWTSecurityConfiguration {
+
+      @Autowired
+      UserDetailslServiceImpl userDetailslService;
 
       @Value("${websecurity.debug}")
       boolean webSecurityDebug;
@@ -50,8 +54,7 @@ public class JWTConfiguration {
       @Bean
       public WebSecurityCustomizer
       webSecurityCustomizer() {
-            return (web) ->
-                  web.debug(webSecurityDebug) ;
+            return (web) -> web.debug(webSecurityDebug) ;
       }
 
       // Filter for
@@ -76,8 +79,7 @@ public class JWTConfiguration {
       }
 
       @Bean
-      public SecurityFilterChain securityFilterChain(HttpSecurity http,
-                                                     JwtDecoder jwtDecoder)
+      public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtDecoder jwtDecoder)
             throws Exception {
             // @formatter:off
             http
@@ -117,8 +119,7 @@ public class JWTConfiguration {
       }
 
       @Bean
-      public AuthenticationProvider
-      authenticationProvider(UserDetailslServiceImpl userDetailsService){
+      public AuthenticationProvider authenticationProvider(UserDetailslServiceImpl userDetailsService){
             DaoAuthenticationProvider authenticationProvider=new
                   DaoAuthenticationProvider() ;
             authenticationProvider.setUserDetailsService(userDetailsService) ;

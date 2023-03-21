@@ -1,9 +1,9 @@
-package services;
+package com.example.spring_security_https_jwtstandart_acl.services;
 
-import entities.User;
-import exceptions.UserRuntimeException;
+import com.example.spring_security_https_jwtstandart_acl.entities.User;
+import com.example.spring_security_https_jwtstandart_acl.exceptions.UserRuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
-import
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;

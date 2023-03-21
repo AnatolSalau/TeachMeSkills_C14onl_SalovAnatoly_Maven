@@ -1,6 +1,6 @@
-package repositories;
+package com.example.spring_security_https_jwtstandart_acl.repositories;
 
-import entities.User;
+import com.example.spring_security_https_jwtstandart_acl.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

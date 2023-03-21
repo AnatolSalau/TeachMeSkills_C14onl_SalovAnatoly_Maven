@@ -1,7 +1,7 @@
-package entities;
+package com.example.spring_security_https_jwtstandart_acl.entities;
 
 
-import enums.RolesAll;
+import com.example.spring_security_https_jwtstandart_acl.enums.RolesAll;
 import jakarta.persistence.*;
 
 import java.util.Objects;
