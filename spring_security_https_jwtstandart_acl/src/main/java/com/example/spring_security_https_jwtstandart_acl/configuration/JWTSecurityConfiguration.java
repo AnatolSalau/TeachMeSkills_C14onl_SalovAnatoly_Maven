@@ -78,23 +78,22 @@ public class JWTSecurityConfiguration {
             return new NimbusJwtEncoder(jwks) ;
       }
 
-      @Bean
+/*      @Bean
       public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtDecoder jwtDecoder)
             throws Exception {
             // @formatter:off
             http
                   .authorizeHttpRequests()
                   .requestMatchers(
-                        "/permitall/**"
+                        "/info"
                   )
                   .permitAll()
                   .and()
                   .authorizeHttpRequests()
                   .requestMatchers(
-                        "/users/",
-                        "/admins/",
-                        "/token",
-                        "/info"
+                        "/api/v1/users/",
+                        "/api/v1/admins/",
+                        "/token"
                   )
                   .authenticated()
                   .anyRequest().denyAll()
@@ -110,8 +109,38 @@ public class JWTSecurityConfiguration {
                   );
             // @formatter:on
             return http.build() ;
-      }
+      }*/
 
+      //Chain of configuration, HTTP settings
+      @Bean
+      public SecurityFilterChain filterChain(HttpSecurity httpSecurity, JwtDecoder jwtDecoder) throws
+            Exception {
+            httpSecurity
+                  .csrf((csrf) -> csrf.ignoringRequestMatchers("/token"))
+                  .authorizeHttpRequests()
+                  .requestMatchers( "/"
+                  )
+                  .permitAll()
+                  .and()
+                  .sessionManagement()
+                  .sessionCreationPolicy(SessionCreationPolicy. STATELESS)
+                  .and()
+                  .authorizeHttpRequests()
+                  .requestMatchers(
+                        "/api/v1/users/",
+                        "/api/v1/admins/"
+                  )
+                  .authenticated()
+                  .anyRequest().denyAll()
+                  .and()
+                  .exceptionHandling()
+                  .accessDeniedHandler(customAccessDeniedHandler)
+                  .and()
+                  .addFilterBefore(jwtFilter(jwtDecoder),
+                        UsernamePasswordAuthenticationFilter. class) ;
+            //.formLogin();
+            return httpSecurity.build() ;
+      }
       //Encoder for encode passwords from DB
       @Bean
       public BCryptPasswordEncoder bCryptPasswordEncoder() {
