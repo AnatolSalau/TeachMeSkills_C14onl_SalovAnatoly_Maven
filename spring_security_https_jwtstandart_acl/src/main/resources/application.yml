@@ -1,30 +1,37 @@
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
+   jpa:
       hibernate:
-        show_sql: true
-        format_sql: true
-  sql:
-    init:
-      mode: always
-  datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: sA#259979148307
+         ddl-auto: update
+      properties:
+         hibernate:
+            show_sql: true
+            format_sql: true
+   sql:
+      init:
+         mode: always
+   datasource:
+      url: jdbc:postgresql://localhost:5432/postgres
+      driver-class-name: org.postgresql.Driver
+      username: postgres
+      password: sA#259979148307
 logging:
-  level:
-    org:
-      springframework:
-        security: DEBUG
+   level:
+      org:
+         springframework:
+            security: DEBUG
 server:
-  port: 8443
-  ssl:
-    enabled: true
-    key-alias: bootsecurity
-    key-store: spring_security_https_jwtstandart_acl/src/main/resources/bootsecurity.p12
-    key-store-type: PKCS12
-    key-store-password: 123456789
-    key-password: 123456789
+   port: 8443
+   ssl:
+      enabled: true
+      key-alias: bootsecurity
+      key-store: classpath:bootsecurity.p12
+      key-store-type: PKCS12
+      key-store-password: 123456789
+      key-password: 123456789
+jwt:
+   private:
+      key: classpath:app.key
+   public:
+      key: classpath:app.pub
+websecurity:
+   debug: true
