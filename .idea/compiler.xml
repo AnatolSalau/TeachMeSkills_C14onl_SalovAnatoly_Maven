@@ -20,9 +20,6 @@
       <module name="spring_data_jpa_flydb_postgres" target="17" />
       <module name="spring_rest" target="17" />
       <module name="spring_security" target="17" />
-      <module name="spring_security_https" target="17" />
-      <module name="spring_security_https.main" target="17" />
-      <module name="spring_security_https.test" target="17" />
       <module name="spring_security_jwt_without_oauth" target="17" />
       <module name="springboot_asynchronius" target="17" />
       <module name="sql_postgres_spring_flydb" target="17" />

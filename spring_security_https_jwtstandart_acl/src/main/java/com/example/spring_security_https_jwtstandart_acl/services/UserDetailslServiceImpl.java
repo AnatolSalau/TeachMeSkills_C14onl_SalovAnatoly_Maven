@@ -2,6 +2,7 @@ package com.example.spring_security_https_jwtstandart_acl.services;
 
 import com.example.spring_security_https_jwtstandart_acl.entities.User;
 import com.example.spring_security_https_jwtstandart_acl.exceptions.CustomRuntimeException;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,7 +21,7 @@ public class UserDetailslServiceImpl implements UserDetailsService {
             UserDetailsImpl userDetails = new UserDetailsImpl(userByLogin) ;
             if (userDetails == null) {
                   throw new CustomRuntimeException(
-                        500,
+                        HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                         ("Cant create userDetails in" +
                               this.getClass().getSimpleName())
                   ) ;

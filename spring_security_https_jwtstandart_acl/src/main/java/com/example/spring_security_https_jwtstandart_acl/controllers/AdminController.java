@@ -13,27 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/*
-"/api/v1/users/**"
-*/
 @RestController
 @RequestMapping(path = "/api/v1/admins")
 public class AdminController {
-    @Autowired
-    private UserJpaRepository userJpaRepository;
+      @Autowired
+      private UserJpaRepository userJpaRepository;
 
-    @GetMapping()
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<List<User>> getUser() {
-        List<User> all = userJpaRepository.findAll();
-        return ResponseEntity
-              . status(HttpServletResponse.SC_OK)
-              .body(all) ;
-    }
+      @GetMapping()
+      @PreAuthorize("hasAuthority('ADMIN')")
+      public ResponseEntity<List<User>> getUser() {
+            List<User> all = userJpaRepository.findAll();
+            return ResponseEntity
+                  .status(HttpServletResponse.SC_OK)
+                  .body(all);
+      }
 
-    @PostMapping()
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<String> postAdmin() {
-        return ResponseEntity.ok("Post admin");
-    }
+      @PostMapping()
+      @PreAuthorize("hasAuthority('ADMIN')")
+      public ResponseEntity<String> postAdmin() {
+            return ResponseEntity.ok("Post admin");
+      }
 }

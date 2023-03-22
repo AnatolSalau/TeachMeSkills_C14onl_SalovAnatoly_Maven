@@ -26,18 +26,20 @@ import java.util.List;
 @Component
 public class JWTFilter extends OncePerRequestFilter {
       private JwtDecoder jwtDecoder;
+
       public JWTFilter(JwtDecoder jwtDecoder) {
-            this. jwtDecoder = jwtDecoder;
+            this.jwtDecoder = jwtDecoder;
       }
+
       @Override
       protected void doFilterInternal(HttpServletRequest request,
                                       HttpServletResponse response,
                                       FilterChain filterChain)
-            throws ServletException, IOException
-      {
+            throws ServletException, IOException {
             //Get header Authorization from request
             final String authorizationHeader = request
-                  .getHeader("Authorization") ;
+                  .getHeader("Authorization");
+            //Print decoded Base authentication in console
             if (authorizationHeader != null && authorizationHeader.startsWith("Basic ")) {
                   Base64.Decoder decoder = Base64.getDecoder();
                   String originalString = authorizationHeader.substring(6);
@@ -50,36 +52,35 @@ public class JWTFilter extends OncePerRequestFilter {
             String jwt = null;
             Jwt decodedJwt = null;
             //Get SecurityContext
-            SecurityContext context = SecurityContextHolder. getContext() ;
+            SecurityContext context = SecurityContextHolder.getContext();
             //Cut prefix bearer if it not null and start with Bearer
             if (authorizationHeader != null &&
                   authorizationHeader.startsWith("Bearer ")) {
-                  jwt = authorizationHeader.substring(7) ;
+                  jwt = authorizationHeader.substring(7);
                   //if the signature does not match the calculated one, then SignatureException
                   //if the signature is incorrect (not parsed), then MalformedJwtException
                   //if the signature has expired, then ExpiredJwtException
-                  decodedJwt = jwtDecoder.decode(jwt) ;
-                  username = decodedJwt.getClaim("name") ;
+                  decodedJwt = jwtDecoder.decode(jwt);
+                  username = decodedJwt.getClaim("name");
             }
             //Set Authentication in context
             if (username != null &&
-                  SecurityContextHolder. getContext().getAuthentication() == null
+                  SecurityContextHolder.getContext().getAuthentication() == null
             ) {
                   String commaSeparatedListOfAuthorities =
-                        decodedJwt.getClaimAsString("authorities") ;
-                  System. out.println(commaSeparatedListOfAuthorities) ;
+                        decodedJwt.getClaimAsString("authorities");
+                  System.out.println(commaSeparatedListOfAuthorities);
                   List<GrantedAuthority> authorities =
-                        AuthorityUtils. commaSeparatedStringToAuthorityList(commaSeparatedListOfAuthorities) ;
+                        AuthorityUtils.commaSeparatedStringToAuthorityList(commaSeparatedListOfAuthorities);
                   //Create JwtAuthenticationToken
                   JwtAuthenticationToken jwtAuthenticationToken = new
                         JwtAuthenticationToken(
-                        decodedJwt, authorities, username) ;
+                        decodedJwt, authorities, username);
                   //Add authorities
-                  context.setAuthentication(jwtAuthenticationToken) ;
-                  filterChain.doFilter(request, response) ;
-            }
-            else {
-                  System. out.println(context) ;
+                  context.setAuthentication(jwtAuthenticationToken);
+                  filterChain.doFilter(request, response);
+            } else {
+                  System.out.println(context);
                   filterChain.doFilter(request, response);
             }
       }

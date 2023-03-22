@@ -13,28 +13,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/*
-"/api/v1/users/**"
- */
 @RestController
 @RequestMapping(path = "/api/v1/users")
 public class UserController {
 
-    @Autowired
-    UserJpaRepository userJpaRepository;
+      @Autowired
+      UserJpaRepository userJpaRepository;
 
-    @GetMapping()
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public ResponseEntity<List<User>> getUser() {
-        List<User> all = userJpaRepository.findAll();
-        return ResponseEntity
-              . status(HttpServletResponse.SC_OK)
-              .body(all) ;
-    }
+      @GetMapping()
+      @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
+      public ResponseEntity<List<User>> getUser() {
+            List<User> all = userJpaRepository.findAll();
+            return ResponseEntity
+                  .status(HttpServletResponse.SC_OK)
+                  .body(all);
+      }
 
-    @PostMapping()
-    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
-    public ResponseEntity<String> postUser() {
-        return ResponseEntity.ok("Post user");
-    }
+      @PostMapping()
+      @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
+      public ResponseEntity<String> postUser() {
+            return ResponseEntity.ok("Post user");
+      }
 }

@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * SpringSecurity exception handler for authentication by JwtToken
+ */
 @Component
 public class CustomAuthenticationExceptionHandler implements AuthenticationEntryPoint {
       ObjectMapper objectMapper = new ObjectMapper();

@@ -2,6 +2,7 @@ package com.example.spring_security_https_jwtstandart_acl.services;
 
 import com.example.spring_security_https_jwtstandart_acl.entities.User;
 import com.example.spring_security_https_jwtstandart_acl.exceptions.CustomRuntimeException;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.spring_security_https_jwtstandart_acl.repositories.UserJpaRepository;
@@ -16,7 +17,7 @@ public class UserCRUDService {
             List<User> allUsers = userJpaRepository.findAll() ;
             if(allUsers.isEmpty() || allUsers == null) {
                   throw new CustomRuntimeException(
-                        500,
+                        HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                         "users table is empty"
                   ) ;
             }
@@ -26,7 +27,7 @@ public class UserCRUDService {
             User userByLogin = userJpaRepository.findUserByLogin(login) ;
             if (userByLogin == null) {
                   throw new CustomRuntimeException(
-                        500,
+                        HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                         ("Cant find user with login : " + login)
                   ) ;
             }
@@ -37,7 +38,7 @@ public class UserCRUDService {
             User savedUser = userJpaRepository.save(user) ;
             if (savedUser == null) {
                   throw new CustomRuntimeException(
-                        500,
+                        HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                         "Saved user is null"
                   ) ;
             }

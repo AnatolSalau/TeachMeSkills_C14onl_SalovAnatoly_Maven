@@ -1,5 +1,6 @@
 package com.example.spring_security_https_jwtstandart_acl.configuration;
 
+import com.example.spring_security_https_jwtstandart_acl.filters.JWTFilter;
 import com.example.spring_security_https_jwtstandart_acl.handlers.CustomAccessDeniedHandler;
 import com.example.spring_security_https_jwtstandart_acl.handlers.CustomAuthenticationExceptionHandler;
 import com.example.spring_security_https_jwtstandart_acl.services.UserDetailslServiceImpl;
@@ -9,7 +10,6 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
-import com.example.spring_security_https_jwtstandart_acl.filters.JWTFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -27,8 +27,6 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
-import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -64,7 +62,7 @@ public class JWTSecurityConfiguration {
       @Bean
       public WebSecurityCustomizer
       webSecurityCustomizer() {
-            return (web) -> web.debug(webSecurityDebug) ;
+            return (web) -> web.debug(webSecurityDebug);
       }
 
       // Filter for
@@ -76,31 +74,27 @@ public class JWTSecurityConfiguration {
       // Decoder for jwt
       @Bean
       JwtDecoder jwtDecoder() {
-            return NimbusJwtDecoder. withPublicKey(this. key).build() ;
+            return NimbusJwtDecoder.withPublicKey(this.key).build();
       }
 
       // Encoder for jwt
       @Bean
       JwtEncoder jwtEncoder() {
-            JWK jwk = new RSAKey.Builder(this.key).privateKey(this.priv).build() ;
+            JWK jwk = new RSAKey.Builder(this.key).privateKey(this.priv).build();
             JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new
-                  JWKSet(jwk)) ;
-            return new NimbusJwtEncoder(jwks) ;
+                  JWKSet(jwk));
+            return new NimbusJwtEncoder(jwks);
       }
-/*
-      //Chain of configuration, HTTP settings
+
       @Bean
-      public SecurityFilterChain filterChain(HttpSecurity httpSecurity, JwtDecoder jwtDecoder) throws
-            Exception {
-            httpSecurity
-                  .csrf((csrf) -> csrf.ignoringRequestMatchers("/authenticate"))
+      public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                     JwtDecoder jwtDecoder) throws Exception {
+            http
                   .authorizeHttpRequests()
-                  .requestMatchers( "/"
+                  .requestMatchers(
+                        "/"
                   )
                   .permitAll()
-                  .and()
-                  .sessionManagement()
-                  .sessionCreationPolicy(SessionCreationPolicy. STATELESS)
                   .and()
                   .authorizeHttpRequests()
                   .requestMatchers(
@@ -111,63 +105,35 @@ public class JWTSecurityConfiguration {
                   .authenticated()
                   .anyRequest().denyAll()
                   .and()
-                  .exceptionHandling()
-                  .accessDeniedHandler(customAccessDeniedHandler)
-                  .and()
-                  .addFilterBefore(jwtFilter(jwtDecoder),UsernamePasswordAuthenticationFilter.class);
-            return httpSecurity.build() ;
-      }
-*/
-@Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http,
-                                               JwtDecoder jwtDecoder) throws Exception {
-      // @formatter:off
-      http
-            .authorizeHttpRequests()
-            .requestMatchers(
-                  "/"
-            )
-            .permitAll()
-            .and()
-            .authorizeHttpRequests()
-            .requestMatchers(
-                  "/api/v1/users",
-                  "/api/v1/admins",
-                  "/authenticate"
-            )
-            .authenticated()
-            .anyRequest().denyAll()
-            .and()
-            .csrf((csrf) -> csrf.ignoringRequestMatchers("/authenticate"))
-            .httpBasic(Customizer.withDefaults())
-            .sessionManagement(
-                  (session) -> session.sessionCreationPolicy(
-                              SessionCreationPolicy.STATELESS)
-                        .and()
-                        .addFilterBefore(jwtFilter(jwtDecoder),
-                              UsernamePasswordAuthenticationFilter.class)
-            )
-            .exceptionHandling((exceptions) -> exceptions
-                  .authenticationEntryPoint(authenticationExceptionHandler)
-                  .accessDeniedHandler(customAccessDeniedHandler)
-            );
+                  .csrf((csrf) -> csrf.ignoringRequestMatchers("/authenticate"))
+                  .httpBasic(Customizer.withDefaults())
+                  .sessionManagement(
+                        (session) -> session.sessionCreationPolicy(
+                                    SessionCreationPolicy.STATELESS)
+                              .and()
+                              .addFilterBefore(jwtFilter(jwtDecoder),
+                                    UsernamePasswordAuthenticationFilter.class)
+                  )
+                  .exceptionHandling((exceptions) -> exceptions
+                        .authenticationEntryPoint(authenticationExceptionHandler)
+                        .accessDeniedHandler(customAccessDeniedHandler)
+                  );
 
-      // @formatter:on
-      return http.build();
-}
+            return http.build();
+      }
 
       //Encoder for encode passwords from DB
       @Bean
       public BCryptPasswordEncoder bCryptPasswordEncoder() {
-            return new BCryptPasswordEncoder() ;
+            return new BCryptPasswordEncoder();
       }
 
       @Bean
-      public AuthenticationProvider authenticationProvider(UserDetailslServiceImpl userDetailsService){
-            DaoAuthenticationProvider authenticationProvider=new
-                  DaoAuthenticationProvider() ;
-            authenticationProvider.setUserDetailsService(userDetailsService) ;
-            authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder()) ;
+      public AuthenticationProvider authenticationProvider(UserDetailslServiceImpl userDetailsService) {
+            DaoAuthenticationProvider authenticationProvider = new
+                  DaoAuthenticationProvider();
+            authenticationProvider.setUserDetailsService(userDetailsService);
+            authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
             return authenticationProvider;
       }
 }

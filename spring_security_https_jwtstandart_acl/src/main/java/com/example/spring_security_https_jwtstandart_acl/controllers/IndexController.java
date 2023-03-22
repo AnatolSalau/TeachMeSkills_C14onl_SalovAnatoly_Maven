@@ -4,7 +4,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,36 +18,36 @@ import java.util.Map;
 @RestController
 public class IndexController {
 
-    @GetMapping("/")
-    public Map<String, Object> getPrincipalInfo() {
+      @GetMapping("/")
+      public Map<String, Object> getPrincipalInfo() {
 
-/*        List<String> authoritiesJWT = principal.getAuthorities()
+/*          List<String> authoritiesJWT = principal.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());*/
 
-/*        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        List<String> authoritiesList = authorities.stream()
+/*          Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+            List<String> authoritiesList = authorities.stream()
                 .map(element -> new String())
                 .collect(Collectors.toList());*/
 
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication1 = context.getAuthentication();
-        String contextName = authentication1.getName();
-        Collection<? extends GrantedAuthority> authorities1 = authentication1.getAuthorities();
-/*        List<String> authorities1List = authorities.stream()
+            SecurityContext context = SecurityContextHolder.getContext();
+            Authentication authentication1 = context.getAuthentication();
+            String contextName = authentication1.getName();
+            Collection<? extends GrantedAuthority> authorities1 = authentication1.getAuthorities();
+/*          List<String> authorities1List = authorities.stream()
                 .map(element -> new String())
                 .collect(Collectors.toList());*/
 
-        Map<String, Object> info = new HashMap<>();
-/*        info.put(" JWT name", principal.getName());*/
-/*        info.put("JWT authorities", authoritiesJWT);
-        info.put("JWT tokenAttributes", principal.getTokenAttributes());*/
-        info.put("Authentication name", authentication1.getName());
-/*        info.put("Authentication authoritiesList ", authoritiesList);*/
-        info.put("contextName ", contextName);
-        info.put("context authorities ", authorities1);
-/*        info.put("ContextHolder authoritiesList ", authorities1List);*/
-        return info;
-    }
+            Map<String, Object> info = new HashMap<>();
+            /*        info.put(" JWT name", principal.getName());*/
+/*          info.put("JWT authorities", authoritiesJWT);
+            info.put("JWT tokenAttributes", principal.getTokenAttributes());*/
+            info.put("Authentication name", authentication1.getName());
+            /*        info.put("Authentication authoritiesList ", authoritiesList);*/
+            info.put("contextName ", contextName);
+            info.put("context authorities ", authorities1);
+            /*        info.put("ContextHolder authoritiesList ", authorities1List);*/
+            return info;
+      }
 }
