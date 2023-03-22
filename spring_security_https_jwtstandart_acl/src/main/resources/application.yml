@@ -34,4 +34,4 @@ jwt:
    public:
       key: classpath:app.pub
 websecurity:
-   debug: true
+   debug: false

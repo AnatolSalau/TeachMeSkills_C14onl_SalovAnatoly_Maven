@@ -1,6 +1,7 @@
 package com.example.spring_security_https_jwtstandart_acl.configuration;
 
 import com.example.spring_security_https_jwtstandart_acl.handlers.CustomAccessDeniedHandler;
+import com.example.spring_security_https_jwtstandart_acl.handlers.CustomAuthenticationExceptionHandler;
 import com.example.spring_security_https_jwtstandart_acl.services.UserDetailslServiceImpl;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
@@ -26,6 +27,8 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
+import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -40,6 +43,9 @@ public class JWTSecurityConfiguration {
 
       @Autowired
       UserDetailslServiceImpl userDetailslService;
+
+      @Autowired
+      CustomAuthenticationExceptionHandler authenticationExceptionHandler;
 
       @Autowired
       CustomAccessDeniedHandler customAccessDeniedHandler;
@@ -81,7 +87,7 @@ public class JWTSecurityConfiguration {
                   JWKSet(jwk)) ;
             return new NimbusJwtEncoder(jwks) ;
       }
-
+/*
       //Chain of configuration, HTTP settings
       @Bean
       public SecurityFilterChain filterChain(HttpSecurity httpSecurity, JwtDecoder jwtDecoder) throws
@@ -98,8 +104,8 @@ public class JWTSecurityConfiguration {
                   .and()
                   .authorizeHttpRequests()
                   .requestMatchers(
-                        "/api/v1/users/",
-                        "/api/v1/admins/",
+                        "/api/v1/users",
+                        "/api/v1/admins",
                         "/authenticate"
                   )
                   .authenticated()
@@ -111,6 +117,45 @@ public class JWTSecurityConfiguration {
                   .addFilterBefore(jwtFilter(jwtDecoder),UsernamePasswordAuthenticationFilter.class);
             return httpSecurity.build() ;
       }
+*/
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                               JwtDecoder jwtDecoder) throws Exception {
+      // @formatter:off
+      http
+            .authorizeHttpRequests()
+            .requestMatchers(
+                  "/"
+            )
+            .permitAll()
+            .and()
+            .authorizeHttpRequests()
+            .requestMatchers(
+                  "/api/v1/users",
+                  "/api/v1/admins",
+                  "/authenticate"
+            )
+            .authenticated()
+            .anyRequest().denyAll()
+            .and()
+            .csrf((csrf) -> csrf.ignoringRequestMatchers("/authenticate"))
+            .httpBasic(Customizer.withDefaults())
+            .sessionManagement(
+                  (session) -> session.sessionCreationPolicy(
+                              SessionCreationPolicy.STATELESS)
+                        .and()
+                        .addFilterBefore(jwtFilter(jwtDecoder),
+                              UsernamePasswordAuthenticationFilter.class)
+            )
+            .exceptionHandling((exceptions) -> exceptions
+                  .authenticationEntryPoint(authenticationExceptionHandler)
+                  .accessDeniedHandler(customAccessDeniedHandler)
+            );
+
+      // @formatter:on
+      return http.build();
+}
+
       //Encoder for encode passwords from DB
       @Bean
       public BCryptPasswordEncoder bCryptPasswordEncoder() {

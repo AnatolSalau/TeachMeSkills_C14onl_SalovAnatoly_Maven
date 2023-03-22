@@ -17,7 +17,6 @@
       <module name="lesson_23_classwork_javaee" target="17" />
       <module name="rest_microservice_facade_feignclient" target="17" />
       <module name="rest_microservice_userbackend_feignlient" target="17" />
-      <module name="security_example_1" target="17" />
       <module name="spring_data_jpa_flydb_postgres" target="17" />
       <module name="spring_rest" target="17" />
       <module name="spring_security" target="17" />
