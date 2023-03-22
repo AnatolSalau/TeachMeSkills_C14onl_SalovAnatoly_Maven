@@ -1,5 +1,6 @@
 package com.example.spring_security_https_jwtstandart_acl.configuration;
 
+import com.example.spring_security_https_jwtstandart_acl.handlers.CustomAccessDeniedHandler;
 import com.example.spring_security_https_jwtstandart_acl.services.UserDetailslServiceImpl;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
@@ -40,6 +41,9 @@ public class JWTSecurityConfiguration {
       @Autowired
       UserDetailslServiceImpl userDetailslService;
 
+      @Autowired
+      CustomAccessDeniedHandler customAccessDeniedHandler;
+
       @Value("${websecurity.debug}")
       boolean webSecurityDebug;
 
@@ -78,47 +82,14 @@ public class JWTSecurityConfiguration {
             return new NimbusJwtEncoder(jwks) ;
       }
 
-/*      @Bean
-      public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtDecoder jwtDecoder)
-            throws Exception {
-            // @formatter:off
-            http
-                  .authorizeHttpRequests()
-                  .requestMatchers(
-                        "/info"
-                  )
-                  .permitAll()
-                  .and()
-                  .authorizeHttpRequests()
-                  .requestMatchers(
-                        "/api/v1/users/",
-                        "/api/v1/admins/",
-                        "/token"
-                  )
-                  .authenticated()
-                  .anyRequest().denyAll()
-                  .and()
-                  .csrf((csrf) -> csrf.ignoringRequestMatchers("/token"))
-                  .httpBasic(Customizer.withDefaults())
-                  .sessionManagement(
-                        (session) -> session.sessionCreationPolicy(
-                                    SessionCreationPolicy. STATELESS)
-                              .and()
-                              .addFilterBefore(jwtFilter(jwtDecoder) ,
-                                    UsernamePasswordAuthenticationFilter. class)
-                  );
-            // @formatter:on
-            return http.build() ;
-      }*/
-
       //Chain of configuration, HTTP settings
       @Bean
       public SecurityFilterChain filterChain(HttpSecurity httpSecurity, JwtDecoder jwtDecoder) throws
             Exception {
             httpSecurity
-                  .csrf((csrf) -> csrf.ignoringRequestMatchers("/token"))
+                  .csrf((csrf) -> csrf.ignoringRequestMatchers("/authenticate"))
                   .authorizeHttpRequests()
-                  .requestMatchers( "/"
+                  .requestMatchers( "/", "/authenticate"
                   )
                   .permitAll()
                   .and()
@@ -136,7 +107,7 @@ public class JWTSecurityConfiguration {
                   .exceptionHandling()
                   .accessDeniedHandler(customAccessDeniedHandler)
                   .and()
-                  .addFilterBefore(jwtFilter(jwtDecoder),
+                  .addFilterBefore(jwtFilter(jwtDecoder),UsernamePasswordAuthenticationFilter.class);
             return httpSecurity.build() ;
       }
       //Encoder for encode passwords from DB
