@@ -21,12 +21,12 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
                          AccessDeniedException accessDeniedException) throws IOException, ServletException {
             String requestURI =
                   request.getRequestURI() ;
-            ErrorDTO errorDTO = new ErrorDTO(500,
+            ErrorDTO errorDTO = new ErrorDTO(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                   "CustomAccessDeniedHandler : requestURI : " +
                         requestURI) ;
             String string =
                   objectMapper.writeValueAsString(errorDTO) ;
-            response.setStatus(500) ;
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR) ;
             response.setContentType("application/json") ;
             response.setCharacterEncoding("UTF-8") ;
             response.getWriter().write(string) ;

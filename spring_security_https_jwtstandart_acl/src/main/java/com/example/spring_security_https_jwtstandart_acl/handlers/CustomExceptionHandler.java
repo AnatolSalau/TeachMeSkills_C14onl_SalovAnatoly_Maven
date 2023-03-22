@@ -2,6 +2,7 @@ package com.example.spring_security_https_jwtstandart_acl.handlers;
 
 import com.example.spring_security_https_jwtstandart_acl.dto.ErrorDTO;
 import com.example.spring_security_https_jwtstandart_acl.exceptions.CustomRuntimeException;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -16,8 +17,8 @@ public class CustomExceptionHandler {
             System. out.println("ServerExceptionHandler exceptRuntimeException") ;
                   String message = exception.getMessage() ;
             return ResponseEntity
-                  . status(500)
-                  .body(new ErrorDTO(500,
+                  . status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR)
+                  .body(new ErrorDTO(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
                         "CustomExceptionHandler exceptRuntimeException" +
                               message)) ;
       }
@@ -29,7 +30,7 @@ public class CustomExceptionHandler {
             int statusCode = exception.getStatusCode() ;
             String message = exception.getMessage() ;
             return ResponseEntity
-                  . status(500)
+                  . status(HttpServletResponse.SC_INTERNAL_SERVER_ERROR)
                   .body(new ErrorDTO(statusCode,
                         "CustomExceptionHandler exceptUserRuntimeException " +
                               message)) ;
