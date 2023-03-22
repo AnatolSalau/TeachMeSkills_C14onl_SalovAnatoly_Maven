@@ -18,7 +18,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
       @Override
       public void handle(HttpServletRequest request,
                          HttpServletResponse response,
-                         AccessDeniedException accessDeniedException) throws IOException, ServletException {
+                         AccessDeniedException accessDeniedException) throws IOException {
             String requestURI =
                   request.getRequestURI() ;
             ErrorDTO errorDTO = new ErrorDTO(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
@@ -30,6 +30,5 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
             response.setContentType("application/json") ;
             response.setCharacterEncoding("UTF-8") ;
             response.getWriter().write(string) ;
-
       }
 }
