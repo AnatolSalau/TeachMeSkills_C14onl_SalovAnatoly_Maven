@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "cbeed038-3e0c-48d1-a496-700dd4164c0d",
+		"name": "Https_StandartJWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19745562"
+	},
+	"item": [
+		{
+			"name": "Index",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6InNlbGYiLCJuYW1lIjoiYWRtaW4iLCJleHAiOjE2Nzk1MjQ3NzQsImlhdCI6MTY3OTQ4ODc3NCwiYXV0aG9yaXRpZXMiOiJBRE1JTiJ9.mP0uh8x5Ngz0W97Tb_ax212IEVVM9bvh-ZYKYWizYnSO5HBijN5jLRTdI5xdnRqjcPuGirwLkZJ5B3opw8v9I7cZPF_qHeg6I3Wl0Ht1z0mblYf23T1F7dCN_WJdq7apSVHJE6jAfUhAlHND_oYnRWQpaWyjks9MEAcbDY3tdGgtQwTLdK4zH0yE3IJ3h_s25Wm2hGo2HdayewcTpFD9Yq0fwLba_1rYub-KJr_oPLpIey8aOXjE9G-mt4tCKeIL0kmUA4yCSln3cXTr6fgLxfG4JXvMcD3gz8JGJG0-s513aHWZxuGzCwsCNOIM4HcmYw95HVxt2joksao0mOucvw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://127.0.0.1:8443/",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8443",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaXNzIjoic2VsZiIsIm5hbWUiOiJ1c2VyIiwiZXhwIjoxNjc5NTI0NzA4LCJpYXQiOjE2Nzk0ODg3MDgsImF1dGhvcml0aWVzIjoiVVNFUiJ9.DSK6bhgSHioYOu0fHRRF93jqgNqc6XcIGvrXX0ddhM1rbpS1qIwd1hxSTqZamaFNJvfz799hnS4CHMHW-cTq22etXOxEkUo_sioHLhfiDPXRIdGMg6mXABMCqQ2jOGEvGHguvtP59BeQo9M2ljvleTSRMpteuVzh_m03E8FaCrCnP-HwPQ3oy3Wqz5H3EcRyA6bPoub9N2qpMNze8lHthUtgSi0Pq8POgOQRs0SPZl2dAEEe-QGBIiqyhwUl2e91_EjQVE1bdo-3s12BuG8ZvC3SKlef7A_mbRLXpad71CzXl3GoSfv7Fhrl5YMXz9nkbWH_fz-UNcdtd5qw81cqbA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://127.0.0.1:8443/api/v1/users",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://127.0.0.1:8443/authenticate",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8443",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admins",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6InNlbGYiLCJuYW1lIjoiYWRtaW4iLCJleHAiOjE2Nzk1MjQ3NzQsImlhdCI6MTY3OTQ4ODc3NCwiYXV0aG9yaXRpZXMiOiJBRE1JTiJ9.mP0uh8x5Ngz0W97Tb_ax212IEVVM9bvh-ZYKYWizYnSO5HBijN5jLRTdI5xdnRqjcPuGirwLkZJ5B3opw8v9I7cZPF_qHeg6I3Wl0Ht1z0mblYf23T1F7dCN_WJdq7apSVHJE6jAfUhAlHND_oYnRWQpaWyjks9MEAcbDY3tdGgtQwTLdK4zH0yE3IJ3h_s25Wm2hGo2HdayewcTpFD9Yq0fwLba_1rYub-KJr_oPLpIey8aOXjE9G-mt4tCKeIL0kmUA4yCSln3cXTr6fgLxfG4JXvMcD3gz8JGJG0-s513aHWZxuGzCwsCNOIM4HcmYw95HVxt2joksao0mOucvw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://127.0.0.1:8443/api/v1/admins",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"v1",
+						"admins"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

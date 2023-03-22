@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "667ac0c3-621b-4360-bb21-9d00fbb6d659",
+		"name": "Https_StandartJWT_Tomcat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19745562"
+	},
+	"item": [
+		{
+			"name": "Index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://127.0.0.1:8443/httpsjwt/",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8443",
+					"path": [
+						"httpsjwt",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6InNlbGYiLCJuYW1lIjoiYWRtaW4iLCJleHAiOjE2Nzk1MjQ3NzQsImlhdCI6MTY3OTQ4ODc3NCwiYXV0aG9yaXRpZXMiOiJBRE1JTiJ9.mP0uh8x5Ngz0W97Tb_ax212IEVVM9bvh-ZYKYWizYnSO5HBijN5jLRTdI5xdnRqjcPuGirwLkZJ5B3opw8v9I7cZPF_qHeg6I3Wl0Ht1z0mblYf23T1F7dCN_WJdq7apSVHJE6jAfUhAlHND_oYnRWQpaWyjks9MEAcbDY3tdGgtQwTLdK4zH0yE3IJ3h_s25Wm2hGo2HdayewcTpFD9Yq0fwLba_1rYub-KJr_oPLpIey8aOXjE9G-mt4tCKeIL0kmUA4yCSln3cXTr6fgLxfG4JXvMcD3gz8JGJG0-s513aHWZxuGzCwsCNOIM4HcmYw95HVxt2joksao0mOucvw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://127.0.0.1:8443/httpsjwt/api/v1/users",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8443",
+					"path": [
+						"httpsjwt",
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://127.0.0.1:8443/httpsjwt/authenticate",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8443",
+					"path": [
+						"httpsjwt",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admins",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiaXNzIjoic2VsZiIsIm5hbWUiOiJ1c2VyIiwiZXhwIjoxNjc5NTIyMjc2LCJpYXQiOjE2Nzk0ODYyNzYsImF1dGhvcml0aWVzIjoiVVNFUiJ9.fng6JbWwFouR9b0xBVAz1b9lqjf86ZKP3TzaaofqmKzjs5zj6xnLPMNu0tVVMbKwr7H8dZEdBigucQRwzysW-zRA1XTCHoU47QDdM876lxn1YKSqF_AC_8Jsaka7OrfGay82yYrVg03NB5MV5fIF-1gs3s-3_uMUCLgROeUtOLlSNMU5BSzEEk0K6b3LJJqELmj0AK6O6gL2leu73cPdQGbo-5isqX3M6EWmn-hPwszmAYQ4Mf6266i1RoxdAvxGrekglZ5JmHaR3x4NWvcaVuY2_hLe2L9fEjJmWUeOlcrodvwmA_FZl8tuT1OHEhIFERuO2fAh5k0UVHjGDtRwbA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://127.0.0.1:8443/httpsjwt/api/v1/users",
+					"protocol": "https",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8443",
+					"path": [
+						"httpsjwt",
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
