@@ -89,7 +89,7 @@ public class JWTSecurityConfiguration {
             httpSecurity
                   .csrf((csrf) -> csrf.ignoringRequestMatchers("/authenticate"))
                   .authorizeHttpRequests()
-                  .requestMatchers( "/", "/authenticate"
+                  .requestMatchers( "/"
                   )
                   .permitAll()
                   .and()
@@ -99,7 +99,8 @@ public class JWTSecurityConfiguration {
                   .authorizeHttpRequests()
                   .requestMatchers(
                         "/api/v1/users/",
-                        "/api/v1/admins/"
+                        "/api/v1/admins/",
+                        "/authenticate"
                   )
                   .authenticated()
                   .anyRequest().denyAll()
