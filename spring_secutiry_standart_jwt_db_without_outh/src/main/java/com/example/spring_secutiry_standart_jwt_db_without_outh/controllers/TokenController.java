@@ -57,7 +57,8 @@ public class TokenController {
                 .build();
         // @formatter:on
         //Create token with claims
-        return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        String tokenValue = this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        return tokenValue;
     }
 
 }

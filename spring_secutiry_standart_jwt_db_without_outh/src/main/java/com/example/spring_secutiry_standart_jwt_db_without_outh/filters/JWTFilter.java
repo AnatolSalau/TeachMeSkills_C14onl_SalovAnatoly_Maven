@@ -46,12 +46,15 @@ public class JWTFilter extends OncePerRequestFilter {
         final String authorizationHeader = request
                 .getHeader("Authorization");
         System.out.println(authorizationHeader);
+        if (authorizationHeader != null && authorizationHeader.startsWith("Basic ")) {
+            Base64.Decoder decoder = Base64.getDecoder();
+            String originalString = authorizationHeader.substring(6);
+            System.out.println(originalString);
+            byte[] bytes = decoder.decode(originalString);
+            String s = new String(bytes);
+            System.out.println(s);
+        }
 
-        Base64.Decoder decoder = Base64.getDecoder();
-        String originalString = "YWRtaW46YWRtaW4=";
-        byte[] bytes = decoder.decode(originalString);
-        String s = new String(bytes);
-        System.out.println(s);
 
         String username = null;
         String jwt = null;
