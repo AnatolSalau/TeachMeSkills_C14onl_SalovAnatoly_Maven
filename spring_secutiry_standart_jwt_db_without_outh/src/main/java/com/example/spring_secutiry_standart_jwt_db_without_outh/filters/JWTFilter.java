@@ -19,7 +19,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 /**
  * JWTFilter for check JWT token
@@ -43,6 +45,14 @@ public class JWTFilter extends OncePerRequestFilter {
         //Get header Authorization from request
         final String authorizationHeader = request
                 .getHeader("Authorization");
+        System.out.println(authorizationHeader);
+
+        Base64.Decoder decoder = Base64.getDecoder();
+        String originalString = "YWRtaW46YWRtaW4=";
+        byte[] bytes = decoder.decode(originalString);
+        String s = new String(bytes);
+        System.out.println(s);
+
         String username = null;
         String jwt = null;
         Jwt decodedJwt = null;
