@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS acl_entry
 (
       id                  bigint NOT NULL PRIMARY KEY,
       acl_object_identity bigint NOT NULL REFERENCES acl_object_identity (id),
-      ace_order           int    NOT NULL UNIQUE REFERENCES acl_sid (id),
+      ace_order           int    NOT NULL REFERENCES acl_sid (id),
       sid                 bigint NOT NULL,
       mask                int    NOT NULL,
       granting            int    NOT NULL,
