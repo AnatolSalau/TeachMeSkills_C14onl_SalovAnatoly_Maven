@@ -8,7 +8,7 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/spring_security_https_jwtstandart_acl" />
-        <option name="gradleHome" value="$PROJECT_DIR$/../../../JAVA/gradle-7.5.1" />
+        <option name="gradleHome" value="C:/JAVA/gradle-7.5.1" />
         <option name="gradleJvm" value="liberica-17" />
         <option name="modules">
           <set>
